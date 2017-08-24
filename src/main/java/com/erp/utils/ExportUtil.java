@@ -121,7 +121,6 @@ public class ExportUtil {
 
                 row.createCell((short) 37).setCellValue(stu.getMainApply().getApplyStatus());
                 row.createCell((short) 36).setCellValue(stu.getMainApply().getApplyDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainApply().getApplyDate()));
-                row.createCell((short)35).setCellValue(stu.getCopyToConnectDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopyToConnectDate()));
 
                 if(stu.getMainSupplement()!=null){
                     row.createCell((short) 39).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainSupplement().getCollectMaterialDate()));
@@ -141,7 +140,6 @@ public class ExportUtil {
                     row.createCell((short) 49).setCellValue(stu.getMainReply().getSchoolConfirmStuDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getSchoolConfirmStuDate()));
                     row.createCell((short) 50).setCellValue(stu.getMainApply().getArgueDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainApply().getArgueDate()));
                     row.createCell((short) 53).setCellValue(stu.getMainReply().getUnConditionDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getUnConditionDate()));
-                    row.createCell((short) 54).setCellValue(stu.getMainApply().getDepositPaymentDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainApply().getDepositPaymentDate()));
                     row.createCell((short) 55).setCellValue(stu.getMainReply().getStudentConfirmUnConditionDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getStudentConfirmUnConditionDate()));
                     row.createCell((short) 56).setCellValue(stu.getMainReply().getSchoolConfirmStuUnConditionDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getSchoolConfirmStuUnConditionDate()));
 
@@ -198,7 +196,6 @@ public class ExportUtil {
 
             row.createCell((short) 32).setCellValue(stu.getCopywriting().getApplyCountryRejectHistory()==1?"是":"否");
             row.createCell((short) 33).setCellValue(stu.getCopywriting().getOtherCountryRejectHistory()==1?"是":"否");
-            row.createCell((short)95).setCellValue(stu.getSaleToCopyDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getSaleToCopyDate()));
             row.createCell((short)96).setCellValue(stu.getCopywriting().getCopyName());
             row.createCell((short)97).setCellValue("是否接受");
             row.createCell((short)98).setCellValue(stu.getCopywriting().getFirstVisitStatus()==1?"是":"否");

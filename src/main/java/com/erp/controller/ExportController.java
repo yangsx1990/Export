@@ -5,6 +5,7 @@ import com.erp.model.ExportParam;
 import com.erp.model.StudentInfo;
 import com.erp.service.ExportService;
 import com.erp.service.StudentInfoService;
+import com.erp.utils.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import freemarker.template.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -37,7 +39,11 @@ public class ExportController {
 
     @RequestMapping("index")
     public void index(HttpServletRequest request, HttpServletResponse response, Model model) {
-        List<ExportParam> exports=exportService.export();
+        //根据员工id查询职务和负责国家
+        //根据职务和负责国家查询转案人为该员工的申请信息。
+        //
+        Integer countryId=0;
+        List<ExportParam> exports=exportService.export(countryId);
         File file = null;
         InputStream inputStream = null;
         ServletOutputStream out = null;
@@ -45,7 +51,7 @@ public class ExportController {
             request.setCharacterEncoding("UTF-8");
             Map map =new HashMap();
             map.put("exports",exports);
-            file = createExcel(request,map, "myExcel","ao.ftl");//调用创建excel帮助类
+            file = new ExcelUtil().createExcel(request,map, "myExcel","ao.ftl");//调用创建excel帮助类
             inputStream = new FileInputStream(file);
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/msexcel");
@@ -58,39 +64,15 @@ public class ExportController {
                 out.write(buffer, 0, bytesToRead);
             }
             out.flush();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+          file.delete();
         }catch(Exception e){
 
         }
     }
-    private static Configuration configuration =null;
-    private static Map<String, Template> allTemplates =null;
-   // private static String realPath = ServletActionContext.getServletContext().getRealPath("/");
-   private String realPath="";
-    private   File createExcel(HttpServletRequest request,Map<?, ?> dataMap, String type, String valueName){
-        realPath=request.getServletContext().getRealPath("");
-        try {
-            configuration = new Configuration();
-            configuration.setDefaultEncoding("UTF-8");
-            configuration.setDirectoryForTemplateLoading(new File(realPath+""));
-            allTemplates = new HashMap<String, Template>();
-            allTemplates.put(type, configuration.getTemplate(valueName));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
-        }
-        String name = "temp" + (int) (Math.random() * 100000) + ".xls";
-        File file = new File(name);
-        Template template = allTemplates.get(type);
-        try {
-            Writer w = new OutputStreamWriter(new FileOutputStream(file), "utf-8");
-            template.process(dataMap, w);
-            w.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        return file;
-    }
+
     @RequestMapping("/export")
     public void export(HttpServletResponse response){
        /* HSSFWorkbook wb=exportService.export();
@@ -107,7 +89,8 @@ public class ExportController {
     }
 
     @RequestMapping("student")
-    public List<StudentInfo> student() {
+    public List<StudentInfo> student(HttpServletRequest request) {
+       Cookie[] cookies= request.getCookies();
         return studentInfoService.getList(new StudentInfo());
     }
 }

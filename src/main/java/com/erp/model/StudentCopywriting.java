@@ -71,6 +71,26 @@ public class StudentCopywriting
 	@Column(name="grade_four_status")
 	private Integer gradeFourStatus;
 
+
+	/**简历完成时间*/
+	@Column(name="resume_complete_date")
+	private Date resumeCompleteDate;
+
+	/**个人陈述完成时间*/
+	@Column(name="statement_complete_date")
+	private Date statementCompleteDate;
+
+	/**推荐信完成时间*/
+	@Column(name="recommendation_complete_date")
+	private Date recommendationCompleteDate;
+
+	/**是否外包文书*/
+	@Column(name="copy_outsource_status")
+	private Integer copyOutsourceStatus;
+	/**外包文书内容*/
+	@Column(name="copy_outsource_content")
+	private String copyOutsourceContent;
+
 	public Integer getId() {
 		return id;
 	}
@@ -229,5 +249,45 @@ public class StudentCopywriting
 
 	public void setGradeFourStatus(Integer gradeFourStatus) {
 		this.gradeFourStatus = gradeFourStatus;
+	}
+
+	public Date getResumeCompleteDate() {
+		return resumeCompleteDate;
+	}
+
+	public void setResumeCompleteDate(Date resumeCompleteDate) {
+		this.resumeCompleteDate = resumeCompleteDate;
+	}
+
+	public Date getStatementCompleteDate() {
+		return statementCompleteDate;
+	}
+
+	public void setStatementCompleteDate(Date statementCompleteDate) {
+		this.statementCompleteDate = statementCompleteDate;
+	}
+
+	public Date getRecommendationCompleteDate() {
+		return recommendationCompleteDate;
+	}
+
+	public void setRecommendationCompleteDate(Date recommendationCompleteDate) {
+		this.recommendationCompleteDate = recommendationCompleteDate;
+	}
+
+	public Integer getCopyOutsourceStatus() {
+		return copyOutsourceStatus;
+	}
+
+	public void setCopyOutsourceStatus(Integer copyOutsourceStatus) {
+		this.copyOutsourceStatus = copyOutsourceStatus;
+	}
+
+	public String getCopyOutsourceContent() {
+		return copyOutsourceContent;
+	}
+
+	public void setCopyOutsourceContent(String copyOutsourceContent) {
+		this.copyOutsourceContent = copyOutsourceContent;
 	}
 }

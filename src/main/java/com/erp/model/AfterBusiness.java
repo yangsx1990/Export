@@ -31,6 +31,9 @@ public class AfterBusiness
 	/**接机完成日期*/
     @Column(name ="PICK_COMPLETE_DATE")
 	private Date pickCompleteDate;
+	/**接机信息*/
+    @Column(name="pick_info")
+	private String pickInfo;
 	/**离境日期*/
     @Column(name ="LEAVE_DATE")
 	private Date leaveDate;
@@ -162,5 +165,13 @@ public class AfterBusiness
 	 */
 	public void setLeaveDate(Date leaveDate){
 		this.leaveDate = leaveDate;
+	}
+
+	public String getPickInfo() {
+		return pickInfo;
+	}
+
+	public void setPickInfo(String pickInfo) {
+		this.pickInfo = pickInfo;
 	}
 }

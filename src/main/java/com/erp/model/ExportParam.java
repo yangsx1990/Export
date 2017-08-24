@@ -18,6 +18,8 @@ public class ExportParam {
     private Apply mainStayApply;
     /**语言申请住宿**/
     private Apply langStayApply;
+    /**监护申请**/
+    private Apply custodyApply;
     /**工作经验**/
     private String experiences;
 
@@ -34,9 +36,17 @@ public class ExportParam {
     /**语言跟催**/
     private Urge langUrge;
     /**主课回访**/
-    private Visit mainVisit;
+    private String mainVisit;
     /**语言回访**/
-    private Visit langVisit;
+    private String langVisit;
+    /**主课住宿回访**/
+    private  String mainStayVisit;
+    /**语言住宿回访**/
+    private  String langStayVisit;
+    /**监护回访**/
+    private String custodyVisit;
+    /**无条件offer回访**/
+    private String unConditionVisit;
     /**主课回复**/
     private Reply mainReply;
     /**语言回复**/
@@ -46,8 +56,12 @@ public class ExportParam {
     private Reply mainStayReply;
     /**语言住宿回复**/
     private Reply langStayReply;
+    /**监护回复**/
+    private Reply custodyReply;
     /**咨询顾问**/
     private String saleOperator;
+    /**申请文案**/
+    private String applyCopyOperator;
     /**文签**/
     private String copyOperator;
     /**业务员**/
@@ -56,38 +70,80 @@ public class ExportParam {
     private String connectOperator;
     /**签证信息**/
     private Visa visa;
-    /**销售转文签日期**/
-    private Date saleToCopyDate;
-    /**文签转外联日期**/
-    private Date copyToConnectDate;
-    /**外联转文签日期**/
-    private Date connectToCopyDate;
+    /**主课转案**/
+    private TransferCase mainCase;
+    /**语言课转案**/
+    private TransferCase langCase;
+    /**主课住宿转案**/
+    private TransferCase mainStayCase;
+    /**语言课住宿转案**/
+    private TransferCase langStayCase;
+    /**监护转案**/
+    private TransferCase custodyCase;
     /**定校方案**/
     private String collegePlan;
    /**后续服务**/
     private AfterBusiness afterBusiness;
-    public Date getSaleToCopyDate() {
-        return saleToCopyDate;
+    /**正课offer信息**/
+    private  Offer mainOffer;
+    /**语言课offer信息**/
+    private  Offer langOffer;
+    /**正课住宿offer信息**/
+    private  Offer mainStayOffer;
+    /**语言课住宿offer信息**/
+    private  Offer langStayOffer;
+
+    /**监护offer信息**/
+    private  Offer custodyOffer;
+    /**申请奖金**/
+    private Bonus applyBonus;
+    /**签证奖金**/
+    private Bonus visaBonus;
+
+    /**退款信息**/
+    private Refund refund;
+
+    /**学校通知offer延期日期**/
+    private Date schoolOfferDelatDate;
+
+    public TransferCase getMainCase() {
+        return mainCase;
     }
 
-    public void setSaleToCopyDate(Date saleToCopyDate) {
-        this.saleToCopyDate = saleToCopyDate;
+    public void setMainCase(TransferCase mainCase) {
+        this.mainCase = mainCase;
     }
 
-    public Date getCopyToConnectDate() {
-        return copyToConnectDate;
+    public TransferCase getLangCase() {
+        return langCase;
     }
 
-    public void setCopyToConnectDate(Date copyToConnectDate) {
-        this.copyToConnectDate = copyToConnectDate;
+    public void setLangCase(TransferCase langCase) {
+        this.langCase = langCase;
     }
 
-    public Date getConnectToCopyDate() {
-        return connectToCopyDate;
+    public TransferCase getMainStayCase() {
+        return mainStayCase;
     }
 
-    public void setConnectToCopyDate(Date connectToCopyDate) {
-        this.connectToCopyDate = connectToCopyDate;
+    public void setMainStayCase(TransferCase mainStayCase) {
+        this.mainStayCase = mainStayCase;
+    }
+
+    public TransferCase getLangStayCase() {
+        return langStayCase;
+    }
+
+    public void setLangStayCase(TransferCase langStayCase) {
+        this.langStayCase = langStayCase;
+    }
+
+    public TransferCase getCustodyCase() {
+        return custodyCase;
+    }
+
+    public void setCustodyCase(TransferCase custodyCase) {
+        this.custodyCase = custodyCase;
     }
 
     public Visa getVisa() {
@@ -202,19 +258,19 @@ public class ExportParam {
         this.langUrge = langUrge;
     }
 
-    public Visit getMainVisit() {
+    public String getMainVisit() {
         return mainVisit;
     }
 
-    public void setMainVisit(Visit mainVisit) {
+    public void setMainVisit(String mainVisit) {
         this.mainVisit = mainVisit;
     }
 
-    public Visit getLangVisit() {
+    public String getLangVisit() {
         return langVisit;
     }
 
-    public void setLangVisit(Visit langVisit) {
+    public void setLangVisit(String langVisit) {
         this.langVisit = langVisit;
     }
 
@@ -288,5 +344,135 @@ public class ExportParam {
 
     public void setAfterBusiness(AfterBusiness afterBusiness) {
         this.afterBusiness = afterBusiness;
+    }
+
+
+
+    public Date getSchoolOfferDelatDate() {
+        return schoolOfferDelatDate;
+    }
+
+    public void setSchoolOfferDelatDate(Date schoolOfferDelatDate) {
+        this.schoolOfferDelatDate = schoolOfferDelatDate;
+    }
+
+    public Refund getRefund() {
+        return refund;
+    }
+
+    public void setRefund(Refund refund) {
+        this.refund = refund;
+    }
+
+    public String getMainStayVisit() {
+        return mainStayVisit;
+    }
+
+    public void setMainStayVisit(String mainStayVisit) {
+        this.mainStayVisit = mainStayVisit;
+    }
+
+    public String getLangStayVisit() {
+        return langStayVisit;
+    }
+
+    public void setLangStayVisit(String langStayVisit) {
+        this.langStayVisit = langStayVisit;
+    }
+
+    public Offer getMainOffer() {
+        return mainOffer;
+    }
+
+    public void setMainOffer(Offer mainOffer) {
+        this.mainOffer = mainOffer;
+    }
+
+    public Offer getLangOffer() {
+        return langOffer;
+    }
+
+    public void setLangOffer(Offer langOffer) {
+        this.langOffer = langOffer;
+    }
+
+    public Offer getMainStayOffer() {
+        return mainStayOffer;
+    }
+
+    public void setMainStayOffer(Offer mainStayOffer) {
+        this.mainStayOffer = mainStayOffer;
+    }
+
+    public Offer getLangStayOffer() {
+        return langStayOffer;
+    }
+
+    public void setLangStayOffer(Offer langStayOffer) {
+        this.langStayOffer = langStayOffer;
+    }
+
+    public String getApplyCopyOperator() {
+        return applyCopyOperator;
+    }
+
+    public void setApplyCopyOperator(String applyCopyOperator) {
+        this.applyCopyOperator = applyCopyOperator;
+    }
+
+    public Bonus getApplyBonus() {
+        return applyBonus;
+    }
+
+    public void setApplyBonus(Bonus applyBonus) {
+        this.applyBonus = applyBonus;
+    }
+
+    public Bonus getVisaBonus() {
+        return visaBonus;
+    }
+
+    public void setVisaBonus(Bonus visaBonus) {
+        this.visaBonus = visaBonus;
+    }
+
+    public Apply getCustodyApply() {
+        return custodyApply;
+    }
+
+    public void setCustodyApply(Apply custodyApply) {
+        this.custodyApply = custodyApply;
+    }
+
+    public String getCustodyVisit() {
+        return custodyVisit;
+    }
+
+    public void setCustodyVisit(String custodyVisit) {
+        this.custodyVisit = custodyVisit;
+    }
+
+    public Offer getCustodyOffer() {
+        return custodyOffer;
+    }
+
+    public void setCustodyOffer(Offer custodyOffer) {
+        this.custodyOffer = custodyOffer;
+    }
+
+    public Reply getCustodyReply() {
+        return custodyReply;
+    }
+
+    public void setCustodyReply(Reply custodyReply) {
+        this.custodyReply = custodyReply;
+    }
+
+    public String getUnConditionVisit() {
+        return unConditionVisit;
+    }
+
+    public void setUnConditionVisit(String unConditionVisit) {
+        this.unConditionVisit = unConditionVisit;
     }
 }

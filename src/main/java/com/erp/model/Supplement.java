@@ -34,9 +34,9 @@ public class Supplement
 	/**递交材料方式：1-传真 2-扫描 3-邮寄 4-现场递交*/
     @Column(name ="SEND_MATERIAL_TYPE")
 	private Integer sendMaterialType;
-	/**是否补件:1-是 2-否*/
-    @Column(name ="ADD_STATUS")
-	private Integer addStatus;
+	/**业务场景:1-首次寄出材料 2-寄出补件内容 3-寄出成绩单/疫苗表*/
+    @Column(name ="bussiness_case")
+	private Integer bussinessCase;
 	/**学校确认收到材料日期*/
     @Column(name ="SCHOOL_CONFIRM_RECEIVE_DATE")
 	private Date schoolConfirmReceiveDate;
@@ -184,22 +184,15 @@ public class Supplement
 	public void setSendMaterialType(Integer sendMaterialType){
 		this.sendMaterialType = sendMaterialType;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  是否补件:1-是 2-否
-	 */
 
-	public Integer getAddStatus(){
-		return this.addStatus;
+	public Integer getBussinessCase() {
+		return bussinessCase;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  是否补件:1-是 2-否
-	 */
-	public void setAddStatus(Integer addStatus){
-		this.addStatus = addStatus;
+	public void setBussinessCase(Integer bussinessCase) {
+		this.bussinessCase = bussinessCase;
 	}
+
 	/**
 	 *方法: 取得java.util.Date
 	 *@return: java.util.Date  学校确认收到材料日期

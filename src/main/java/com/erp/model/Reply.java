@@ -19,7 +19,7 @@ public class Reply
 	/**回复途径*/
     @Column(name ="REPLY_WAY")
 	private Integer replyWay;
-	/**回复类型：1-offer到达 2-无offer 3-coe到达*/
+	/**回复类型：1-收到申请  2-要求补件 3-确认收到补件 4-offer到达 5-无offer 6-coe电子版到达 7-coe原件 8-offer延期 */
     @Column(name ="REPLY_TYPE")
 	private Integer replyType;
 	/**补充说明*/
@@ -37,6 +37,7 @@ public class Reply
 	/**回复offer截止日期*/
     @Column(name ="REPLY_OFFER_DEALINE")
 	private Date replyOfferDealine;
+
 	/**回复id，本表的主键，代表针对某条记录*/
     @Column(name ="REPLY_ID")
 	private Integer replyId;
@@ -59,7 +60,9 @@ public class Reply
 	/**学校确认无条件offer日期*/
 	@Transient
 	private Date schoolConfirmStuUnConditionDate;
-
+	/**押金支付日期*/
+	@Transient
+	private Date depositPaymentDate;
 	/**coe日期**/
 	@Transient
 	private Date coeDate;
@@ -287,5 +290,15 @@ public class Reply
 
 	public void setCoeDate(Date coeDate) {
 		this.coeDate = coeDate;
+	}
+
+
+
+	public Date getDepositPaymentDate() {
+		return depositPaymentDate;
+	}
+
+	public void setDepositPaymentDate(Date depositPaymentDate) {
+		this.depositPaymentDate = depositPaymentDate;
 	}
 }

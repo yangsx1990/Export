@@ -1060,10 +1060,10 @@
            <Cell><Data ss:Type="String">无</Data></Cell>
        </#if>
           <Cell><Data ss:Type="String">${(p.collegePlan)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainApply.applyStatusName)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">正课跟催</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainVisit)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainSupplement.collectMaterialDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainSupplement.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainSupplement.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
@@ -1093,7 +1093,7 @@
           <Cell><Data ss:Type="String">${(p.mainReply.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">语言课名称</Data></Cell>
           <Cell><Data ss:Type="String">语言课开课日期</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <!--语言申请-->
        <#if ((p.langApply)??)&&(((p.langApply)?size)>0)>
            <Cell><Data ss:Type="String">${(p.langApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
@@ -1102,7 +1102,7 @@
        </#if>
        <#if ((p.langSupplement)??)&&(((p.langSupplement)?size)>0)>
            <Cell><Data ss:Type="String">${(p.langSupplement.collectMaterialDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-           <Cell><Data ss:Type="String">语言跟催记录</Data></Cell>
+           <Cell><Data ss:Type="String">${(p.langVisit)!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.langSupplement.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.langSupplement.supplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.langSupplement.schoolConfirmReceiveDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
@@ -1144,7 +1144,7 @@
        <#else>
            <Cell><Data ss:Type="String">无</Data></Cell>
        </#if>
-          <Cell><Data ss:Type="String">语言住宿跟催记录</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langStayVisit)!'无'}</Data></Cell>
        <#if ((p.langStayReply)??)&&(((p.langStayReply)?size)>0)>
            <Cell><Data ss:Type="String">语言住宿确认日期-不确定</Data></Cell>
            <Cell><Data ss:Type="String">语言住宿offer信息-不确定</Data></Cell>
@@ -1163,10 +1163,10 @@
        <#else>
            <Cell><Data ss:Type="String">无</Data></Cell>
        </#if>
-          <Cell><Data ss:Type="String">正课住宿跟催记录</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainStayVisit)!'无'}</Data></Cell>
        <#if ((p.mainStayReply)??)&&(((p.mainStayReply)?size)>0)>
            <Cell><Data ss:Type="String">正课住宿确认日期-不确定</Data></Cell>
-           <Cell><Data ss:Type="String">正课住宿offer信息-不确定</Data></Cell>
+           <Cell><Data ss:Type="String">${(p.mainStayOffer.offerInfo)!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.mainStayReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.mainStayReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
            <Cell><Data ss:Type="String">${(p.mainStayReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>

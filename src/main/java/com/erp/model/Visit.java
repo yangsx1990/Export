@@ -16,7 +16,7 @@ public class Visit
 	/**申请id*/
     @Column(name ="APPLY_ID")
 	private Integer applyId;
-	/**回访途径*/
+	/**回访类型：1-无条件offer跟催 2-其他*/
     @Column(name ="VISIT_TYPE")
 	private Integer visitType;
 	/**回访内容*/

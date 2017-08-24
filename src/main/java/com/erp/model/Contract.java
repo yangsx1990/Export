@@ -19,6 +19,9 @@ public class Contract
 	/**留学国家*/
     @Column(name ="COUNTRY_NO")
 	private Integer countryNo;
+	/**留学国家名称*/
+    @Column(name="country_name")
+	private String countryName;
 	/**合同类型*/
     @Column(name ="CONTRACT_TYPE")
 	private Integer contractType;
@@ -151,5 +154,13 @@ public class Contract
 	 */
 	public void setAmount(BigDecimal amount){
 		this.amount = amount;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 }

@@ -39,12 +39,6 @@ public class TransferCase
 	/**接收日期*/
     @Column(name ="RECEIVE_DATE")
 	private Date receiveDate;
-	/**上一负责人角色*/
-    @Column(name ="PRE_OPERATOR_ROLE")
-	private String preOperatorRole;
-	/**下一负责人角色*/
-    @Column(name ="LATER_OPERATOR_ROLE")
-	private String laterOperatorRole;
 	/**接收结果*/
     @Column(name ="RESULT")
 	private Integer result;
@@ -58,6 +52,24 @@ public class TransferCase
 
 	@Column(name="business_case")
 	private Integer bussinessCase;
+
+	/**留学国家**/
+	@Column(name="country_id")
+	private Integer countryId;
+
+	/**类别：1-正课 2-语言 3-正课住宿 4-语言住宿 5-监护**/
+	@Column(name="transfer_type")
+	private Integer transferType;
+
+	/**销售转文签日期**/
+	@Transient
+	private Date saleToCopyDate;
+	/**文签转外联日期**/
+	@Transient
+	private Date copyToConnectDate;
+	/**外联转文签日期**/
+	@Transient
+	private Date connectToCopyDate;
 
 	public Integer getBussinessCase() {
 		return bussinessCase;
@@ -179,38 +191,7 @@ public class TransferCase
 	public void setReceiveDate(Date receiveDate){
 		this.receiveDate = receiveDate;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  preOperatorRole
-	 */
 
-	public String getPreOperatorRole(){
-		return this.preOperatorRole;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  preOperatorRole
-	 */
-	public void setPreOperatorRole(String preOperatorRole){
-		this.preOperatorRole = preOperatorRole;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  laterOperatorRole
-	 */
-
-	public String getLaterOperatorRole(){
-		return this.laterOperatorRole;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  laterOperatorRole
-	 */
-	public void setLaterOperatorRole(String laterOperatorRole){
-		this.laterOperatorRole = laterOperatorRole;
-	}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  result
@@ -267,5 +248,45 @@ public class TransferCase
 
 	public void setLaterOperatorName(String laterOperatorName) {
 		this.laterOperatorName = laterOperatorName;
+	}
+
+	public Integer getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
+
+	public Integer getTransferType() {
+		return transferType;
+	}
+
+	public void setTransferType(Integer transferType) {
+		this.transferType = transferType;
+	}
+
+	public Date getSaleToCopyDate() {
+		return saleToCopyDate;
+	}
+
+	public void setSaleToCopyDate(Date saleToCopyDate) {
+		this.saleToCopyDate = saleToCopyDate;
+	}
+
+	public Date getCopyToConnectDate() {
+		return copyToConnectDate;
+	}
+
+	public void setCopyToConnectDate(Date copyToConnectDate) {
+		this.copyToConnectDate = copyToConnectDate;
+	}
+
+	public Date getConnectToCopyDate() {
+		return connectToCopyDate;
+	}
+
+	public void setConnectToCopyDate(Date connectToCopyDate) {
+		this.connectToCopyDate = connectToCopyDate;
 	}
 }

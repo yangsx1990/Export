@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service("transferCaseService")
@@ -28,5 +29,14 @@ public class TransferCaseServiceImpl implements TransferCaseService
     @Override
     public List<TransferCase> getOperator(TransferCase transferCase) {
         return transferCaseMapper.select(transferCase);
+    }
+
+    @Override
+    public List<TransferCase> queryByOperatorId(List<Integer> operators, Integer countryId) {
+
+        Example example=new Example(TransferCase.class);
+        example.createCriteria().andEqualTo("countryId",countryId).andEqualTo("enableStatus",1)
+        .andIn("laterOperator",operators).andEqualTo("result",1).andEqualTo("transferType",1);
+        return transferCaseMapper.selectByExample(example);
     }
 }

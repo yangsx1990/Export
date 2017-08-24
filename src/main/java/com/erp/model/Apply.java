@@ -30,7 +30,7 @@ public class Apply
 	private Integer applyMajor;
 	/**院校校区*/
     @Column(name ="COLLEGE_CAMPUS")
-	private Integer collegeCampus;
+	private String collegeCampus;
 	/**是否加申院校*/
     @Column(name ="ADD_COLLEGE_STATUS")
 	private Integer addCollegeStatus;
@@ -70,9 +70,6 @@ public class Apply
 	/**argueDate*/
     @Column(name ="ARGUE_DATE")
 	private Date argueDate;
-	/**depositPaymentDate*/
-    @Column(name ="DEPOSIT_PAYMENT_DATE")
-	private Date depositPaymentDate;
 	/**申请类型*/
     @Column(name ="APPLY_TYPE")
 	private Integer applyType;
@@ -96,6 +93,9 @@ public class Apply
 
 	@Column(name="college_name")
 	private String applyCollegeName;
+	/**申请专业英文全称**/
+	@Column(name="major_english_name")
+	private String majorEnglishName;
 
 	/**申请学期**/
 	@Column(name="apply_term")
@@ -111,7 +111,7 @@ public class Apply
 	private String expressNo;
 	/**快递投递状态:1-投递成功 2-在途 3-已签收。**/
 	@Column(name="express_status")
-	private Integer expressStatus;
+	private String expressStatus;
 
 	/**申请学历**/
 	@Column(name="apply_edu")
@@ -119,7 +119,34 @@ public class Apply
 	/**申请类别：直录，双录取等**/
 	@Column(name="apply_category")
 	private String applyCategory;
+	/**申请专业截止日期**/
+	@Column(name="apply_major_deadline")
+	private Date applyMajorDeadline;
+	/**预计开课日期**/
+	@Column(name="expect_begin_date")
+	private Date expectBeginDate;
 
+	@Column(name="apply_comment")
+	private String applyComment;
+	/**申请院校英文名称**/
+	@Column(name="college_english_name")
+	private String collegeEnglishName;
+	/**学生确认日期**/
+	@Column(name="confirm_date")
+	private Date confirmDate;
+
+/**申请费用**/
+	@Column(name="apply_fee")
+	private String applyFee;
+/**申请邮箱账号**/
+	@Column(name="email_account")
+	private String emailAccount;
+	/**申请邮箱密码**/
+	@Column(name="email_password")
+	private String emailPassword;
+	/**查询网址**/
+	@Column(name="network_address")
+	private String networkAddress;
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id
@@ -206,7 +233,7 @@ public class Apply
 	 *@return: java.lang.Integer  院校校区
 	 */
 
-	public Integer getCollegeCampus(){
+	public String getCollegeCampus(){
 		return this.collegeCampus;
 	}
 
@@ -214,7 +241,7 @@ public class Apply
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  院校校区
 	 */
-	public void setCollegeCampus(Integer collegeCampus){
+	public void setCollegeCampus(String collegeCampus){
 		this.collegeCampus = collegeCampus;
 	}
 
@@ -378,22 +405,7 @@ public class Apply
 	public void setArgueDate(Date argueDate){
 		this.argueDate = argueDate;
 	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  depositPaymentDate
-	 */
 
-	public Date getDepositPaymentDate(){
-		return this.depositPaymentDate;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  depositPaymentDate
-	 */
-	public void setDepositPaymentDate(Date depositPaymentDate){
-		this.depositPaymentDate = depositPaymentDate;
-	}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  applyType
@@ -515,11 +527,11 @@ public class Apply
 		this.expressNo = expressNo;
 	}
 
-	public Integer getExpressStatus() {
+	public String getExpressStatus() {
 		return expressStatus;
 	}
 
-	public void setExpressStatus(Integer expressStatus) {
+	public void setExpressStatus(String expressStatus) {
 		this.expressStatus = expressStatus;
 	}
 
@@ -545,5 +557,85 @@ public class Apply
 
 	public void setApplyCategory(String applyCategory) {
 		this.applyCategory = applyCategory;
+	}
+
+	public Date getApplyMajorDeadline() {
+		return applyMajorDeadline;
+	}
+
+	public void setApplyMajorDeadline(Date applyMajorDeadline) {
+		this.applyMajorDeadline = applyMajorDeadline;
+	}
+
+	public Date getExpectBeginDate() {
+		return expectBeginDate;
+	}
+
+	public void setExpectBeginDate(Date expectBeginDate) {
+		this.expectBeginDate = expectBeginDate;
+	}
+
+	public String getApplyComment() {
+		return applyComment;
+	}
+
+	public void setApplyComment(String applyComment) {
+		this.applyComment = applyComment;
+	}
+
+	public String getCollegeEnglishName() {
+		return collegeEnglishName;
+	}
+
+	public void setCollegeEnglishName(String collegeEnglishName) {
+		this.collegeEnglishName = collegeEnglishName;
+	}
+
+	public String getMajorEnglishName() {
+		return majorEnglishName;
+	}
+
+	public void setMajorEnglishName(String majorEnglishName) {
+		this.majorEnglishName = majorEnglishName;
+	}
+
+	public String getApplyFee() {
+		return applyFee;
+	}
+
+	public void setApplyFee(String applyFee) {
+		this.applyFee = applyFee;
+	}
+
+	public Date getConfirmDate() {
+		return confirmDate;
+	}
+
+	public void setConfirmDate(Date confirmDate) {
+		this.confirmDate = confirmDate;
+	}
+
+	public String getEmailAccount() {
+		return emailAccount;
+	}
+
+	public void setEmailAccount(String emailAccount) {
+		this.emailAccount = emailAccount;
+	}
+
+	public String getEmailPassword() {
+		return emailPassword;
+	}
+
+	public void setEmailPassword(String emailPassword) {
+		this.emailPassword = emailPassword;
+	}
+
+	public String getNetworkAddress() {
+		return networkAddress;
+	}
+
+	public void setNetworkAddress(String networkAddress) {
+		this.networkAddress = networkAddress;
 	}
 }

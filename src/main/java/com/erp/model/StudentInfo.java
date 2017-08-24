@@ -22,6 +22,10 @@ public class StudentInfo
 	/**学生姓名*/
     @Column(name ="NAME")
 	private String name;
+
+    /**姓名拼音**/
+    @Column(name="pinyin")
+    private String pinyin;
 	/**性别*/
     @Column(name ="GENDER")
 	private Integer gender;
@@ -574,5 +578,13 @@ public class StudentInfo
 
 	public void setOverseasPhone(String overseasPhone) {
 		this.overseasPhone = overseasPhone;
+	}
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 }

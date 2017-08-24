@@ -9,7 +9,7 @@ import java.util.List;
 public interface ExportService {
 
     List<Expert> queryList();
-    List<ExportParam> export();
+    List<ExportParam> export(Integer countryId);
     List<ExportParam> queryParams();
 
 }

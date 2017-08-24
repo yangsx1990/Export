@@ -351,7 +351,7 @@
    <NumberFormat ss:Format="@"/>
   </Style>
  </Styles>
- <Worksheet ss:Name="澳洲">
+ <Worksheet ss:Name="美国">
   <Table ss:ExpandedColumnCount="135" ss:ExpandedRowCount="${exports?size+10}" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
    ss:DefaultRowHeight="24.9375">
@@ -592,8 +592,7 @@
        <Cell><Data ss:Type="String">${(p.mainApply.applyTerm)!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">申请类别</Data></Cell>
        <Cell><Data ss:Type="String">${(p.mainApply.applyCategory)!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.mainApply.applyEdu)!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.mainApply.applyMajorName)!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.mainApply.applyEduName)!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">${(p.mainApply.applyMajorName)!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">开学时间</Data></Cell>
        <Cell><Data ss:Type="String">退费</Data></Cell>
@@ -630,6 +629,11 @@
     </#if>
        <Cell><Data ss:Type="String">${(p.mainReply.replyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">${(p.mainReply.replyReason)!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.offer.depositDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.offer.depositAmount)!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.offer.depositPaymentDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.schoolOfferDelatDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.reply.replyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
    </Row>
 </#list>
    <Row ss:AutoFitHeight="0">
