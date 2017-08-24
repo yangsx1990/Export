@@ -20,6 +20,10 @@ public class ExportParam {
     private Apply langStayApply;
     /**监护申请**/
     private Apply custodyApply;
+    /**接机申请住宿**/
+    private Apply pickApply;
+    /**保险申请**/
+    private Apply insuranceApply;
     /**工作经验**/
     private String experiences;
 
@@ -48,16 +52,26 @@ public class ExportParam {
     /**无条件offer回访**/
     private String unConditionVisit;
     /**主课回复**/
-    private Reply mainReply;
-    /**语言回复**/
+    private DateParam mainReplyDate;
+    /**语言课回复**/
+    private DateParam langReplyDate;
+    /**监护回复**/
+    private DateParam custodyReplyDate;
+    /**主课住宿回复**/
+    private DateParam mainStayReplyDate;
+    /**语言课住宿回复**/
+    private DateParam langStayReplyDate;
+    /**主课回复**/
+   /* private Reply mainReply;
+    *//**语言回复**//*
     private Reply langReply;
 
-    /**主课住宿回复**/
+    *//**主课住宿回复**//*
     private Reply mainStayReply;
-    /**语言住宿回复**/
+    *//**语言住宿回复**//*
     private Reply langStayReply;
-    /**监护回复**/
-    private Reply custodyReply;
+    *//**监护回复**//*
+    private Reply custodyReply;*/
     /**咨询顾问**/
     private String saleOperator;
     /**申请文案**/
@@ -78,6 +92,8 @@ public class ExportParam {
     private TransferCase mainStayCase;
     /**语言课住宿转案**/
     private TransferCase langStayCase;
+    /**签证转案**/
+    private TransferCase visaCase;
     /**监护转案**/
     private TransferCase custodyCase;
     /**定校方案**/
@@ -226,21 +242,6 @@ public class ExportParam {
         this.langSupplement = langSupplement;
     }
 
-    public Reply getMainReply() {
-        return mainReply;
-    }
-
-    public void setMainReply(Reply mainReply) {
-        this.mainReply = mainReply;
-    }
-
-    public Reply getLangReply() {
-        return langReply;
-    }
-
-    public void setLangReply(Reply langReply) {
-        this.langReply = langReply;
-    }
 
     public Urge getMainUrge() {
         return mainUrge;
@@ -290,21 +291,6 @@ public class ExportParam {
         this.langStayApply = langStayApply;
     }
 
-    public Reply getMainStayReply() {
-        return mainStayReply;
-    }
-
-    public void setMainStayReply(Reply mainStayReply) {
-        this.mainStayReply = mainStayReply;
-    }
-
-    public Reply getLangStayReply() {
-        return langStayReply;
-    }
-
-    public void setLangStayReply(Reply langStayReply) {
-        this.langStayReply = langStayReply;
-    }
 
     public void setSaleOperator(String saleOperator) {
         this.saleOperator = saleOperator;
@@ -345,8 +331,6 @@ public class ExportParam {
     public void setAfterBusiness(AfterBusiness afterBusiness) {
         this.afterBusiness = afterBusiness;
     }
-
-
 
     public Date getSchoolOfferDelatDate() {
         return schoolOfferDelatDate;
@@ -460,19 +444,75 @@ public class ExportParam {
         this.custodyOffer = custodyOffer;
     }
 
-    public Reply getCustodyReply() {
-        return custodyReply;
-    }
-
-    public void setCustodyReply(Reply custodyReply) {
-        this.custodyReply = custodyReply;
-    }
-
     public String getUnConditionVisit() {
         return unConditionVisit;
     }
 
     public void setUnConditionVisit(String unConditionVisit) {
         this.unConditionVisit = unConditionVisit;
+    }
+
+    public DateParam getMainReplyDate() {
+        return mainReplyDate;
+    }
+
+    public void setMainReplyDate(DateParam mainReplyDate) {
+        this.mainReplyDate = mainReplyDate;
+    }
+
+    public DateParam getLangReplyDate() {
+        return langReplyDate;
+    }
+
+    public void setLangReplyDate(DateParam langReplyDate) {
+        this.langReplyDate = langReplyDate;
+    }
+
+    public DateParam getMainStayReplyDate() {
+        return mainStayReplyDate;
+    }
+
+    public void setMainStayReplyDate(DateParam mainStayReplyDate) {
+        this.mainStayReplyDate = mainStayReplyDate;
+    }
+
+    public DateParam getLangStayReplyDate() {
+        return langStayReplyDate;
+    }
+
+    public void setLangStayReplyDate(DateParam langStayReplyDate) {
+        this.langStayReplyDate = langStayReplyDate;
+    }
+
+    public DateParam getCustodyReplyDate() {
+        return custodyReplyDate;
+    }
+
+    public void setCustodyReplyDate(DateParam custodyReplyDate) {
+        this.custodyReplyDate = custodyReplyDate;
+    }
+
+    public TransferCase getVisaCase() {
+        return visaCase;
+    }
+
+    public void setVisaCase(TransferCase visaCase) {
+        this.visaCase = visaCase;
+    }
+
+    public Apply getPickApply() {
+        return pickApply;
+    }
+
+    public void setPickApply(Apply pickApply) {
+        this.pickApply = pickApply;
+    }
+
+    public Apply getInsuranceApply() {
+        return insuranceApply;
+    }
+
+    public void setInsuranceApply(Apply insuranceApply) {
+        this.insuranceApply = insuranceApply;
     }
 }

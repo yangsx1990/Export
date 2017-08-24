@@ -16,16 +16,16 @@ public class Offer
 	/**applyId*/
     @Column(name ="APPLY_ID")
 	private Integer applyId;
-	/**offerInfo*/
+	/**offer信息*/
     @Column(name ="OFFER_INFO")
 	private String offerInfo;
-	/**depositAmount*/
+	/**押金金额*/
     @Column(name ="DEPOSIT_AMOUNT")
 	private String depositAmount;
-	/**depositDealine*/
+	/**押金截止日期*/
     @Column(name ="DEPOSIT_DEALINE")
 	private Date depositDealine;
-	/**depositPaymentDate*/
+	/**押金支付日期*/
     @Column(name ="DEPOSIT_PAYMENT_DATE")
 	private Date depositPaymentDate;
 	/**delayStaus*/

@@ -18,7 +18,7 @@ import java.util.List;
 public class ExportUtil {
 
 
-    public static HSSFWorkbook export(List<ExportParam> params,String[] columns){
+ /*   public static HSSFWorkbook export(List<ExportParam> params,String[] columns){
         // 第一步，创建一个webbook，对应一个Excel文件
         HSSFWorkbook wb = new HSSFWorkbook();
         // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet
@@ -66,62 +66,61 @@ public class ExportUtil {
             sheet.setColumnWidth(i+1,2500);
         }
 
-        for (int i = 0; i < params.size(); i++)
-        {
+        for (int i = 0; i < params.size(); i++) {
             row = sheet.createRow((int) i + 2);
             ExportParam stu = (ExportParam) params.get(i);
             // 第四步，创建单元格，并设置值
 
-           /* HSSFCellStyle style1 = wb.createCellStyle();
+           *//* HSSFCellStyle style1 = wb.createCellStyle();
             style1.setWrapText(true); //自动换行
             HSSFCell cell1=row.createCell((short) 1);
             cell1.setCellStyle(style1);
-            cell1.setCellValue(new HSSFRichTextString("1."+stu.getName()+"\r\n"+"2.提高!"));*/
-           if(stu.getStudent()!=null) {
-               row.createCell((short) 1).setCellValue(stu.getStudent().getSchoolNo()==null?"无":stu.getStudent().getSchoolNo());
-               row.createCell((short) 2).setCellValue(stu.getStudent().getSystemNo()==null?"无":stu.getStudent().getSystemNo());
-               row.createCell((short) 3).setCellValue(stu.getStudent().getName()==null?"无":stu.getStudent().getName());
-               if(stu.getStudent().getGender()!=null){
-                   row.createCell((short) 4).setCellValue(stu.getStudent().getGender()==1?"男":"女");
-               }
-               row.createCell((short)5).setCellValue(stu.getStudent().getBirthday()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getStudent().getBirthday()));
-               row.createCell((short)6).setCellValue(stu.getStudent().getBranchId());
-               row.createCell((short) 8).setCellValue(stu.getStudent().getVipStatus()==1?"是":"否");
-               row.createCell((short) 14).setCellValue(stu.getStudent().getSchool()==null?"无":stu.getStudent().getSchool());
-               row.createCell((short)15).setCellValue(stu.getStudent().getGraduationStatus()==1?"毕业":"在读");
-               row.createCell((short)16).setCellValue(stu.getStudent().getEducation());
-               row.createCell((short)17).setCellValue(stu.getStudent().getMajor()==null?"无":stu.getStudent().getMajor());
-               row.createCell((short) 18).setCellValue(stu.getStudent().getGrade()==null?"无":stu.getStudent().getGrade());
+            cell1.setCellValue(new HSSFRichTextString("1."+stu.getName()+"\r\n"+"2.提高!"));*//*
+            if (stu.getStudent() != null) {
+                row.createCell((short) 1).setCellValue(stu.getStudent().getSchoolNo() == null ? "无" : stu.getStudent().getSchoolNo());
+                row.createCell((short) 2).setCellValue(stu.getStudent().getSystemNo() == null ? "无" : stu.getStudent().getSystemNo());
+                row.createCell((short) 3).setCellValue(stu.getStudent().getName() == null ? "无" : stu.getStudent().getName());
+                if (stu.getStudent().getGender() != null) {
+                    row.createCell((short) 4).setCellValue(stu.getStudent().getGender() == 1 ? "男" : "女");
+                }
+                row.createCell((short) 5).setCellValue(stu.getStudent().getBirthday() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getStudent().getBirthday()));
+                row.createCell((short) 6).setCellValue(stu.getStudent().getBranchId());
+                row.createCell((short) 8).setCellValue(stu.getStudent().getVipStatus() == 1 ? "是" : "否");
+                row.createCell((short) 14).setCellValue(stu.getStudent().getSchool() == null ? "无" : stu.getStudent().getSchool());
+                row.createCell((short) 15).setCellValue(stu.getStudent().getGraduationStatus() == 1 ? "毕业" : "在读");
+                row.createCell((short) 16).setCellValue(stu.getStudent().getEducation());
+                row.createCell((short) 17).setCellValue(stu.getStudent().getMajor() == null ? "无" : stu.getStudent().getMajor());
+                row.createCell((short) 18).setCellValue(stu.getStudent().getGrade() == null ? "无" : stu.getStudent().getGrade());
 
-           }
-            if(stu.getContract()!=null){
+            }
+            if (stu.getContract() != null) {
                 row.createCell((short) 7).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getContract().getSignDate()));
                 row.createCell((short) 9).setCellValue(stu.getContract().getContractType().toString());
-                row.createCell((short) 10).setCellValue(stu.getContract().getAmount()==null?"无":stu.getContract().getAmount().toString());
+                row.createCell((short) 10).setCellValue(stu.getContract().getAmount() == null ? "无" : stu.getContract().getAmount().toString());
             }
 
             //自信顾问，文案 业务员
 
-            row.createCell((short)11).setCellValue(stu.getSaleOperator()==null?"无":stu.getSaleOperator());
-            row.createCell((short)12).setCellValue(stu.getCopyOperator()==null?"无":stu.getCopyOperator());
-            row.createCell((short)13).setCellValue(stu.getVisaOperator()==null?"无":stu.getVisaOperator());
+            row.createCell((short) 11).setCellValue(stu.getSaleOperator() == null ? "无" : stu.getSaleOperator());
+            row.createCell((short) 12).setCellValue(stu.getCopyOperator() == null ? "无" : stu.getCopyOperator());
+            row.createCell((short) 13).setCellValue(stu.getVisaOperator() == null ? "无" : stu.getVisaOperator());
 
-            if(stu.getMainApply()!=null){
-                if(stu.getMainApply().getAddCollegeStatus()!=null){
-                    row.createCell((short) 27).setCellValue(stu.getMainApply().getAddCollegeStatus()==1?"是":"否");
+            if (stu.getMainApply() != null) {
+                if (stu.getMainApply().getAddCollegeStatus() != null) {
+                    row.createCell((short) 27).setCellValue(stu.getMainApply().getAddCollegeStatus() == 1 ? "是" : "否");
                 }
-                if(stu.getMainApply().getAddMajorStatus()!=null){
-                    row.createCell((short) 28).setCellValue(stu.getMainApply().getAddMajorStatus()==1?"是":"否");
+                if (stu.getMainApply().getAddMajorStatus() != null) {
+                    row.createCell((short) 28).setCellValue(stu.getMainApply().getAddMajorStatus() == 1 ? "是" : "否");
                 }
-                if(stu.getMainApply().getAddProtocol()!=null){
-                    row.createCell((short) 29).setCellValue(stu.getMainApply().getAddProtocol()==1?"是":"否");
+                if (stu.getMainApply().getAddProtocol() != null) {
+                    row.createCell((short) 29).setCellValue(stu.getMainApply().getAddProtocol() == 1 ? "是" : "否");
                 }
                 row.createCell((short) 30).setCellValue(stu.getMainApply().getApplyCollege());
                 row.createCell((short) 31).setCellValue(stu.getMainApply().getApplyMajor());
 
                 row.createCell((short) 37).setCellValue(stu.getMainApply().getApplyStatus());
-                row.createCell((short) 36).setCellValue(stu.getMainApply().getApplyDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainApply().getApplyDate()));
-
+                row.createCell((short) 36).setCellValue(stu.getMainApply().getApplyDate() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainApply().getApplyDate()));
+*//*
                 if(stu.getMainSupplement()!=null){
                     row.createCell((short) 39).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainSupplement().getCollectMaterialDate()));
                     row.createCell((short) 40).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainSupplement().getSchoolRequireDate()));
@@ -143,9 +142,9 @@ public class ExportUtil {
                     row.createCell((short) 55).setCellValue(stu.getMainReply().getStudentConfirmUnConditionDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getStudentConfirmUnConditionDate()));
                     row.createCell((short) 56).setCellValue(stu.getMainReply().getSchoolConfirmStuUnConditionDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainReply().getSchoolConfirmStuUnConditionDate()));
 
-                }
+                }*//*
 
-                if(stu.getMainStayApply()!=null){
+            *//*    if(stu.getMainStayApply()!=null){
                     row.createCell((short) 82).setCellValue(stu.getMainStayApply().getApplyDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getMainStayApply().getApplyDate()));
                     row.createCell((short) 83).setCellValue("--");
 
@@ -191,51 +190,51 @@ public class ExportUtil {
                    }
                }
            }
+*//*
 
 
+                row.createCell((short) 32).setCellValue(stu.getCopywriting().getApplyCountryRejectHistory() == 1 ? "是" : "否");
+                row.createCell((short) 33).setCellValue(stu.getCopywriting().getOtherCountryRejectHistory() == 1 ? "是" : "否");
+                row.createCell((short) 96).setCellValue(stu.getCopywriting().getCopyName());
+                row.createCell((short) 97).setCellValue("是否接受");
+                row.createCell((short) 98).setCellValue(stu.getCopywriting().getFirstVisitStatus() == 1 ? "是" : "否");
+                row.createCell((short) 99).setCellValue(stu.getCopywriting().getSendCopyGuidanceStatus() == 1 ? "是" : "否");
+                row.createCell((short) 100).setCellValue(stu.getCopywriting().getStudentAcceptStatus() == 1 ? "是" : "否");
+                row.createCell((short) 101).setCellValue(stu.getCopywriting().getCopyExamType());
+                row.createCell((short) 102).setCellValue(stu.getCopywriting().getCopyExamScore());
+                row.createCell((short) 103).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCopyExamTime()));
+                row.createCell((short) 104).setCellValue(stu.getCopywriting().getGradeFourStatus() == 1 ? "是" : "否");
+                row.createCell((short) 105).setCellValue(stu.getCopywriting().getCopyGpa());
+                row.createCell((short) 106).setCellValue(stu.getCopywriting().getExpectApplyDate());
+                row.createCell((short) 107).setCellValue(stu.getCopywriting().getApplyDangerStatus() == 1 ? "是" : "否");
+                row.createCell((short) 108).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCompleteDate()));
+                row.createCell((short) 109).setCellValue(stu.getCopywriting().getCopyPaymentType());
+                row.createCell((short) 110).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCompleteDate()));
+                row.createCell(26).setCellValue(stu.getCopywriting().getOtherExperience() == null ? "无" : stu.getCopywriting().getOtherExperience());
 
-            row.createCell((short) 32).setCellValue(stu.getCopywriting().getApplyCountryRejectHistory()==1?"是":"否");
-            row.createCell((short) 33).setCellValue(stu.getCopywriting().getOtherCountryRejectHistory()==1?"是":"否");
-            row.createCell((short)96).setCellValue(stu.getCopywriting().getCopyName());
-            row.createCell((short)97).setCellValue("是否接受");
-            row.createCell((short)98).setCellValue(stu.getCopywriting().getFirstVisitStatus()==1?"是":"否");
-            row.createCell((short) 99).setCellValue(stu.getCopywriting().getSendCopyGuidanceStatus()==1?"是":"否");
-            row.createCell((short) 100).setCellValue(stu.getCopywriting().getStudentAcceptStatus()==1?"是":"否");
-            row.createCell((short) 101).setCellValue(stu.getCopywriting().getCopyExamType());
-            row.createCell((short) 102).setCellValue(stu.getCopywriting().getCopyExamScore());
-            row.createCell((short) 103).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCopyExamTime()));
-            row.createCell((short) 104).setCellValue(stu.getCopywriting().getGradeFourStatus()==1?"是":"否");
-            row.createCell((short) 105).setCellValue(stu.getCopywriting().getCopyGpa());
-            row.createCell((short) 106).setCellValue(stu.getCopywriting().getExpectApplyDate());
-            row.createCell((short) 107).setCellValue(stu.getCopywriting().getApplyDangerStatus()==1?"是":"否");
-            row.createCell((short) 108).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCompleteDate()));
-            row.createCell((short) 109).setCellValue(stu.getCopywriting().getCopyPaymentType());
-            row.createCell((short) 110).setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(stu.getCopywriting().getCompleteDate()));
-            row.createCell(26).setCellValue(stu.getCopywriting().getOtherExperience()==null?"无":stu.getCopywriting().getOtherExperience());
+                if (stu.getVisa() != null) {
+                    row.createCell((short) 121).setCellValue(stu.getVisa().getMainSponsor() == null ? "无" : stu.getVisa().getMainSponsor());
+                    row.createCell((short) 122).setCellValue(stu.getVisa().getSponsorUnit() == null ? "无" : stu.getVisa().getSponsorUnit());
+                    row.createCell((short) 123).setCellValue(stu.getVisa().getSponsorPosition() == null ? "无" : stu.getVisa().getSponsorPosition());
+                    row.createCell((short) 124).setCellValue(stu.getVisa().getSponsorIncome() == null ? "无" : stu.getVisa().getSponsorIncome());
+                    row.createCell((short) 125).setCellValue(stu.getVisa().getOtherSponsor() == null ? "无" : stu.getVisa().getOtherSponsor());
+                    row.createCell((short) 126).setCellValue(stu.getVisa().getFamilyAsset() == null ? "无" : stu.getVisa().getFamilyAsset());
+                    row.createCell((short) 127).setCellValue(stu.getVisa().getPaymentDate() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getPaymentDate()));
+                    row.createCell((short) 128).setCellValue(stu.getVisa().getPaymentChannel());
+                    if (stu.getVisa().getHealthTestStatus() != null) {
+                        row.createCell((short) 130).setCellValue(stu.getVisa().getHealthTestStatus() == 1 ? "是" : "否");
+                        row.createCell((short) 131).setCellValue(stu.getVisa().getHealthTestDate() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getHealthTestDate()));
+                    }
+                    row.createCell((short) 132).setCellValue(stu.getVisa().getImitateSurvey() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getImitateSurvey()));
+                    row.createCell((short) 133).setCellValue(stu.getVisa().getMaterialCompleteDate() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getMaterialCompleteDate()));
+                    row.createCell((short) 134).setCellValue(stu.getVisa().getCommitDate() == null ? "无" : new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getCommitDate()));
 
-            if(stu.getVisa()!=null){
-                row.createCell((short) 121).setCellValue(stu.getVisa().getMainSponsor()==null?"无":stu.getVisa().getMainSponsor());
-                row.createCell((short)122).setCellValue(stu.getVisa().getSponsorUnit()==null?"无":stu.getVisa().getSponsorUnit());
-                row.createCell((short)123).setCellValue(stu.getVisa().getSponsorPosition()==null?"无":stu.getVisa().getSponsorPosition());
-                row.createCell((short)124).setCellValue(stu.getVisa().getSponsorIncome()==null?"无":stu.getVisa().getSponsorIncome());
-                row.createCell((short)125).setCellValue(stu.getVisa().getOtherSponsor()==null?"无":stu.getVisa().getOtherSponsor());
-                row.createCell((short)126).setCellValue(stu.getVisa().getFamilyAsset()==null?"无":stu.getVisa().getFamilyAsset());
-                row.createCell((short)127).setCellValue(stu.getVisa().getPaymentDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getPaymentDate()));
-                row.createCell((short)128).setCellValue(stu.getVisa().getPaymentChannel());
-                if(stu.getVisa().getHealthTestStatus()!=null){
-                    row.createCell((short)130).setCellValue(stu.getVisa().getHealthTestStatus()==1?"是":"否");
-                    row.createCell((short)131).setCellValue(stu.getVisa().getHealthTestDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getHealthTestDate()));
+                    row.createCell((short) 98).setCellValue("首次回访日期");
                 }
-                row.createCell((short)132).setCellValue(stu.getVisa().getImitateSurvey()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getImitateSurvey()));
-                row.createCell((short)133).setCellValue(stu.getVisa().getMaterialCompleteDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getMaterialCompleteDate()));
-                row.createCell((short)134).setCellValue(stu.getVisa().getCommitDate()==null?"无":new SimpleDateFormat("yyyy-MM-dd").format(stu.getVisa().getCommitDate()));
-
-                row.createCell((short)98).setCellValue("首次回访日期");
             }
-        }
-        return wb;
-        // 第六步，将文件存到指定位置
-       /* try
+            return wb;
+            // 第六步，将文件存到指定位置
+       *//* try
         {
             FileOutputStream fout = new FileOutputStream("E:/students.xls");
             wb.write(fout);
@@ -244,8 +243,9 @@ public class ExportUtil {
         catch (Exception e)
         {
             e.printStackTrace();
-        }*/
-    }
+        }*//*
+        }
+    }*/
 
     /**
      * 设置数据项列名样式

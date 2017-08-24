@@ -18,7 +18,7 @@ public class AfterBusiness
 	private Integer contractId;
 	/**住宿类型：*/
     @Column(name ="STAY_TYPE")
-	private Integer stayType;
+	private String stayType;
 	/**住宿完成日期*/
     @Column(name ="STAY_COMPLETE_DATE")
 	private Date stayCompleteDate;
@@ -75,7 +75,7 @@ public class AfterBusiness
 	 *@return: java.lang.Integer  住宿类型：
 	 */
 
-	public Integer getStayType(){
+	public String getStayType(){
 		return this.stayType;
 	}
 
@@ -83,7 +83,7 @@ public class AfterBusiness
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  住宿类型：
 	 */
-	public void setStayType(Integer stayType){
+	public void setStayType(String stayType){
 		this.stayType = stayType;
 	}
 	/**

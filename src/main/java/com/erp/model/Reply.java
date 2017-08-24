@@ -19,7 +19,7 @@ public class Reply
 	/**回复途径*/
     @Column(name ="REPLY_WAY")
 	private Integer replyWay;
-	/**回复类型：1-收到申请  2-要求补件 3-确认收到补件 4-offer到达 5-无offer 6-coe电子版到达 7-coe原件 8-offer延期 */
+	/**回复类型：1-学生确认申请 2-确认收到申请  3-要求补件 4-确认收到补件 5-offer到达 6-无offer 7-coe电子版到达 8-coe原件 9-offer延期  */
     @Column(name ="REPLY_TYPE")
 	private Integer replyType;
 	/**补充说明*/
@@ -34,9 +34,13 @@ public class Reply
 	/**回复结果:1-录取 2-拒绝*/
     @Column(name ="REPLY_RESULT")
 	private Integer replyResult;
-	/**回复offer截止日期*/
-    @Column(name ="REPLY_OFFER_DEALINE")
-	private Date replyOfferDealine;
+	/**回复截止日期*/
+    @Column(name ="reply_deadline")
+	private Date replyDeadline;
+
+	/**提供截止日期*/
+	@Column(name ="provide_deadline")
+	private Date provideDeadline;
 
 	/**回复id，本表的主键，代表针对某条记录*/
     @Column(name ="REPLY_ID")
@@ -44,28 +48,7 @@ public class Reply
 	/**录取拒绝原因*/
     @Column(name ="REPLY_REASON")
 	private String replyReason;
-	/**学生确认offer日期*/
-    @Transient
-	private Date studentConfirmDate;
-	/**学校确认offer日期*/
-    @Transient
-	private Date schoolConfirmStuDate;
 
-	/**无条件offer到达日期*/
-	@Transient
-	private Date UnConditionDate;
-	/**学生确认无条件offer日期*/
-	@Transient
-	private Date studentConfirmUnConditionDate;
-	/**学校确认无条件offer日期*/
-	@Transient
-	private Date schoolConfirmStuUnConditionDate;
-	/**押金支付日期*/
-	@Transient
-	private Date depositPaymentDate;
-	/**coe日期**/
-	@Transient
-	private Date coeDate;
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -196,22 +179,6 @@ public class Reply
 		this.replyResult = replyResult;
 	}
 	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  回复offer截止日期
-	 */
-
-	public Date getReplyOfferDealine(){
-		return this.replyOfferDealine;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  回复offer截止日期
-	 */
-	public void setReplyOfferDealine(Date replyOfferDealine){
-		this.replyOfferDealine = replyOfferDealine;
-	}
-	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  回复id，本表的主键，代表针对某条记录
 	 */
@@ -244,61 +211,19 @@ public class Reply
 		this.replyReason = replyReason;
 	}
 
-	public Date getStudentConfirmDate() {
-		return studentConfirmDate;
+	public Date getReplyDeadline() {
+		return replyDeadline;
 	}
 
-	public void setStudentConfirmDate(Date studentConfirmDate) {
-		this.studentConfirmDate = studentConfirmDate;
+	public void setReplyDeadline(Date replyDeadline) {
+		this.replyDeadline = replyDeadline;
 	}
 
-	public Date getSchoolConfirmStuDate() {
-		return schoolConfirmStuDate;
+	public Date getProvideDeadline() {
+		return provideDeadline;
 	}
 
-	public void setSchoolConfirmStuDate(Date schoolConfirmStuDate) {
-		this.schoolConfirmStuDate = schoolConfirmStuDate;
-	}
-
-	public Date getStudentConfirmUnConditionDate() {
-		return studentConfirmUnConditionDate;
-	}
-
-	public void setStudentConfirmUnConditionDate(Date studentConfirmUnConditionDate) {
-		this.studentConfirmUnConditionDate = studentConfirmUnConditionDate;
-	}
-
-	public Date getSchoolConfirmStuUnConditionDate() {
-		return schoolConfirmStuUnConditionDate;
-	}
-
-	public void setSchoolConfirmStuUnConditionDate(Date schoolConfirmStuUnConditionDate) {
-		this.schoolConfirmStuUnConditionDate = schoolConfirmStuUnConditionDate;
-	}
-
-	public Date getUnConditionDate() {
-		return UnConditionDate;
-	}
-
-	public void setUnConditionDate(Date unConditionDate) {
-		UnConditionDate = unConditionDate;
-	}
-
-	public Date getCoeDate() {
-		return coeDate;
-	}
-
-	public void setCoeDate(Date coeDate) {
-		this.coeDate = coeDate;
-	}
-
-
-
-	public Date getDepositPaymentDate() {
-		return depositPaymentDate;
-	}
-
-	public void setDepositPaymentDate(Date depositPaymentDate) {
-		this.depositPaymentDate = depositPaymentDate;
+	public void setProvideDeadline(Date provideDeadline) {
+		this.provideDeadline = provideDeadline;
 	}
 }

@@ -67,68 +67,80 @@ public class Visa
 	/**是否提供房产证明*/
 	@Column(name ="property_certificate")
 	private Integer  propertyCertificate;
-			/**签证预约网站账号*/
-			@Column(name ="ORDER_ACCOUNT")
-			private java.lang.String orderAccount;
-			/**签证预约网站密码*/
-			@Column(name ="ORDER_PASSWORD")
-			private java.lang.String orderPassword;
-			/**签证结果到达日期*/
-			@Column(name ="VISA_RESULT_DATE")
-			private java.util.Date visaResultDate;
-			/**签证结果*/
-			@Column(name ="VISA_RESULT")
-			private java.lang.Integer visaResult;
-			/**DS160编号*/
-			@Column(name ="DS160_NO")
-			private java.lang.String ds160No;
-			/**DS160安全问答答案*/
-			@Column(name ="DS160_ANSWER")
-			private java.lang.String ds160Answer;
-			/**EVUS登记完成日期*/
-			@Column(name ="EVUS_COMPLETE_DATE")
-			private java.util.Date evusCompleteDate;
-			/**特殊情况说明*/
-			@Column(name ="SPECIAL_COMMENT")
-			private java.lang.String specialComment;
-			/**TB日期*/
-			@Column(name ="TB_DATE")
-			private java.util.Date tbDate;
-			/**预计离境日期*/
-			@Column(name ="EXPECT_LEAVE_DATE")
-			private java.util.Date expectLeaveDate;
-			/**递签日期*/
-			@Column(name ="SEND_VISA_DATE")
-			private java.util.Date sendVisaDate;
-			/**递签地点*/
-			@Column(name ="SEND_VISA_POSITION")
-			private java.lang.String sendVisaPosition;
-			/**取签日期*/
-			@Column(name ="TAKE_VISA_DATE")
-			private java.util.Date takeVisaDate;
-			/**取签方式*/
-			@Column(name ="TAKE_VISA_TYPE")
-			private java.lang.String takeVisaType;
-			/**行前指导日期*/
-			@Column(name ="GUIDE_DATE")
-			private java.util.Date guideDate;
+	/**签证预约网站账号*/
+	@Column(name ="ORDER_ACCOUNT")
+	private java.lang.String orderAccount;
+	/**签证预约网站密码*/
+	@Column(name ="ORDER_PASSWORD")
+	private java.lang.String orderPassword;
+	/**签证结果到达日期*/
+	@Column(name ="VISA_RESULT_DATE")
+	private java.util.Date visaResultDate;
+	/**签证结果*/
+	@Column(name ="VISA_RESULT")
+	private java.lang.Integer visaResult;
+	/**拒签分析*/
+	@Column(name="reject_analysis")
+	private String rejectAnalysis;
+	/**DS160编号*/
+	@Column(name ="DS160_NO")
+	private java.lang.String ds160No;
+	/**DS160安全问答答案*/
+	@Column(name ="DS160_ANSWER")
+	private java.lang.String ds160Answer;
+	/**EVUS登记完成日期*/
+	@Column(name ="EVUS_COMPLETE_DATE")
+	private java.util.Date evusCompleteDate;
+	/**特殊情况说明*/
+	@Column(name ="SPECIAL_COMMENT")
+	private java.lang.String specialComment;
+	/**TB日期*/
+	@Column(name ="TB_DATE")
+	private java.util.Date tbDate;
+	/**预计离境日期*/
+	@Column(name ="EXPECT_LEAVE_DATE")
+	private java.util.Date expectLeaveDate;
+	/**递签日期*/
+	@Column(name ="SEND_VISA_DATE")
+	private java.util.Date sendVisaDate;
+	/**递签地点*/
+	@Column(name ="SEND_VISA_POSITION")
+	private java.lang.String sendVisaPosition;
+	/**取签日期*/
+	@Column(name ="TAKE_VISA_DATE")
+	private java.util.Date takeVisaDate;
+	/**取签方式*/
+	@Column(name ="TAKE_VISA_TYPE")
+	private java.lang.String takeVisaType;
+	/**行前指导日期*/
+	@Column(name ="GUIDE_DATE")
+	private java.util.Date guideDate;
+	/**是否接受**/
+	@Column(name ="ACCEPT_STATUS")
+	private Integer studentAcceptStatus;
+	/**是否发送首次辅导清单*/
+	@Column(name ="SEND_GUIDANCE_STATUS")
+	private Integer sendCopyGuidanceStatus;
+	/**是否首次回访日期*/
+	@Column(name="first_visit_status")
+	private Integer firstVisitStatus;
 
-			/**
-			 *方法: 取得java.lang.Integer
-			 *@return: java.lang.Integer  id
-			*/
+	/**
+	 *方法: 取得java.lang.Integer
+	 *@return: java.lang.Integer  id
+	*/
 
-			public java.lang.Integer getId(){
-			return this.id;
-			}
-
-			/**
-			 *方法: 设置java.lang.Integer
-			 *@param: java.lang.Integer  id
-			*/
-			public void setId(java.lang.Integer id){
-		this.id = id;
+	public java.lang.Integer getId(){
+	return this.id;
 	}
+
+	/**
+	 *方法: 设置java.lang.Integer
+	 *@param: java.lang.Integer  id
+	*/
+	public void setId(java.lang.Integer id){
+this.id = id;
+}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  学生id
@@ -625,5 +637,37 @@ public class Visa
 	 */
 	public void setGuideDate(java.util.Date guideDate){
 		this.guideDate = guideDate;
+	}
+
+	public Integer getStudentAcceptStatus() {
+		return studentAcceptStatus;
+	}
+
+	public void setStudentAcceptStatus(Integer studentAcceptStatus) {
+		this.studentAcceptStatus = studentAcceptStatus;
+	}
+
+	public Integer getSendCopyGuidanceStatus() {
+		return sendCopyGuidanceStatus;
+	}
+
+	public void setSendCopyGuidanceStatus(Integer sendCopyGuidanceStatus) {
+		this.sendCopyGuidanceStatus = sendCopyGuidanceStatus;
+	}
+
+	public Integer getFirstVisitStatus() {
+		return firstVisitStatus;
+	}
+
+	public void setFirstVisitStatus(Integer firstVisitStatus) {
+		this.firstVisitStatus = firstVisitStatus;
+	}
+
+	public String getRejectAnalysis() {
+		return rejectAnalysis;
+	}
+
+	public void setRejectAnalysis(String rejectAnalysis) {
+		this.rejectAnalysis = rejectAnalysis;
 	}
 }

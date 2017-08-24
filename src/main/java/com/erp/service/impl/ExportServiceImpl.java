@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.sql.Ref;
 import java.text.SimpleDateFormat;
@@ -115,8 +116,8 @@ public class ExportServiceImpl implements ExportService {
             if(apply.getApplyType()==1){
                 exportParam.setMainApply(apply);
                 exportParam.setMainSupplement(supplement);
-                Reply replyResult=setParamsReply(apply.getId(),reply);
-                exportParam.setMainReply(replyResult);
+                DateParam replyResult=setParamsReply(apply.getId());
+                exportParam.setMainReplyDate(replyResult);
                 String visitRecord= getVisit(apply.getId(),2);
                 exportParam.setMainVisit(visitRecord);
                 Offer offer=getOffer(apply.getId(),1);
@@ -137,8 +138,8 @@ public class ExportServiceImpl implements ExportService {
             }else if(apply.getApplyType()==2){
                 exportParam.setLangApply(apply);
                 exportParam.setLangSupplement(supplement);
-                Reply replyResult=setParamsReply(apply.getId(),reply);
-                exportParam.setLangReply(replyResult);
+                DateParam replyResult=setParamsReply(apply.getId());
+                exportParam.setLangStayReplyDate(replyResult);
                 String visitRecord= getVisit(apply.getId(),2);
                 exportParam.setLangVisit(visitRecord);
                 Offer offer=getOffer(apply.getId(),2);
@@ -158,9 +159,8 @@ public class ExportServiceImpl implements ExportService {
             if(apply.getApplyType()==1 && apply.getRelationStatus()==1){
                 Apply langApply= getStayInfo(apply.getId(),2);
                if(langApply.getId()!=null){
-                   Reply langReply=setOfferReply(langApply.getId());
-                   Reply replyResult=setParamsReply(langApply.getId(),langReply);
-                   exportParam.setLangReply(replyResult);
+                   DateParam replyResult=setParamsReply(langApply.getId());
+                   exportParam.setLangReplyDate(replyResult);
                }
                 exportParam.setLangApply(langApply);
                 exportParam.setLangSupplement(supplement);
@@ -174,8 +174,8 @@ public class ExportServiceImpl implements ExportService {
                     exportParam.setMainStayApply(mainStayApply);
                     Reply mainStayReply=setOfferReply(mainStayApply.getId());
                     if(mainStayReply.getId()!=null){
-                        Reply replyMainStayResult=setParamsReply(mainStayApply.getId(),mainStayReply);
-                        exportParam.setMainStayReply(replyMainStayResult);
+                        DateParam replyResult=setParamsReply(mainStayApply.getId());
+                        exportParam.setMainStayReplyDate(replyResult);
                     }
                     String visitRecord= getVisit(mainStayApply.getId(),2);
                     exportParam.setMainStayVisit(visitRecord);
@@ -197,8 +197,8 @@ public class ExportServiceImpl implements ExportService {
                     exportParam.setLangStayApply(langStayApply);
                     Reply langStayReply=setOfferReply(langStayApply.getId());
                     if(langStayReply.getId()!=null){
-                        Reply replyLangStayResult=setParamsReply(langStayApply.getId(),langStayReply);
-                        exportParam.setLangStayReply(replyLangStayResult);
+                        DateParam replyResult=setParamsReply(langStayApply.getId());
+                        exportParam.setLangStayReplyDate(replyResult);
                     }
                     String visitRecord= getVisit(mainStayApply.getId(),2);
                     exportParam.setLangStayVisit(visitRecord);
@@ -219,8 +219,8 @@ public class ExportServiceImpl implements ExportService {
                     exportParam.setCustodyApply(custodyApply);
                     Reply langStayReply=setOfferReply(custodyApply.getId());
                     if(langStayReply.getId()!=null){
-                        Reply replyCustodyStayResult=setParamsReply(langStayApply.getId(),langStayReply);
-                        exportParam.setCustodyReply(replyCustodyStayResult);
+                        DateParam custodyStayResult=setParamsReply(langStayApply.getId());
+                        exportParam.setCustodyReplyDate(custodyStayResult);
                     }
                     String visitRecord= getVisit(custodyApply.getId(),2);
                     exportParam.setCustodyVisit(visitRecord);
@@ -428,27 +428,91 @@ public class ExportServiceImpl implements ExportService {
         }
     }
 
-    private Reply setParamsReply(Integer applyId,Reply reply) {
-        Reply stuReply=getStuReplyOffer(reply.getId());
-        if(stuReply.getId()!=null){
-            reply.setStudentConfirmDate(stuReply.getReplyDate()); //学生回复offer日期
+    private DateParam setParamsReply(Integer applyId) {
+        DateParam dateParam=new DateParam();
+
+        Reply reply=getReply(applyId,1);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setStudentConfirmApplyDate(reply.getReplyDate()); //学生确认申请
         }
-        Reply schoolReply=getStuReplyOffer(stuReply.getId());
-        if(schoolReply.getId()!=null){
-            reply.setSchoolConfirmStuDate(schoolReply.getReplyDate()); //学校回复学生回复offer日期
+         reply=getReply(applyId,2);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setSchoolConfirmReceiveApplyDate(reply.getReplyDate()); //学校确认收到申请
         }
-        Reply unReply=setStuOfferReply(applyId);
-        if(unReply.getId()!=null){
-            reply.setUnConditionDate(unReply.getReplyDate()); //无条件offer到达日期
+        reply=getReply(applyId,3);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setSchoolRequireDate(reply.getReplyDate()); //学校要求补件日期
+            if(reply.getProvideDeadline()!=null){
+                dateParam.setSchoolRequireAddDeadline(reply.getProvideDeadline());//要求补件截止日
+            }
+            Reply replyConfirm=getStuReplyOffer(reply.getId());
+            if(replyConfirm.getId()!=null && replyConfirm.getReplyDate()!=null){
+                dateParam.setStudentConfirmSupplementDate(replyConfirm.getReplyDate()); //学生确认补件日期
+            }
         }
 
-        Reply stuConditionReply=getStuReplyOffer(unReply.getId());
-        if(stuConditionReply.getId()!=null){
-            reply.setStudentConfirmUnConditionDate(stuConditionReply.getReplyDate()); //学生回复无条件offer日期
+        reply=getReply(applyId,4);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setSchoolConfirmStudentSupplementDate(reply.getReplyDate()); //学校确认补件日期
         }
-        Reply schoolConditionReply=getStuReplyOffer(stuConditionReply.getId());
-        if(schoolConditionReply.getId()!=null){
-            reply.setSchoolConfirmStuUnConditionDate(schoolConditionReply.getReplyDate()); //学校回复学生回复offer日期
+        reply=getReply(applyId,5);
+        if(reply.getId()!=null && reply.getReplyDate()!=null && reply.getReplyResult()!=null){
+            dateParam.setConditionOfferDate(reply.getReplyDate()); //Offer到达日期
+            dateParam.setReplyResult(reply.getReplyResult()==1?"录取":"拒绝"); //录取结果
+            dateParam.setReplyReason(reply.getReplyReason()==null?"":reply.getReplyReason()); //拒绝原因
+            if(reply.getReplyDeadline()!=null){
+                dateParam.setSchoolRequireConditionOfferDeadline(reply.getReplyDeadline()); //截止日期
+            }
+            Reply replyConfirm=getStuReplyOffer(reply.getId());
+            if(replyConfirm.getId()!=null && replyConfirm.getReplyDate()!=null){
+                dateParam.setStudentConfirmOfferDate(replyConfirm.getReplyDate());//学生回复offer日期
+            }
+            Reply schoolReplyConfirm=getStuReplyOffer(replyConfirm.getId());
+            if(schoolReplyConfirm.getId()!=null && schoolReplyConfirm.getReplyDate()!=null){
+                dateParam.setSchoolConfirmOfferDate(schoolReplyConfirm.getReplyDate());//学校回复学生offer日期
+            }
+        }
+        reply=getReply(applyId,6);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setUnConditionDate(reply.getReplyDate()); //无条件offer到达日期
+            Reply replyConfirm=getStuReplyOffer(reply.getId());
+            if(replyConfirm.getId()!=null && replyConfirm.getReplyDate()!=null){
+                dateParam.setStudentConfirmUnConditionDate(replyConfirm.getReplyDate());//学生回复无条件offer日期
+            }
+            Reply schoolReplyConfirm=getStuReplyOffer(replyConfirm.getId());
+            if(schoolReplyConfirm.getId()!=null && schoolReplyConfirm.getReplyDate()!=null){
+                dateParam.setSchoolConfirmStuUnConditionDate(schoolReplyConfirm.getReplyDate());//学校回复学生无条件offer日期
+            }
+        }
+        reply=getReply(applyId,7);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setCoeDate(reply.getReplyDate());  //COE电子版到达日期
+        }
+        reply=getReply(applyId,8);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setOriginalCoeDate(reply.getReplyDate());  //COE原件到达日期
+        }
+
+        reply=getReply(applyId,9);
+        if(reply.getId()!=null && reply.getReplyDate()!=null){
+            dateParam.setDelayDate(reply.getReplyDate());  //offer延期到达日期
+            if(reply.getReplyDeadline()!=null){
+                dateParam.setDelayReplyDeadline(reply.getReplyDeadline()); //offfer延期回复截止日
+            }
+            if(reply.getProvideDeadline()!=null){
+                dateParam.setDelayReplyDate(reply.getProvideDeadline());  //延期开学日
+            }
+        }
+        return dateParam;
+    }
+
+    private Reply getReply(Integer applyId, int businessCase) {
+        Reply reply=new Reply();
+        reply.setApplyId(applyId);
+        reply.setReplyType(businessCase);
+        List<Reply> replyList=replyService.getList(reply);
+        if(replyList.size()>0){
+            return replyList.get(0);
         }
         return reply;
     }
@@ -548,14 +612,53 @@ public class ExportServiceImpl implements ExportService {
 
     public Supplement getSupplement(Integer applyId) {
         Supplement supplement=new Supplement();
-        supplement.setApplyId(applyId);
-        supplement.setAddStatus(0);
-        List<Supplement> supplementList=supplementService.getList(supplement);
+        //邮寄申请材料
+        List<Supplement> supplementList=getSupplementInfo(applyId,1);
+        //补件信息
+        List<Supplement> addSupplementList=getSupplementInfo(applyId,2);
+        //邮寄最终成绩单
+        List<Supplement> scoreSupplementList=getSupplementInfo(applyId,3);
+        //校方寄出coe单
+        List<Supplement> coeSupplementList=getSupplementInfo(applyId,4);
         if(supplementList.size()>0){
-            return supplementList.get(0);
-        }else{
-            return supplement;
+            Supplement material =supplementList.get(0);
+            if(material.getCollectMaterialDate()!=null){
+                supplement.setCollectMaterialDate(material.getCollectMaterialDate());
+            }
+            if(material.getExpressNumber()!=null){
+                supplement.setExpressNumber(material.getExpressNumber());
+            }
         }
+        if(scoreSupplementList.size()>0 && scoreSupplementList.get(0).getSupplementDate()!=null){
+           supplement.setSendScoreDate(scoreSupplementList.get(0).getSupplementDate());
+           if(scoreSupplementList.get(0).getExpressNumber()!=null){
+                supplement.setSendScoreNo(scoreSupplementList.get(0).getExpressNumber());
+            }
+        }
+        String content="";
+        if(addSupplementList.size()>0){
+            for(int i=0;i<addSupplementList.size();i++){
+                Supplement add=addSupplementList.get(i);
+                if(add.getSupplementDate()!=null && add.getSupplementContent()!=null){
+                    content=content+add.getSupplementDate()+":"+add.getSupplementContent()+"；";
+                }
+            }
+        }
+        supplement.setSupplementContent(content);
+
+        if(coeSupplementList.size()>0){
+            if(scoreSupplementList.get(0).getExpressNumber()!=null){
+                supplement.setCoeExpressNo(scoreSupplementList.get(0).getExpressNumber());
+            }
+        }
+        return supplement;
+    }
+
+    private List<Supplement> getSupplementInfo(Integer applyId,Integer businessCase){
+        Supplement supplement=new Supplement();
+        supplement.setApplyId(applyId);
+        supplement.setBussinessCase(1);
+        return supplementService.getList(supplement);
     }
 
 

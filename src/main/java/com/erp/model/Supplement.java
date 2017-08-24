@@ -34,21 +34,10 @@ public class Supplement
 	/**递交材料方式：1-传真 2-扫描 3-邮寄 4-现场递交*/
     @Column(name ="SEND_MATERIAL_TYPE")
 	private Integer sendMaterialType;
-	/**业务场景:1-首次寄出材料 2-寄出补件内容 3-寄出成绩单/疫苗表*/
+	/**业务场景:1-首次寄出材料 2-寄出补件内容 3-寄出成绩单/疫苗表 4-校方寄出coe原件*/
     @Column(name ="bussiness_case")
 	private Integer bussinessCase;
-	/**学校确认收到材料日期*/
-    @Column(name ="SCHOOL_CONFIRM_RECEIVE_DATE")
-	private Date schoolConfirmReceiveDate;
-	/**学校要求补件日期*/
-    @Column(name ="SCHOOL_REQUIRE_DATE")
-	private Date schoolRequireDate;
-	/**学校要求补件截止日*/
-    @Column(name ="SCHOOL_REQUIRE_ADD_DEADLINE")
-	private Date schoolRequireAddDeadline;
-	/**确认补件日期*/
-    @Column(name="confirm_supplement_date")
-	private Date confirmSupplementDate;
+
     /**收材料日期**/
     @Column(name="collect_material_date")
 	private Date collectMaterialDate;
@@ -56,6 +45,18 @@ public class Supplement
     /**补件日期**/
     @Column(name="supplement_date")
 	private Date supplementDate;
+/**寄件内容，供前台显示**/
+    @Transient
+	private String supplementContent;
+/**寄出最终成绩单日期**/
+	@Transient
+	private Date sendScoreDate;
+	/**寄出最终成绩单快递单号**/
+	@Transient
+	private String sendScoreNo;
+	/**录取包裹单号**/
+	@Transient
+	private String coeExpressNo;
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id
@@ -193,54 +194,6 @@ public class Supplement
 		this.bussinessCase = bussinessCase;
 	}
 
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  学校确认收到材料日期
-	 */
-
-	public Date getSchoolConfirmReceiveDate(){
-		return this.schoolConfirmReceiveDate;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  学校确认收到材料日期
-	 */
-	public void setSchoolConfirmReceiveDate(Date schoolConfirmReceiveDate){
-		this.schoolConfirmReceiveDate = schoolConfirmReceiveDate;
-	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  学校要求补件日期
-	 */
-
-	public Date getSchoolRequireDate(){
-		return this.schoolRequireDate;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  学校要求补件日期
-	 */
-	public void setSchoolRequireDate(Date schoolRequireDate){
-		this.schoolRequireDate = schoolRequireDate;
-	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  学校要求补件截止日
-	 */
-
-	public Date getSchoolRequireAddDeadline(){
-		return this.schoolRequireAddDeadline;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  学校要求补件截止日
-	 */
-	public void setSchoolRequireAddDeadline(Date schoolRequireAddDeadline){
-		this.schoolRequireAddDeadline = schoolRequireAddDeadline;
-	}
 
 	public Date getCollectMaterialDate() {
 		return collectMaterialDate;
@@ -258,11 +211,35 @@ public class Supplement
 		this.supplementDate = supplementDate;
 	}
 
-	public Date getConfirmSupplementDate() {
-		return confirmSupplementDate;
+	public String getSupplementContent() {
+		return supplementContent;
 	}
 
-	public void setConfirmSupplementDate(Date confirmSupplementDate) {
-		this.confirmSupplementDate = confirmSupplementDate;
+	public void setSupplementContent(String supplementContent) {
+		this.supplementContent = supplementContent;
+	}
+
+	public Date getSendScoreDate() {
+		return sendScoreDate;
+	}
+
+	public void setSendScoreDate(Date sendScoreDate) {
+		this.sendScoreDate = sendScoreDate;
+	}
+
+	public String getSendScoreNo() {
+		return sendScoreNo;
+	}
+
+	public void setSendScoreNo(String sendScoreNo) {
+		this.sendScoreNo = sendScoreNo;
+	}
+
+	public String getCoeExpressNo() {
+		return coeExpressNo;
+	}
+
+	public void setCoeExpressNo(String coeExpressNo) {
+		this.coeExpressNo = coeExpressNo;
 	}
 }

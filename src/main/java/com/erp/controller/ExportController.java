@@ -51,7 +51,7 @@ public class ExportController {
             request.setCharacterEncoding("UTF-8");
             Map map =new HashMap();
             map.put("exports",exports);
-            file = new ExcelUtil().createExcel(request,map, "myExcel","ao.ftl");//调用创建excel帮助类
+            file = new ExcelUtil().createExcel(request,map, "myExcel","mei.ftl");//调用创建excel帮助类
             inputStream = new FileInputStream(file);
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/msexcel");
