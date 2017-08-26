@@ -1209,31 +1209,14 @@
           <Cell><Data ss:Type="String">备注</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainApply.applyStatusName)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainVisit)!'无'}</Data></Cell>
-   <#if ((p.mainSupplement)??)&&(((p.mainSupplement)?size)>0)>
-       <Cell><Data ss:Type="String">${(p.mainSupplement.collectMaterialDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.student.schoolNo)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainSupplement.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainSupplement.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainSupplement.supplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainSupplement.schoolConfirmReceiveDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-   <#else>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-   </#if>
-          <Cell><Data ss:Type="String">${(p.mainReply.replyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-        <#if (p.mainReply.replyResult)??>
-         <#if p.mainReply.replyResult==1>
-             <Cell><Data ss:Type="String">录取</Data></Cell>
-         <#else >
-             <Cell><Data ss:Type="String">拒绝</Data></Cell>
-         </#if>
-        <#else>
-            <Cell><Data ss:Type="String">无</Data></Cell>
-        </#if>
+          <Cell><Data ss:Type="String">${(p.mainSupplement.collectMaterialDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.student.schoolNo)!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainSupplement.supplementContent)!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolConfirmStudentSupplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.conditionOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.replyResult)!'无'}</Data></Cell>
     <#if (p.mainOffer.atasStatus)??>
      <#if p.mainOffer.atasStatus==1>
          <Cell><Data ss:Type="String">需要</Data></Cell>
@@ -1270,10 +1253,10 @@
           <Cell><Data ss:Type="String">不确定无</Data></Cell>
           <Cell><Data ss:Type="String">不确定</Data></Cell>
           <Cell><Data ss:Type="String">${(p.langApply.applyMajorDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolRequireConditionOfferDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.studentConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainOffer.depositPaymentDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
        <#if (p.mainOffer.scholarshipStatus)??>
         <#if p.mainOffer.scholarshipStatus==1>
             <Cell><Data ss:Type="String">有</Data></Cell>
@@ -1285,44 +1268,27 @@
        </#if>
           <Cell><Data ss:Type="String">${(p.unConditionVisit)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainApply.argueDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.UnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.UnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.studentConfirmUnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.schoolConfirmStuUnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainReply.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.studentConfirmUnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolConfirmStuUnConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainReplyDate.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.langCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-   <#if ((p.langSupplement)??)&&(((p.langSupplement)?size)>0)>
-       <Cell><Data ss:Type="String">${(p.langSupplement.beijingSendDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langSupplement.schoolConfirmReceiveDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langVisit)!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langSupplement.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langSupplement.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langSupplement.supplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langSupplement.confirmSupplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-   <#else>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-       <Cell><Data ss:Type="String">无</Data></Cell>
-   </#if>
-          <Cell><Data ss:Type="String">${(p.langReply.replyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <#if (p.langReply.replyResult)??>
-        <#if p.langReply.replyResult==1>
-            <Cell><Data ss:Type="String">录取</Data></Cell>
-        <#else >
-            <Cell><Data ss:Type="String">拒绝</Data></Cell>
-        </#if>
-       <#else>
-           <Cell><Data ss:Type="String">无</Data></Cell>
-       </#if>
+          <Cell><Data ss:Type="String">${(p.langSupplement.beijingSendDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmReceiveApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langVisit)!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langSupplement.supplementContent)!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmStudentSupplementDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.replyResult)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.langOffer.offerInfo)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.langReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.langReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.langReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.langReply.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.langReply.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolRequireConditionOfferDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.studentConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.langReplyDate.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <!--签证-->
           <Cell><Data ss:Type="String">${(p.mainCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.visa.specialComment)!'无'}</Data></Cell>
@@ -1364,9 +1330,9 @@
        <Cell><Data ss:Type="String">${(p.langStayVisit)!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">${(p.langStayApply.confirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
        <Cell><Data ss:Type="String">${(p.langStayOffer.offerInfo)!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langStayReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langStayReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-       <Cell><Data ss:Type="String">${(p.langStayReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.langStayReplyDate.schoolRequireConditionOfferDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.langStayReplyDate.studentConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+       <Cell><Data ss:Type="String">${(p.langStayReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
    <#else>
        <Cell><Data ss:Type="String">否</Data></Cell>
    </#if>
@@ -1376,9 +1342,9 @@
           <Cell><Data ss:Type="String">${(p.mainStayVisit)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainStayApply.confirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.mainStayOffer.offerInfo)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainStayReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainStayReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.mainStayReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainStayReplyDate.schoolRequireConditionOfferDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainStayReplyDate.studentConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.mainStayReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <!--监护-->
           <Cell><Data ss:Type="String">${(p.custodyCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.custodyApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
@@ -1386,9 +1352,9 @@
           <Cell><Data ss:Type="String">${(p.custodyVisit)!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.custodyApply.confirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
           <Cell><Data ss:Type="String">${(p.custodyOffer.offerInfo)!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.custodyReply.replyOfferDealine?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.custodyReply.studentConfirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-          <Cell><Data ss:Type="String">${(p.custodyReply.schoolConfirmStuDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.custodyReplyDate.schoolRequireConditionOfferDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.custodyReplyDate.studentConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+          <Cell><Data ss:Type="String">${(p.custodyReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
       </Row>
   </#list>
   </Table>

@@ -33,7 +33,7 @@ public class Supplement
 	private String expressContent;
 	/**递交材料方式：1-传真 2-扫描 3-邮寄 4-现场递交*/
     @Column(name ="SEND_MATERIAL_TYPE")
-	private Integer sendMaterialType;
+	private String sendMaterialType;
 	/**业务场景:1-首次寄出材料 2-寄出补件内容 3-寄出成绩单/疫苗表 4-校方寄出coe原件*/
     @Column(name ="bussiness_case")
 	private Integer bussinessCase;
@@ -45,6 +45,9 @@ public class Supplement
     /**补件日期**/
     @Column(name="supplement_date")
 	private Date supplementDate;
+
+    @Column(name="express_status")
+	private  String expressStatus;
 /**寄件内容，供前台显示**/
     @Transient
 	private String supplementContent;
@@ -54,9 +57,15 @@ public class Supplement
 	/**寄出最终成绩单快递单号**/
 	@Transient
 	private String sendScoreNo;
+	/**i20原件单号**/
+	@Transient
+	private String i20ExpressNo;
 	/**录取包裹单号**/
 	@Transient
-	private String coeExpressNo;
+	private String admissionExpressNo;
+	/**录取包裹到达日期**/
+	@Transient
+	private Date admissionDate;
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id
@@ -174,7 +183,7 @@ public class Supplement
 	 *@return: java.lang.Integer  递交材料方式：1-传真 2-扫描 3-邮寄 4-现场递交
 	 */
 
-	public Integer getSendMaterialType(){
+	public String getSendMaterialType(){
 		return this.sendMaterialType;
 	}
 
@@ -182,7 +191,7 @@ public class Supplement
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  递交材料方式：1-传真 2-扫描 3-邮寄 4-现场递交
 	 */
-	public void setSendMaterialType(Integer sendMaterialType){
+	public void setSendMaterialType(String sendMaterialType){
 		this.sendMaterialType = sendMaterialType;
 	}
 
@@ -235,11 +244,35 @@ public class Supplement
 		this.sendScoreNo = sendScoreNo;
 	}
 
-	public String getCoeExpressNo() {
-		return coeExpressNo;
+	public String getI20ExpressNo() {
+		return i20ExpressNo;
 	}
 
-	public void setCoeExpressNo(String coeExpressNo) {
-		this.coeExpressNo = coeExpressNo;
+	public void setI20ExpressNo(String i20ExpressNo) {
+		this.i20ExpressNo = i20ExpressNo;
+	}
+
+	public String getAdmissionExpressNo() {
+		return admissionExpressNo;
+	}
+
+	public void setAdmissionExpressNo(String admissionExpressNo) {
+		this.admissionExpressNo = admissionExpressNo;
+	}
+
+	public Date getAdmissionDate() {
+		return admissionDate;
+	}
+
+	public void setAdmissionDate(Date admissionDate) {
+		this.admissionDate = admissionDate;
+	}
+
+	public String getExpressStatus() {
+		return expressStatus;
+	}
+
+	public void setExpressStatus(String expressStatus) {
+		this.expressStatus = expressStatus;
 	}
 }

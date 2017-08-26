@@ -37,7 +37,19 @@ public class AfterBusiness
 	/**离境日期*/
     @Column(name ="LEAVE_DATE")
 	private Date leaveDate;
+	/**是否有体检要求*/
+    @Column(name="health_test_status")
+    private Integer healthTestStatus;
+	/**学费金额*/
+    @Column(name="tuition_amount")
+	private String tuitionAmount;
 
+	/**学费缴纳日期*/
+	@Column(name ="tuition_payment_date")
+	private Date tuitionPaymentDate;
+
+	@Column(name="orientation_date")
+	private Date orientationDate;
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id
@@ -173,5 +185,37 @@ public class AfterBusiness
 
 	public void setPickInfo(String pickInfo) {
 		this.pickInfo = pickInfo;
+	}
+
+	public Integer getHealthTestStatus() {
+		return healthTestStatus;
+	}
+
+	public void setHealthTestStatus(Integer healthTestStatus) {
+		this.healthTestStatus = healthTestStatus;
+	}
+
+	public String getTuitionAmount() {
+		return tuitionAmount;
+	}
+
+	public void setTuitionAmount(String tuitionAmount) {
+		this.tuitionAmount = tuitionAmount;
+	}
+
+	public Date getTuitionPaymentDate() {
+		return tuitionPaymentDate;
+	}
+
+	public void setTuitionPaymentDate(Date tuitionPaymentDate) {
+		this.tuitionPaymentDate = tuitionPaymentDate;
+	}
+
+	public Date getOrientationDate() {
+		return orientationDate;
+	}
+
+	public void setOrientationDate(Date orientationDate) {
+		this.orientationDate = orientationDate;
 	}
 }

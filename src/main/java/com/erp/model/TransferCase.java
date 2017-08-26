@@ -16,9 +16,6 @@ public class TransferCase
 	/**申请id**/
     @Column(name ="APPLY_ID")
 	private Integer applyId;
-	/**学生id*/
-    @Column(name ="STUDENT_ID")
-	private Integer studentId;
 	/**上一负责人*/
     @Column(name ="PRE_OPERATOR")
 	private Integer preOperator;
@@ -49,17 +46,10 @@ public class TransferCase
     /**是否可用**/
     @Column(name="enable_status")
     private Integer enableStatus;
-
+	/**业务场景：1-销售文书转文签 2-销售签证转文签 3-外联转文签 **/
 	@Column(name="business_case")
 	private Integer bussinessCase;
 
-	/**留学国家**/
-	@Column(name="country_id")
-	private Integer countryId;
-
-	/**类别：1-正课 2-语言 3-正课住宿 4-语言住宿 5-监护**/
-	@Column(name="transfer_type")
-	private Integer transferType;
 
 	/**销售转文签日期**/
 	@Transient
@@ -110,22 +100,6 @@ public class TransferCase
 	 */
 	public void setApplyId(Integer applyId){
 		this.applyId = applyId;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  studentId
-	 */
-
-	public Integer getStudentId(){
-		return this.studentId;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  studentId
-	 */
-	public void setStudentId(Integer studentId){
-		this.studentId = studentId;
 	}
 	/**
 	 *方法: 取得java.lang.Integer
@@ -248,22 +222,6 @@ public class TransferCase
 
 	public void setLaterOperatorName(String laterOperatorName) {
 		this.laterOperatorName = laterOperatorName;
-	}
-
-	public Integer getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
-	}
-
-	public Integer getTransferType() {
-		return transferType;
-	}
-
-	public void setTransferType(Integer transferType) {
-		this.transferType = transferType;
 	}
 
 	public Date getSaleToCopyDate() {

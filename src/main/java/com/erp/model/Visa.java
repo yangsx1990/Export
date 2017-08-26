@@ -124,6 +124,9 @@ public class Visa
 	/**是否首次回访日期*/
 	@Column(name="first_visit_status")
 	private Integer firstVisitStatus;
+	/**担保金类型**/
+	@Column(name="guarantee_type")
+	private String guaranteeType;
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -669,5 +672,13 @@ this.id = id;
 
 	public void setRejectAnalysis(String rejectAnalysis) {
 		this.rejectAnalysis = rejectAnalysis;
+	}
+
+	public String getGuaranteeType() {
+		return guaranteeType;
+	}
+
+	public void setGuaranteeType(String guaranteeType) {
+		this.guaranteeType = guaranteeType;
 	}
 }

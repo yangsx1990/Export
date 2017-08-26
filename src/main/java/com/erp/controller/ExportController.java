@@ -1,9 +1,9 @@
 package com.erp.controller;
 
-import com.erp.model.Expert;
-import com.erp.model.ExportParam;
-import com.erp.model.StudentInfo;
+import com.erp.model.*;
 import com.erp.service.ExportService;
+import com.erp.service.MemberCountryService;
+import com.erp.service.MemberService;
 import com.erp.service.StudentInfoService;
 import com.erp.utils.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -23,12 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-@Controller
+@RestController
 public class ExportController {
 
     @Autowired
@@ -37,21 +34,21 @@ public class ExportController {
     @Autowired
     private StudentInfoService studentInfoService;
 
+    @Autowired
+    private MemberCountryService memberCountryService;
+    @Autowired
+    private MemberService memberService;
+
     @RequestMapping("index")
-    public void index(HttpServletRequest request, HttpServletResponse response, Model model) {
-        //根据员工id查询职务和负责国家
-        //根据职务和负责国家查询转案人为该员工的申请信息。
-        //
-        Integer countryId=0;
-        List<ExportParam> exports=exportService.export(countryId);
+    public void index(HttpServletRequest request, int oaId,String startDate,HttpServletResponse response, Model model) {
+
+        Map map=getPermission(oaId,startDate);
         File file = null;
         InputStream inputStream = null;
         ServletOutputStream out = null;
         try{
             request.setCharacterEncoding("UTF-8");
-            Map map =new HashMap();
-            map.put("exports",exports);
-            file = new ExcelUtil().createExcel(request,map, "myExcel","mei.ftl");//调用创建excel帮助类
+            file = new ExcelUtil().createExcel(request,map, "myExcel","ying.ftl");//调用创建excel帮助类
             inputStream = new FileInputStream(file);
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/msexcel");
@@ -73,6 +70,42 @@ public class ExportController {
         }
     }
 
+    private Map getPermission(Integer oaId,String startDate){
+        //根据员工id查询职务和负责国家
+        Member member=memberService.getByOaId(oaId);
+        int memberId=0;
+        if(member.getPosition()==1 || member.getPosition()==2){
+            memberId=member.getOaId();
+        }
+        List<MemberCountry> memberCountries=memberCountryService.getListByOaId(oaId);
+        List<Integer> countryIds=new ArrayList<>();
+        for(int i=0;i<memberCountries.size();i++){
+            MemberCountry country=memberCountries.get(i);
+            if(!countryIds.contains(country.getCountryId())){
+                countryIds.add(country.getCountryId());
+            }
+
+        }
+        //根据职务和负责国家查询转案人为该员工的申请信息。
+        Map map =new HashMap();
+        for(int i=0;i<countryIds.size();i++){
+            MemberApply memberApply=new MemberApply();
+            memberApply.setCountryId(countryIds.get(i));
+            memberApply.setMemberId(memberId);
+            if(startDate!=null){
+                memberApply.setExpectStartDate(startDate);
+            }
+            List<ExportParam> exports=exportService.export( memberApply);
+           /* if(countryIds.get(i)==1){*/
+                map.put("exports",exports);
+           /* }else if(countryIds.get(i)==2){
+                map.put("english",exports);
+            }*/
+        }
+
+        return map;
+
+    }
     @RequestMapping("/export")
     public void export(HttpServletResponse response){
        /* HSSFWorkbook wb=exportService.export();

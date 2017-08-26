@@ -82,6 +82,9 @@ public class ExportServiceImpl implements ExportService {
     @Autowired
     private BonusService bonusService;
 
+    @Autowired
+    private MemberApplyService memberApplyService;
+
     @Override
     public List<Expert> queryList() {
         List<Expert> experts=new ArrayList<>();
@@ -91,25 +94,15 @@ public class ExportServiceImpl implements ExportService {
     }
 
     @Override
-    public List<ExportParam> export(Integer countryId) {
-        //根据员工id查询职务和负责国家
-        //根据职务和负责国家查询转案人为该员工的申请信息。
-        //
-        List<Integer> oaIds=new ArrayList<>();
-        oaIds.add(1);
-        oaIds.add(2);
-        List<TransferCase> cases= getCases(oaIds,countryId);
-        List<Apply> applyList=new ArrayList<>();
-       for(TransferCase transferCase1:cases){
-          Apply apply= applyService.getApplyById(transferCase1.getApplyId());
-           applyList.add(apply);
-       }
-        String [] columns= adminColumn.split(",");
+    public List<ExportParam> export( MemberApply memberApply) {
+        //查询申请信息
+        List<Apply> applyList=getApply(memberApply);
+
         List<ExportParam> exports=new ArrayList<>();
         for(Apply apply:applyList){
             ExportParam exportParam=new ExportParam();
 
-            Reply reply=setOfferReply(apply.getId());
+            //Reply reply=setOfferReply(apply.getId());
             Supplement supplement=getSupplement(apply.getId());
 
 
@@ -314,12 +307,14 @@ public class ExportServiceImpl implements ExportService {
 
             //转案时间和人员
             String saleName=getOperators(apply.getId(),1);
-            String copyName=getOperators(apply.getId(),2);
-            String visaName=getOperators(apply.getId(),3);
-            String connectName=getOperators(apply.getId(),4);
+            String applyCopyName=getOperators(apply.getId(),2);
+            String copyName=getOperators(apply.getId(),3);
+            String visaName=getOperators(apply.getId(),4);
+            String connectName=getOperators(apply.getId(),5);
 
 
             exportParam.setSaleOperator(saleName);
+            exportParam.setApplyCopyOperator(applyCopyName);
             exportParam.setCopyOperator(copyName);
             exportParam.setConnectOperator(connectName);
             exportParam.setVisaOperator(visaName);
@@ -342,6 +337,45 @@ public class ExportServiceImpl implements ExportService {
         return exports;
        // return new ExportUtil().export(exports,columns);
        // return new ExportUtil().export(new ParseEntity().parse(params),columns);
+    }
+
+    /**
+     * 查询申请记录列表
+     * @param countryId
+     * @param memberId
+     * @param startDate
+     * @return
+     */
+    private List<Apply> getApply( MemberApply memberApply) {
+
+        List<MemberApply> memberApplies=getMemberApply(memberApply);
+
+        List<Apply> applyList=new ArrayList<>();
+        for(MemberApply memberApplyInfo:memberApplies){
+            Apply apply= applyService.getApplyById(memberApplyInfo.getApplyId());
+            if(apply!=null){
+                applyList.add(apply);
+            }
+        }
+        return applyList;
+    }
+
+    /***
+     * 查询员工负责的申请案子
+     * @param memberApply
+     * @return
+     */
+    private List<MemberApply> getMemberApply( MemberApply memberApply) {
+
+        memberApply.setEnable(1);
+        if(memberApply.getMemberId()!=null ){
+            if( memberApply.getMemberId()==0){
+                memberApply.setMemberId(null);
+            }else{
+                memberApply.setMemberId(memberApply.getMemberId());
+            }
+        }
+        return memberApplyService.getList(memberApply);
     }
 
     private Bonus getBonus(Integer applyId, int businessCase) {
@@ -386,15 +420,15 @@ public class ExportServiceImpl implements ExportService {
 
     private String getOperators(Integer id,Integer role) {
         String operatorName="";
-        Operator operator=new Operator();
-        operator.setApplyId(id);
-        operator.setRole(role);
-        List<Operator> operators= operatorService.getList(operator);
+        MemberApply apply=new MemberApply();
+        apply.setApplyId(id);
+        apply.setMemberRole(role);
+        List<MemberApply> operators= memberApplyService.getList(apply);
         if(operators.size()>0){
             for(int i=0;i<operators.size();i++){
-                Operator operatorIndex=operators.get(i);
-                if(operatorIndex!=null && operatorIndex.getOperatorName()!=null){
-                    operatorName=operatorName+operators.get(i).getOperatorName();
+                MemberApply operatorIndex=operators.get(i);
+                if(operatorIndex!=null && operatorIndex.getMemberName()!=null){
+                    operatorName=operatorName+operators.get(i).getMemberName();
                 }
             }
         }
@@ -411,10 +445,6 @@ public class ExportServiceImpl implements ExportService {
         return afterBusiness;
     }
 
-    @Override
-    public List<ExportParam> queryParams() {
-        return null;
-    }
 
     private Apply getStayInfo(Integer applyId,Integer applyType) {
         Apply apply=new Apply();
@@ -566,7 +596,7 @@ public class ExportServiceImpl implements ExportService {
     private Date getCaseDate(int applyId,int businessCase,int type) {
         TransferCase transferCase=new TransferCase();
         transferCase.setApplyId(applyId);
-        transferCase.setTransferType(type);
+        //transferCase.setTransferType(type);
         transferCase.setBussinessCase(businessCase);
         List<TransferCase> cases= transferCaseService.getOperator(transferCase);
         if(cases.size()>0){
@@ -618,8 +648,10 @@ public class ExportServiceImpl implements ExportService {
         List<Supplement> addSupplementList=getSupplementInfo(applyId,2);
         //邮寄最终成绩单
         List<Supplement> scoreSupplementList=getSupplementInfo(applyId,3);
-        //校方寄出coe单
-        List<Supplement> coeSupplementList=getSupplementInfo(applyId,4);
+        //录取包裹
+        List<Supplement> admissionSupplementList=getSupplementInfo(applyId,4);
+        //i20原件
+        List<Supplement> i20SupplementList=getSupplementInfo(applyId,5);
         if(supplementList.size()>0){
             Supplement material =supplementList.get(0);
             if(material.getCollectMaterialDate()!=null){
@@ -627,6 +659,9 @@ public class ExportServiceImpl implements ExportService {
             }
             if(material.getExpressNumber()!=null){
                 supplement.setExpressNumber(material.getExpressNumber());
+            }
+            if(material.getExpressStatus()!=null){
+                supplement.setExpressStatus(material.getExpressStatus());
             }
         }
         if(scoreSupplementList.size()>0 && scoreSupplementList.get(0).getSupplementDate()!=null){
@@ -646,9 +681,17 @@ public class ExportServiceImpl implements ExportService {
         }
         supplement.setSupplementContent(content);
 
-        if(coeSupplementList.size()>0){
-            if(scoreSupplementList.get(0).getExpressNumber()!=null){
-                supplement.setCoeExpressNo(scoreSupplementList.get(0).getExpressNumber());
+        if(admissionSupplementList.size()>0){
+            if(admissionSupplementList.get(0).getExpressNumber()!=null){
+                supplement.setAdmissionExpressNo(admissionSupplementList.get(0).getExpressNumber());
+            }
+            if(addSupplementList.get(0).getSupplementDate()!=null){
+                supplement.setAdmissionDate(admissionSupplementList.get(0).getSupplementDate());
+            }
+        }
+        if(i20SupplementList.size()>0){
+            if(i20SupplementList.get(0).getExpressNumber()!=null){
+                supplement.setI20ExpressNo(i20SupplementList.get(0).getExpressNumber());
             }
         }
         return supplement;

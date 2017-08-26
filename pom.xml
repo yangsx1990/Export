@@ -108,6 +108,7 @@
 
 
   <build>
+    <finalName>export</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

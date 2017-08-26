@@ -615,8 +615,8 @@
                   <Cell><Data ss:Type="String">无</Data></Cell>
               </#if>
                 <Cell><Data ss:Type="String">${(p.mainOffer.scholarshipAmount)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainSupplement.coeExpressNo)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.originalCoeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.mainSupplement.admissionExpressNo)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.mainReplyDate.admissionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.mainReplyDate.originalCoeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <!--签证-->
                 <Cell><Data ss:Type="String">${(p.visa.visaType)!'无'}</Data></Cell>
