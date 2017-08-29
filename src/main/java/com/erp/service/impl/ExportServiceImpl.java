@@ -210,9 +210,9 @@ public class ExportServiceImpl implements ExportService {
                 Apply custodyApply=getStayInfo(apply.getId(),5);
                 if(custodyApply.getId()!=null){
                     exportParam.setCustodyApply(custodyApply);
-                    Reply langStayReply=setOfferReply(custodyApply.getId());
-                    if(langStayReply.getId()!=null){
-                        DateParam custodyStayResult=setParamsReply(langStayApply.getId());
+                    Reply custodyReply=setOfferReply(custodyApply.getId());
+                    if(custodyReply.getId()!=null){
+                        DateParam custodyStayResult=setParamsReply(custodyApply.getId());
                         exportParam.setCustodyReplyDate(custodyStayResult);
                     }
                     String visitRecord= getVisit(custodyApply.getId(),2);
@@ -226,6 +226,33 @@ public class ExportServiceImpl implements ExportService {
                     langStayCase.setCopyToConnectDate(getCaseDate(apply.getId(),2,4));
                     langStayCase.setConnectToCopyDate(getCaseDate(apply.getId(),3,4));
                     exportParam.setLangStayCase(langStayCase);
+                }
+                //接机
+                Apply pickApply=getStayInfo(apply.getId(),6);
+                if(pickApply.getId()!=null){
+                    exportParam.setPickApply(pickApply);
+                    String visitRecord= getVisit(apply.getId(),2);
+                    exportParam.setPickVisit(visitRecord);
+                    //回复
+                    Reply pickReply=setOfferReply(pickApply.getId());
+                    if(pickReply.getId()!=null){
+                        DateParam pickResult=setParamsReply(pickApply.getId());
+                        exportParam.setPickReplyDate(pickResult);
+                    }
+                }
+
+                //保险
+                Apply insuranceApply=getStayInfo(apply.getId(),8);
+                if(insuranceApply.getId()!=null){
+                    exportParam.setInsuranceApply(insuranceApply);
+                    String visitRecord= getVisit(apply.getId(),2);
+                    exportParam.setInsuranceVisit(visitRecord);
+                    //回复
+                    Reply insuranceReply=setOfferReply(insuranceApply.getId());
+                    if(insuranceReply.getId()!=null){
+                        DateParam insuranceResult=setParamsReply(insuranceApply.getId());
+                        exportParam.setInsuranceReplyDate(insuranceResult);
+                    }
                 }
 
             }
@@ -620,7 +647,7 @@ public class ExportServiceImpl implements ExportService {
         for(StudentInfo student:studentInfos){
             Map<String,Object> param=new HashMap<>();
             param.put("name",student.getName());
-            param.put("schoolNo",student.getSchoolNo());
+           // param.put("schoolNo",student.getSchoolNo());
             param.put("systemNo",student.getSystemNo());
             param.put("gender",student.getGender());
             param.put("birthday",student.getBirthday());

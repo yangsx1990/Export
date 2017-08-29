@@ -147,6 +147,10 @@ public class Apply
 	/**查询网址**/
 	@Column(name="network_address")
 	private String networkAddress;
+
+	/**学校学号*/
+	@Column(name ="SCHOOL_NO")
+	private String schoolNo;
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  id
@@ -637,5 +641,13 @@ public class Apply
 
 	public void setNetworkAddress(String networkAddress) {
 		this.networkAddress = networkAddress;
+	}
+
+	public String getSchoolNo() {
+		return schoolNo;
+	}
+
+	public void setSchoolNo(String schoolNo) {
+		this.schoolNo = schoolNo;
 	}
 }

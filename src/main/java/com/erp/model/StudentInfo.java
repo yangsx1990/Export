@@ -13,9 +13,7 @@ public class StudentInfo
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	/**学校学号*/
-    @Column(name ="SCHOOL_NO")
-	private String schoolNo;
+
 	/**内网学号*/
     @Column(name ="SYSTEM_NO")
 	private String systemNo;
@@ -139,22 +137,7 @@ public class StudentInfo
 	public void setId(Integer id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  学校学号
-	 */
 
-	public String getSchoolNo(){
-		return this.schoolNo;
-	}
-
-	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  学校学号
-	 */
-	public void setSchoolNo(String schoolNo){
-		this.schoolNo = schoolNo;
-	}
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  内网学号

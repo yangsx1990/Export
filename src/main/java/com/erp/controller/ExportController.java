@@ -48,11 +48,11 @@ public class ExportController {
         ServletOutputStream out = null;
         try{
             request.setCharacterEncoding("UTF-8");
-            file = new ExcelUtil().createExcel(request,map, "myExcel","ying.ftl");//调用创建excel帮助类
+            file = new ExcelUtil().createExcel(request,map, "myExcel","total.ftl");//调用创建excel帮助类
             inputStream = new FileInputStream(file);
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/msexcel");
-            response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode("订单统计" + ".xls", "UTF-8"));
+            response.setHeader("content-disposition", "attachment;filename="+ URLEncoder.encode("文签大表" + ".xls", "UTF-8"));
             out = response.getOutputStream();
             byte[] buffer = new byte[512]; // 缓冲区
             int bytesToRead = -1;

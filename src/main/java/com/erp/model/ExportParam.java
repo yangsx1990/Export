@@ -49,6 +49,10 @@ public class ExportParam {
     private  String langStayVisit;
     /**监护回访**/
     private String custodyVisit;
+    /**接机回访**/
+    private String pickVisit;
+    /**保险回访**/
+    private String insuranceVisit;
     /**无条件offer回访**/
     private String unConditionVisit;
     /**主课回复**/
@@ -61,6 +65,10 @@ public class ExportParam {
     private DateParam mainStayReplyDate;
     /**语言课住宿回复**/
     private DateParam langStayReplyDate;
+    /**接机回复**/
+    private DateParam pickReplyDate;
+    /**保险回复**/
+    private DateParam insuranceReplyDate;
     /**主课回复**/
    /* private Reply mainReply;
     *//**语言回复**//*
@@ -111,6 +119,10 @@ public class ExportParam {
 
     /**监护offer信息**/
     private  Offer custodyOffer;
+    /**接机offer信息**/
+    private Offer pickOffer;
+    /**保险offer信息**/
+    private Offer insuranceOffer;
     /**申请奖金**/
     private Bonus applyBonus;
     /**签证奖金**/
@@ -514,5 +526,53 @@ public class ExportParam {
 
     public void setInsuranceApply(Apply insuranceApply) {
         this.insuranceApply = insuranceApply;
+    }
+
+    public String getPickVisit() {
+        return pickVisit;
+    }
+
+    public void setPickVisit(String pickVisit) {
+        this.pickVisit = pickVisit;
+    }
+
+    public DateParam getPickReplyDate() {
+        return pickReplyDate;
+    }
+
+    public void setPickReplyDate(DateParam pickReplyDate) {
+        this.pickReplyDate = pickReplyDate;
+    }
+
+    public Offer getPickOffer() {
+        return pickOffer;
+    }
+
+    public void setPickOffer(Offer pickOffer) {
+        this.pickOffer = pickOffer;
+    }
+
+    public String getInsuranceVisit() {
+        return insuranceVisit;
+    }
+
+    public void setInsuranceVisit(String insuranceVisit) {
+        this.insuranceVisit = insuranceVisit;
+    }
+
+    public DateParam getInsuranceReplyDate() {
+        return insuranceReplyDate;
+    }
+
+    public void setInsuranceReplyDate(DateParam insuranceReplyDate) {
+        this.insuranceReplyDate = insuranceReplyDate;
+    }
+
+    public Offer getInsuranceOffer() {
+        return insuranceOffer;
+    }
+
+    public void setInsuranceOffer(Offer insuranceOffer) {
+        this.insuranceOffer = insuranceOffer;
     }
 }
