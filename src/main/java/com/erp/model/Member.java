@@ -19,9 +19,7 @@ public class Member
 	/**职务级别：1-专员 2-经理 3-总监 4-总经理*/
 	@Column(name ="POSITION")
 	private Integer position;
-	/**负责国家id，总监需填写，其他不需要*/
-	@Column(name ="COUNTRY_ID")
-	private Integer countryId;
+
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -64,11 +62,4 @@ public class Member
 		this.position = position;
 	}
 
-	public Integer getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
-	}
 }

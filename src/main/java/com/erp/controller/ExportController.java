@@ -96,11 +96,15 @@ public class ExportController {
                 memberApply.setExpectStartDate(startDate);
             }
             List<ExportParam> exports=exportService.export( memberApply);
-           /* if(countryIds.get(i)==1){*/
+           if(countryIds.get(i)==1 || countryIds.get(i)==2){
                 map.put("exports",exports);
-           /* }else if(countryIds.get(i)==2){
-                map.put("english",exports);
-            }*/
+           }else if(countryIds.get(i)==3){
+                map.put("england",exports);
+            }else if(countryIds.get(i)==4){
+               map.put("usa",exports);
+           }else if(countryIds.get(i)==5){
+               map.put("ca",exports);
+           }
         }
 
         return map;
@@ -122,8 +126,12 @@ public class ExportController {
     }
 
     @RequestMapping("student")
-    public List<StudentInfo> student(HttpServletRequest request) {
-       Cookie[] cookies= request.getCookies();
-        return studentInfoService.getList(new StudentInfo());
+    public void student(HttpServletRequest request) {
+       StudentInfo studentInfo= new StudentInfo();
+       studentInfo.setSystemNo("dkjfskljsl");
+        List<StudentInfo> studentInfos= studentInfoService.getList(studentInfo);
+        System.out.println(studentInfos!=null);
+        studentInfo = studentInfoService.getStudentInfoById("dkjfldjslkd");
+        System.out.println();
     }
 }

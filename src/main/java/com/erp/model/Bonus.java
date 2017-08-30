@@ -16,8 +16,8 @@ public class Bonus
     @Column(name ="OA_ID")
 	private Integer oaId;
 	/**contractId*/
-    @Column(name ="CONTRACT_ID")
-	private Integer contractId;
+    @Column(name ="student_no")
+	private String student_no;
 	/**applyId*/
     @Column(name ="APPLY_ID")
 	private Integer applyId;
@@ -63,22 +63,15 @@ public class Bonus
 	public void setOaId(Integer oaId){
 		this.oaId = oaId;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  contractId
-	 */
 
-	public Integer getContractId(){
-		return this.contractId;
+	public String getStudent_no() {
+		return student_no;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  contractId
-	 */
-	public void setContractId(Integer contractId){
-		this.contractId = contractId;
+	public void setStudent_no(String student_no) {
+		this.student_no = student_no;
 	}
+
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  applyId

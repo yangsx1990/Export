@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("memberCountryService")
@@ -55,21 +56,38 @@ public class MemberCountryServiceImpl implements MemberCountryService
         if(member.getPosition()==null){
             throw new RuntimeException("员工职位信息异常");
         }
-        if(member.getPosition()==1 || member.getPosition()!=2){
+        if(member.getPosition()==1 || member.getPosition()==2){
             MemberCountry memberCountry=new MemberCountry();
             memberCountry.setOaId(member.getOaId());
             return getList(memberCountry);
         }else if(member.getPosition()==3 ){
-            if(member.getCountryId()==null){
-                throw new RuntimeException("员工信息异常");
+            List<Integer> list=new ArrayList<>();
+           //暂时写死
+            if(oaId==43){ //澳新
+                list.add(1);
+                list.add(2);
+            }else if(oaId==383) {  //美加
+                list.add(4);
+                list.add(5);
+            }else if(oaId==11222){ //英国
+                list.add(3);
+            }else{
+                list.add(1);
+                list.add(2);
+                list.add(3);
+                list.add(4);
+                list.add(5);
             }
-            MemberCountry memberCountry=new MemberCountry();
-            memberCountry.setCountryId(member.getCountryId());
-            return getList(memberCountry);
 
+            return getMemberCountry(list);
         }
         return null;
     }
 
+    private List<MemberCountry> getMemberCountry(List<Integer> countryIds){
+        Example example=new Example(MemberCountry.class);
+        example.createCriteria().andIn("countryId",countryIds);
+        return memberCountryMapper.selectByExample(example);
+    }
 
 }

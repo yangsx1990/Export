@@ -2787,7 +2787,7 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="加拿大">
-        <Table ss:ExpandedColumnCount="155" ss:ExpandedRowCount="${exports?size+11}" x:FullColumns="1"
+        <Table ss:ExpandedColumnCount="155" ss:ExpandedRowCount="${ca?size+11}" x:FullColumns="1"
                x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
                ss:DefaultRowHeight="24.9375">
             <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
@@ -3361,7 +3361,7 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="美国">
-        <Table ss:ExpandedColumnCount="165" ss:ExpandedRowCount="${exports?size+11}" x:FullColumns="1"
+        <Table ss:ExpandedColumnCount="165" ss:ExpandedRowCount="${usa?size+11}" x:FullColumns="1"
                x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
                ss:DefaultRowHeight="24.9375">
             <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
@@ -3956,7 +3956,7 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="英国">
-        <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${exports?size+4}" x:FullColumns="1"
+        <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${england?size+4}" x:FullColumns="1"
                x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
             <Column ss:Index="24" ss:AutoFitWidth="0" ss:Width="96.75"/>
             <Column ss:AutoFitWidth="0" ss:Width="69.75"/>
