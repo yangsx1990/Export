@@ -9,16 +9,17 @@ import java.util.Date;
 public class Contract
 {
 	/**id*/
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	/**学生id*/
-    @Column(name ="STUDENT_ID")
-	private Integer studentId;
-	/**留学国家*/
-    @Column(name ="COUNTRY_NO")
-	private Integer countryNo;
+	/**学生no*/
+    @Column(name ="STUDENT_NO")
+	private String studentNo;
+
+	/**合同no*/
+	@Column(name ="contract_no")
+	private String contractNo;
+
 	/**留学国家名称*/
     @Column(name="country_name")
 	private String countryName;
@@ -62,38 +63,15 @@ public class Contract
 	public void setId(Integer id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  学生id
-	 */
 
-	public Integer getStudentId(){
-		return this.studentId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  学生id
-	 */
-	public void setStudentId(Integer studentId){
-		this.studentId = studentId;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  留学国家
-	 */
-
-	public Integer getCountryNo(){
-		return this.countryNo;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  留学国家
-	 */
-	public void setCountryNo(Integer countryNo){
-		this.countryNo = countryNo;
-	}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  合同类型
@@ -162,5 +140,13 @@ public class Contract
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+
+	public String getContractNo() {
+		return contractNo;
+	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
 	}
 }

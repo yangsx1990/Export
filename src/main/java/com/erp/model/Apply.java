@@ -10,15 +10,14 @@ public class Apply
 	/**id*/
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
 	/**学生id*/
-    @Column(name ="STUDENT_ID")
-	private Integer studentId;
+    @Column(name ="STUDENT_NO")
+	private String studentNo;
 	/**合同id*/
-    @Column(name ="CONTRACT_ID")
-	private Integer contractId;
+    @Column(name ="contract_no")
+	private String contractNo;
 	/**留学国家*/
     @Column(name ="COUNTRY")
 	private Integer country;
@@ -167,38 +166,23 @@ public class Apply
 	public void setId(Integer id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  学生id
-	 */
 
-	public Integer getStudentId(){
-		return this.studentId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  学生id
-	 */
-	public void setStudentId(Integer studentId){
-		this.studentId = studentId;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  合同id
-	 */
-
-	public Integer getContractId(){
-		return this.contractId;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  合同id
-	 */
-	public void setContractId(Integer contractId){
-		this.contractId = contractId;
+	public String getContractNo() {
+		return contractNo;
 	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
+	}
+
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  留学国家

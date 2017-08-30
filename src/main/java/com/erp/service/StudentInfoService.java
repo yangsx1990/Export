@@ -15,5 +15,5 @@ public interface StudentInfoService
 
     int    insert(StudentInfo studentInfo);*/
 
-    StudentInfo getStudentInfoById(Integer id);
+    StudentInfo getStudentInfoById(String  studentNo);
 }

@@ -13,9 +13,9 @@ public class Refund
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
-	/**contractId*/
-    @Column(name ="CONTRACT_ID")
-	private Integer contractId;
+	/**学号*/
+    @Column(name ="student_no")
+	private String student_no;
 	/**退费申请日期*/
     @Column(name ="REFUND_APPLY_DATE")
 	private Date refundApplyDate;
@@ -38,22 +38,6 @@ public class Refund
 	 */
 	public void setId(Integer id){
 		this.id = id;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  contractId
-	 */
-
-	public Integer getContractId(){
-		return this.contractId;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  contractId
-	 */
-	public void setContractId(Integer contractId){
-		this.contractId = contractId;
 	}
 	/**
 	 *方法: 取得java.util.Date
@@ -86,5 +70,13 @@ public class Refund
 	 */
 	public void setConfirmDate(Date confirmDate){
 		this.confirmDate = confirmDate;
+	}
+
+	public String getStudent_no() {
+		return student_no;
+	}
+
+	public void setStudent_no(String student_no) {
+		this.student_no = student_no;
 	}
 }

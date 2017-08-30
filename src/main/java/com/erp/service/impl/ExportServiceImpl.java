@@ -256,7 +256,7 @@ public class ExportServiceImpl implements ExportService {
                 }
 
             }
-            StudentInfo student=studentInfoService.getStudentInfoById(apply.getStudentId());
+            StudentInfo student=studentInfoService.getStudentInfoById(apply.getStudentNo());
             if(student.getId()!=null && student.getEducation()!=null){
                 Degree degree=degreeService.queryById(student.getEducation());
                 if(degree!=null && degree.getDegreeId()!=null && org.springframework.util.StringUtils.hasText(degree.getDegree())){
@@ -312,10 +312,10 @@ public class ExportServiceImpl implements ExportService {
                 }
                 student.setExamScore(examScore);
             }
-            Contract contract=contractService.getContractById(apply.getContractId());
-            if(contract.getId()!=null){
+            Contract contract=contractService.getContractById(apply.getContractNo());
+            if(apply.getStudentNo()!=null){
                 Refund refund=new Refund();
-                refund.setContractId(contract.getId());
+                refund.setStudent_no(apply.getStudentNo());
                List<Refund> refunds= refundService.getList(refund);
                if(refunds.size()>0){
                    exportParam.setRefund(refunds.get(0));
@@ -329,8 +329,8 @@ public class ExportServiceImpl implements ExportService {
             AfterBusiness business=getAfterService(contract.getId());
             exportParam.setAfterBusiness(business);
             //文案信息
-            exportParam.setCopywriting(setCopyWriting(apply.getStudentId()));
-            exportParam.setVisa(getVisa(apply.getStudentId()));
+            exportParam.setCopywriting(setCopyWriting(apply.getStudentNo()));
+            exportParam.setVisa(getVisa(apply.getStudentNo()));
 
             //转案时间和人员
             String saleName=getOperators(apply.getId(),1);
@@ -366,11 +366,9 @@ public class ExportServiceImpl implements ExportService {
        // return new ExportUtil().export(new ParseEntity().parse(params),columns);
     }
 
-    /**
+    /***
      * 查询申请记录列表
-     * @param countryId
-     * @param memberId
-     * @param startDate
+     * @param memberApply
      * @return
      */
     private List<Apply> getApply( MemberApply memberApply) {
@@ -603,9 +601,9 @@ public class ExportServiceImpl implements ExportService {
     }
 
 
-    private Visa getVisa(Integer studentId) {
+    private Visa getVisa(String studentNo) {
         Visa visa=new Visa();
-        visa.setStudentId(studentId);
+        visa.setStudentNo(studentNo);
         List<Visa> visas=visaService.getList(visa);
         if(visas.size()>0){
             return visas.get(0);
@@ -631,9 +629,9 @@ public class ExportServiceImpl implements ExportService {
         }
         return null;
     }
-    private StudentCopywriting setCopyWriting(Integer studentId) {
+    private StudentCopywriting setCopyWriting(String studentNo) {
         StudentCopywriting copywriting=new StudentCopywriting();
-        copywriting.setStudentId(studentId);
+        copywriting.setStudentNo(studentNo);
         List<StudentCopywriting> copywritingList= copywritingService.getList(copywriting);
         if(copywritingList.size()>0){
             return copywritingList.get(0);

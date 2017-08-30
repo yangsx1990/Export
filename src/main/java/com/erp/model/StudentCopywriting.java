@@ -14,11 +14,11 @@ public class StudentCopywriting
     @Column(name ="ID")
 	private Integer id;
 	/**合同id**/
-	@Column(name="contract_id")
-	private  Integer contractId;
+	@Column(name="contract_no")
+	private  Integer contractNo;
 	/**学号id*/
-    @Column(name ="STUDENT_ID")
-	private Integer studentId;
+    @Column(name ="student_no")
+	private String studentNo;
 	/**文案名称*/
     @Column(name ="COPY_NAME")
 	private String copyName;
@@ -99,20 +99,20 @@ public class StudentCopywriting
 		this.id = id;
 	}
 
-	public Integer getContractId() {
-		return contractId;
+	public Integer getContractNo() {
+		return contractNo;
 	}
 
-	public void setContractId(Integer contractId) {
-		this.contractId = contractId;
+	public void setContractNo(Integer contractNo) {
+		this.contractNo = contractNo;
 	}
 
-	public Integer getStudentId() {
-		return studentId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 
 	public String getCopyName() {

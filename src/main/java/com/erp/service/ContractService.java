@@ -9,6 +9,6 @@ public interface ContractService
 {
     List<Contract> getList(Contract contract);
 
-    Contract getContractById(Integer id);
+    Contract getContractById(String contactNo);
 
 }

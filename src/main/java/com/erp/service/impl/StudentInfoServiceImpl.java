@@ -25,33 +25,15 @@ public class StudentInfoServiceImpl implements StudentInfoService
 
 
 
-
-   /* @Override
-    public int delStudentInfoById(Integer id)
-    {
-        StudentInfo studentInfo = new StudentInfo();
-        studentInfo.setDelFlag(0);
-        studentInfo.setId(id);
-
-        return studentInfoMapper.updateByPrimaryKeySelective(studentInfo);
-    }
-
     @Override
-    public int update(StudentInfo studentInfo)
+    public StudentInfo getStudentInfoById(String  studentNo)
     {
-        return studentInfoMapper.updateByPrimaryKeySelective(studentInfo);
-    }
-
-    @Override
-    public int insert(StudentInfo studentInfo)
-    {
-        studentInfo.setDelFlag(1);
-        return studentInfoMapper.insert(studentInfo);
-    }*/
-
-    @Override
-    public StudentInfo getStudentInfoById(Integer id)
-    {
-        return studentInfoMapper.selectByPrimaryKey(id);
+        StudentInfo studentInfo=new StudentInfo();
+        studentInfo.setSystemNo(studentNo);
+       List<StudentInfo> students= studentInfoMapper.select(studentInfo);
+       if(students!=null && students.size()>0){
+           return students.get(0);
+       }
+        return studentInfo;
     }
 }

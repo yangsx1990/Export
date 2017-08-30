@@ -19,6 +19,9 @@ public class Reply
 	/**回复途径*/
     @Column(name ="REPLY_WAY")
 	private Integer replyWay;
+	/**回复途径名称*/
+    @Column(name="reply_way_name")
+	private String replyWayName;
 	/**回复类型：1-学生确认申请 2-确认收到申请  3-要求补件 4-确认收到补件 5-offer到达 6-无offer 7-coe电子版到达 8-coe原件 9-offer延期  */
     @Column(name ="REPLY_TYPE")
 	private Integer replyType;
@@ -225,5 +228,13 @@ public class Reply
 
 	public void setProvideDeadline(Date provideDeadline) {
 		this.provideDeadline = provideDeadline;
+	}
+
+	public String getReplyWayName() {
+		return replyWayName;
+	}
+
+	public void setReplyWayName(String replyWayName) {
+		this.replyWayName = replyWayName;
 	}
 }

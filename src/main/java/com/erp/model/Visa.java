@@ -20,8 +20,8 @@ public class Visa
 	@Column(name ="ID")
 	private java.lang.Integer id;
 	/**学生id*/
-	@Column(name ="STUDENT_ID")
-	private java.lang.Integer studentId;
+	@Column(name ="STUDENT_NO")
+	private String studentNo;
 	/**主要资助人*/
 	@Column(name ="MAIN_SPONSOR")
 	private java.lang.String mainSponsor;
@@ -127,6 +127,12 @@ public class Visa
 	/**担保金类型**/
 	@Column(name="guarantee_type")
 	private String guaranteeType;
+	/**学费金额**/
+	@Column(name="tuition_amount")
+	private String tuitionAmount;
+	/**学费支付日期**/
+	@Column(name="tuition_payment")
+	private String tuitionPayment;
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -148,18 +154,14 @@ this.id = id;
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  学生id
 	 */
-
-	public java.lang.Integer getStudentId(){
-		return this.studentId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  学生id
-	 */
-	public void setStudentId(java.lang.Integer studentId){
-		this.studentId = studentId;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主要资助人
@@ -680,5 +682,21 @@ this.id = id;
 
 	public void setGuaranteeType(String guaranteeType) {
 		this.guaranteeType = guaranteeType;
+	}
+
+	public String getTuitionAmount() {
+		return tuitionAmount;
+	}
+
+	public void setTuitionAmount(String tuitionAmount) {
+		this.tuitionAmount = tuitionAmount;
+	}
+
+	public String getTuitionPayment() {
+		return tuitionPayment;
+	}
+
+	public void setTuitionPayment(String tuitionPayment) {
+		this.tuitionPayment = tuitionPayment;
 	}
 }

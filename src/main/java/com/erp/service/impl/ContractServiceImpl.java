@@ -27,9 +27,15 @@ public class ContractServiceImpl implements ContractService
 
 
     @Override
-    public Contract getContractById(Integer id)
+    public Contract getContractById(String contactNo)
     {
-        return contractMapper.selectByPrimaryKey(id);
+        Contract contract=new Contract();
+        contract.setContractNo(contactNo);
+        List<Contract> contracts=getList(contract);
+        if(contracts.size()>0){
+            return contracts.get(0);
+        }
+        return contract;
     }
 
 
