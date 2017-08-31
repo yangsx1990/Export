@@ -11,4 +11,6 @@ public interface ApplyService
 
 
     Apply getApplyById(Integer id);
+
+    List<Apply> getByStuNos(List<String> stuNos);
 }

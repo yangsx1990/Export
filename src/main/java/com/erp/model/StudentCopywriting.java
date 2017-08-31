@@ -37,9 +37,7 @@ public class StudentCopywriting
 	/**materialCollectedDate*/
     @Column(name ="MATERIAL_COLLECTED_DATE")
 	private Date materialCollectedDate;
-	/**申请缴费方式，1-人民币缴纳到公 司2-个人信用卡支付3-其他等*/
-    @Column(name ="PAYMENT_TYPE")
-	private Integer copyPaymentType;
+
 	/**申请制作完成日期*/
     @Column(name ="COMPLETE_DATE")
 	private Date completeDate;
@@ -161,14 +159,6 @@ public class StudentCopywriting
 
 	public void setMaterialCollectedDate(Date materialCollectedDate) {
 		this.materialCollectedDate = materialCollectedDate;
-	}
-
-	public Integer getCopyPaymentType() {
-		return copyPaymentType;
-	}
-
-	public void setCopyPaymentType(Integer copyPaymentType) {
-		this.copyPaymentType = copyPaymentType;
 	}
 
 	public Date getCompleteDate() {

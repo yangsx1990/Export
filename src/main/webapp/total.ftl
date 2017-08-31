@@ -1990,9 +1990,15 @@
         </Style>
     </Styles>
     <Worksheet ss:Name="澳洲">
-        <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${exports?size+15}" x:FullColumns="1"
-               x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
-               ss:DefaultRowHeight="16.5">
+    <#if exports??>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${exports?size+15}" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="16.5">
+    <#else>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="15" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="16.5">
+    </#if>
             <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
                     ss:Span="1"/>
             <Column ss:Index="4" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="54.75"/>
@@ -2245,6 +2251,7 @@
                 <Cell><Data ss:Type="String">其他。。。。</Data></Cell>
             </Row>
             <!--aodata-->
+<#if exports??>
         <#list exports as p>
             <Row ss:AutoFitHeight="0">
                 <Cell ss:StyleID="s69"/>
@@ -2632,6 +2639,7 @@
                 </#if>
             </Row>
         </#list>
+</#if>
             <Row ss:AutoFitHeight="0">
                 <Cell ss:Index="23" ss:StyleID="s65"/>
                 <Cell ss:StyleID="s65"/>
@@ -2763,6 +2771,10 @@
                 <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
             </PageSetup>
             <Unsynced/>
+        <#if exports??>
+        <#else>
+            <Visible>SheetHidden</Visible>
+        </#if>
             <Panes>
                 <Pane>
                     <Number>3</Number>
@@ -2787,9 +2799,15 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="加拿大">
+<#if ca??>
         <Table ss:ExpandedColumnCount="155" ss:ExpandedRowCount="${ca?size+11}" x:FullColumns="1"
                x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
                ss:DefaultRowHeight="24.9375">
+ <#else>
+ <Table ss:ExpandedColumnCount="155" ss:ExpandedRowCount="11" x:FullColumns="1"
+        x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+        ss:DefaultRowHeight="24.9375">
+ </#if>
             <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
                     ss:Span="4"/>
             <Column ss:Index="7" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="45"/>
@@ -3026,7 +3044,8 @@
                 <Cell ss:StyleID="s181"/>
             </Row>
             <!--jiadata-->
-        <#list exports as p>
+    <#if ca??>
+        <#list ca as p>
             <Row ss:AutoFitHeight="0" ss:Height="24">
                 <Cell ss:StyleID="s65"/>
                 <!--学生信息-->
@@ -3215,8 +3234,8 @@
                 <#else>
                     <Cell><Data ss:Type="String">无</Data></Cell>
                 </#if>
-                <Cell><Data ss:Type="String">${(p.afterBusiness.tuitionAmount)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.afterBusiness.tuitionPaymentDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.visa.tuitionAmount)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.visa.tuitionPaymentDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.afterBusiness.orientationDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">监护文签转外联日期</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.custodyApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
@@ -3240,6 +3259,7 @@
                 <Cell><Data ss:Type="String">${(p.pickApply.agentName)!'无'}</Data></Cell>
             </Row>
         </#list>
+    </#if>
             <Row ss:AutoFitHeight="0" ss:Height="16.5">
                 <Cell ss:StyleID="s65"/>
                 <Cell ss:StyleID="s65"/>
@@ -3336,6 +3356,10 @@
                 <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
             </PageSetup>
             <Unsynced/>
+            <#if ca??>
+            <#else>
+                <Visible>SheetHidden</Visible>
+            </#if>
             <Panes>
                 <Pane>
                     <Number>3</Number>
@@ -3361,9 +3385,15 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="美国">
-        <Table ss:ExpandedColumnCount="165" ss:ExpandedRowCount="${usa?size+11}" x:FullColumns="1"
-               x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
-               ss:DefaultRowHeight="24.9375">
+    <#if usa??>
+    <Table ss:ExpandedColumnCount="165" ss:ExpandedRowCount="${usa?size+11}" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="24.9375">
+    <#else>
+    <Table ss:ExpandedColumnCount="165" ss:ExpandedRowCount="11" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="24.9375">
+    </#if>
             <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
                     ss:Span="3"/>
             <Column ss:Index="6" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="54.75"/>
@@ -3617,7 +3647,8 @@
                 <Cell ss:StyleID="s181"/>
             </Row>
             <!--meidata-->
-        <#list exports as p>
+<#if usa??>
+        <#list usa as p>
             <Row ss:AutoFitHeight="0" ss:Height="30">
                 <Cell ss:StyleID="s65"/>
                 <!--学生信息-->
@@ -3835,6 +3866,7 @@
                 <Cell><Data ss:Type="String">${(p.afterBusiness.leaveDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
             </Row>
         </#list>
+</#if>
             <Row ss:AutoFitHeight="0" ss:Height="16.5">
                 <Cell ss:StyleID="s65"/>
                 <Cell ss:StyleID="s65"/>
@@ -3932,6 +3964,10 @@
                 <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
             </PageSetup>
             <Unsynced/>
+        <#if usa??>
+        <#else>
+            <Visible>SheetHidden</Visible>
+        </#if>
             <Print>
                 <ValidPrinterInfo/>
                 <PaperSizeIndex>9</PaperSizeIndex>
@@ -3956,8 +3992,13 @@
         </DataValidation>
     </Worksheet>
     <Worksheet ss:Name="英国">
-        <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${england?size+4}" x:FullColumns="1"
-               x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+    <#if england??>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${england?size+4}" x:FullColumns="1"
+           x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+    <#else>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="4" x:FullColumns="1"
+           x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+    </#if>
             <Column ss:Index="24" ss:AutoFitWidth="0" ss:Width="96.75"/>
             <Column ss:AutoFitWidth="0" ss:Width="69.75"/>
             <Row ss:AutoFitHeight="0" ss:Height="73.5">
@@ -4179,7 +4220,8 @@
                 <Cell ss:MergeAcross="5" ss:StyleID="m437164408"><Data ss:Type="String">保留后续处理部分中的海外联系方式，把MSN换成微信。</Data></Cell>
             </Row>
             <!--yingdata-->
-        <#list exports as p>
+<#if england??>
+        <#list england as p>
             <Row ss:AutoFitHeight="0" ss:Height="61.5">
                 <Cell ss:StyleID="s332"/>
                 <Cell><Data ss:Type="String"></Data></Cell>
@@ -4466,6 +4508,7 @@
                 <Cell><Data ss:Type="String">${(p.pickReplyDate.studentConfirmApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
             </Row>
         </#list>
+</#if>
         </Table>
         <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
             <PageSetup>
@@ -4474,13 +4517,16 @@
                 <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
             </PageSetup>
             <Unsynced/>
+        <#if england??>
+        <#else>
+            <Visible>SheetHidden</Visible>
+        </#if>
             <Print>
                 <ValidPrinterInfo/>
                 <PaperSizeIndex>9</PaperSizeIndex>
                 <HorizontalResolution>600</HorizontalResolution>
                 <VerticalResolution>600</VerticalResolution>
             </Print>
-            <Selected/>
             <Panes>
                 <Pane>
                     <Number>3</Number>
@@ -4544,6 +4590,359 @@
             <Range>R4C74:R4C75</Range>
             <UseBlank/>
             <ComboHide/>
+        </DataValidation>
+    </Worksheet>
+    <Worksheet ss:Name="总表">
+    <#if total??>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${total?size+15}" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="16.5">
+    <#else>
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="15" x:FullColumns="1"
+           x:FullRows="1" ss:StyleID="s64" ss:DefaultColumnWidth="54"
+           ss:DefaultRowHeight="16.5">
+    </#if>
+        <Column ss:Index="2" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="47.25"
+                ss:Span="1"/>
+        <Column ss:Index="4" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="54.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="27"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="56.25"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="47.25"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="50.25"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="81.75"/>
+        <Column ss:StyleID="s66" ss:AutoFitWidth="0" ss:Width="49.5"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="51"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="51.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="39"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="36"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="44.25" ss:Span="1"/>
+        <Column ss:Index="17" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="52.5"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="33"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="53.25"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="46.5" ss:Span="2"/>
+        <Column ss:Index="23" ss:StyleID="s67" ss:AutoFitWidth="0" ss:Width="68.25"/>
+        <Column ss:StyleID="s67" ss:AutoFitWidth="0" ss:Width="77.25" ss:Span="2"/>
+        <Column ss:Index="27" ss:StyleID="s67" ss:AutoFitWidth="0" ss:Width="48.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="53.25" ss:Span="4"/>
+        <Column ss:Index="33" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="66.75"
+                ss:Span="82"/>
+        <Column ss:Index="116" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="72.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="82.5"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="66.75" ss:Span="7"/>
+        <Column ss:Index="126" ss:StyleID="s64" ss:AutoFitWidth="0" ss:Width="92.25"
+                ss:Span="3"/>
+        <Column ss:Index="130" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="43.5"
+                ss:Span="8"/>
+        <Column ss:Index="139" ss:StyleID="s65" ss:AutoFitWidth="0"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="54.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="62.25" ss:Span="1"/>
+        <Column ss:Index="143" ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="60.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="57.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="54.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="62.25"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="55.5"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="57"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="60.75"/>
+        <Column ss:StyleID="s65" ss:AutoFitWidth="0" ss:Width="60"/>
+        <Row ss:AutoFitHeight="0" ss:Height="33">
+            <Cell ss:StyleID="s68"><Data ss:Type="String">负责填写部门</Data></Cell>
+            <Cell ss:MergeAcross="33" ss:MergeDown="1" ss:StyleID="m437165784"><Data
+                    ss:Type="String">销售</Data></Cell>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s78"><Data ss:Type="String">文签</Data></Cell>
+            <Cell ss:StyleID="s69"/>
+            <Cell ss:MergeAcross="20" ss:StyleID="m437165804"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:MergeAcross="1" ss:StyleID="m437165824"><Data ss:Type="String">销售</Data></Cell>
+            <Cell ss:StyleID="s86"><Data ss:Type="String">文签</Data></Cell>
+            <Cell ss:MergeAcross="12" ss:StyleID="m437165844"><Data ss:Type="String">外联</Data></Cell>
+            <Cell ss:StyleID="s88"/>
+            <Cell ss:MergeAcross="7" ss:StyleID="m437165864"><Data ss:Type="String">外联</Data></Cell>
+            <Cell ss:StyleID="s93"/>
+            <Cell ss:MergeAcross="19" ss:StyleID="m437165884"><Data ss:Type="String">外联</Data></Cell>
+            <Cell ss:MergeAcross="51" ss:StyleID="m437167032"><Data ss:Type="String">文签</Data></Cell>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s68"><Data ss:Type="String">模块</Data></Cell>
+            <Cell ss:Index="36" ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:StyleID="s77"/>
+            <Cell ss:MergeAcross="21" ss:StyleID="m437167052"><Data ss:Type="String">正课申请</Data></Cell>
+            <Cell ss:StyleID="s99"/>
+            <Cell ss:StyleID="s100"/>
+            <Cell ss:StyleID="s100"/>
+            <Cell ss:MergeAcross="12" ss:StyleID="m437167072"><Data ss:Type="String">语言申请</Data></Cell>
+            <Cell ss:MergeAcross="8" ss:StyleID="m437167092"><Data ss:Type="String">语言住宿</Data></Cell>
+            <Cell ss:MergeAcross="8" ss:StyleID="m437167112"><Data ss:Type="String">正课住宿</Data></Cell>
+            <Cell ss:MergeAcross="5" ss:StyleID="m437167132"><Data ss:Type="String">接机安排</Data></Cell>
+            <Cell ss:MergeAcross="5" ss:StyleID="m437167152"><Data ss:Type="String">保险安排</Data></Cell>
+            <Cell ss:MergeAcross="5" ss:StyleID="m437167172"><Data ss:Type="String">转文案及文案辅导</Data></Cell>
+            <Cell ss:MergeAcross="9" ss:StyleID="s103"><Data ss:Type="String">申请前信息录入</Data></Cell>
+            <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">部分院校其他申请信息添加（对于澳新部分需要帮助学生注册邮箱、进行网申用户名和密码注册的申请，其他常规申请信息见外联录入部分）</Data></Cell>
+            <Cell ss:MergeAcross="4" ss:StyleID="m437166408"><Data ss:Type="String">转签证及签证辅导</Data></Cell>
+            <Cell ss:MergeAcross="14" ss:StyleID="s84"><Data ss:Type="String">递签前信息录入</Data></Cell>
+            <Cell ss:StyleID="s88"/>
+            <Cell ss:MergeAcross="4" ss:StyleID="s79"><Data ss:Type="String">转后续及客户需求信息录入</Data></Cell>
+            <Cell ss:MergeAcross="2" ss:StyleID="m437166468"><Data ss:Type="String">后续结果通知及结案</Data></Cell>
+            <Cell ss:MergeAcross="2" ss:StyleID="m437166488"><Data ss:Type="String">境外信息录入（境外顾问负责）</Data></Cell>
+        </Row>
+        <Row ss:AutoFitHeight="0" ss:Height="66" ss:StyleID="s128">
+            <Cell ss:StyleID="s68"><Data ss:Type="String">表头基本字段</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">学校学号</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">内网学号</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">学生姓名</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">性别</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">生日</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">分公司</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">签约日期</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">是否VIP客户</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">合同类型</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">合同金额</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">咨询顾问</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">文案</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">业务员</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">外联专员</Data></Cell>
+            <Cell ss:StyleID="s130"><Data ss:Type="String">学生所在院校</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">在读/毕业</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">学生当前学历</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">专业</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">年级</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">GPA</Data></Cell>
+            <Cell ss:StyleID="s129"><Data ss:Type="String">标准化考试类型</Data></Cell>
+            <Cell ss:StyleID="s131"><Data ss:Type="String">标准化考试成绩</Data></Cell>
+            <Cell ss:StyleID="s131"><Data ss:Type="String">工作/实习经验</Data></Cell>
+            <Cell ss:StyleID="s131"><Data ss:Type="String">工作/实习起止日期及工作/实习单位</Data></Cell>
+            <Cell ss:StyleID="s131"><Data ss:Type="String">工作/实习职位</Data></Cell>
+            <Cell ss:StyleID="s131"><Data ss:Type="String">其他经历</Data></Cell>
+        </Row>
+        <!--aodata-->
+    <#if total??>
+        <#list total as p>
+            <Row ss:AutoFitHeight="0">
+                <Cell ss:StyleID="s69"/>
+                <!--学生信息-->
+                <#if ((p.student)??)&&(((p.student)?size)>0)>
+                    <Cell><Data ss:Type="String">${(p.mainApply.schoolNo)!'无'}</Data></Cell>
+                    <Cell><Data ss:Type="String">${(p.student.systemNo)!'无'}</Data></Cell>
+                    <Cell><Data ss:Type="String">${(p.student.name)!'无'}</Data></Cell>
+                    <#if p.student.gender ?? && p.student.gender==1>
+                        <Cell><Data ss:Type="String">男</Data></Cell>
+                    <#else>
+                        <Cell><Data ss:Type="String">女</Data></Cell>
+                    </#if>
+                    <Cell><Data ss:Type="String">${(p.student.birthday?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                    <Cell><Data ss:Type="String">${(p.student.branchName)!'无'}</Data></Cell>
+                <#else>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                </#if>
+                <!--合同信息-->
+                <#if ((p.contract)??)&&(((p.contract)?size)>0)>
+                    <Cell><Data ss:Type="String">${(p.contract.signDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <#else>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                </#if>
+                <#if p.student.vipStatus ?? && p.student.vipStatus==1>
+                    <Cell><Data ss:Type="String">是</Data></Cell>
+                <#else>
+                    <Cell><Data ss:Type="String">否</Data></Cell>
+                </#if>
+                <Cell><Data ss:Type="String">${(p.contract.contractTypeName)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.contract.amount)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.saleOperator)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.copyOperator)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.visaOperator)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.connectOperator)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.school)!'无'}</Data></Cell>
+                <#if (p.student.graduationStatus)??>
+                    <#if p.student.graduationStatus==1>
+                        <Cell><Data ss:Type="String">毕业</Data></Cell>
+                    <#else >
+                        <Cell><Data ss:Type="String">在读</Data></Cell>
+                    </#if>
+                <#else>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                </#if>
+                <Cell><Data ss:Type="String">${(p.student.educationName)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.major)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.grade)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.gpa)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.examType)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.examScore)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.workStatus)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.experiencename)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.student.workPosition)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.copywriting.otherExperience)!'无'}</Data></Cell>
+            </Row>
+        </#list>
+    </#if>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="108" ss:StyleID="s148"/>
+            <Cell ss:StyleID="s148"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="108" ss:StyleID="s149"/>
+            <Cell ss:Index="126" ss:StyleID="s151"/>
+            <Cell ss:StyleID="s151"/>
+            <Cell ss:StyleID="s151"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="126" ss:StyleID="s151"/>
+            <Cell ss:StyleID="s151"/>
+            <Cell ss:StyleID="s151"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="126" ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+        </Row>
+        <Row ss:AutoFitHeight="0">
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:StyleID="s65"/>
+            <Cell ss:Index="10" ss:StyleID="s65"/>
+            <Cell ss:Index="23" ss:StyleID="s65"/>
+        </Row>
+    </Table>
+        <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+            <PageSetup>
+                <Header x:Margin="0.3"/>
+                <Footer x:Margin="0.3"/>
+                <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+            </PageSetup>
+            <Unsynced/>
+        <#if total??>
+        <#else>
+            <Visible>SheetHidden</Visible>
+        </#if>
+            <Selected/>
+            <Panes>
+                <Pane>
+                    <Number>3</Number>
+                    <ActiveRow>7</ActiveRow>
+                    <ActiveCol>6</ActiveCol>
+                </Pane>
+            </Panes>
+            <ProtectObjects>False</ProtectObjects>
+            <ProtectScenarios>False</ProtectScenarios>
+        </WorksheetOptions>
+        <DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+            <Range>R13C11:R1048576C11,R5C11:R11C11</Range>
+            <Type>List</Type>
+            <CellRangeList/>
+            <Value>&quot;男,女&quot;</Value>
+        </DataValidation>
+        <DataValidation xmlns="urn:schemas-microsoft-com:office:excel">
+            <Range>R3C74</Range>
+            <Type>List</Type>
+            <CellRangeList/>
+            <Value>&quot;录取,拒录&quot;</Value>
         </DataValidation>
     </Worksheet>
 </Workbook>

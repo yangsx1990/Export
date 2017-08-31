@@ -13,9 +13,9 @@ public class MemberApply
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
-	/**申请id*/
-    @Column(name ="APPLY_ID")
-	private Integer applyId;
+	/**学号*/
+    @Column(name ="student_no")
+	private String studentNo;
 	/**申请类别*/
     @Column(name ="APPLY_TYPE")
 	private Integer applyType;
@@ -57,22 +57,7 @@ public class MemberApply
 	public void setId(Integer id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  申请id
-	 */
 
-	public Integer getApplyId(){
-		return this.applyId;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  申请id
-	 */
-	public void setApplyId(Integer applyId){
-		this.applyId = applyId;
-	}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  申请类别
@@ -184,5 +169,13 @@ public class MemberApply
 
 	public void setMemberName(Integer memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getStudentNo() {
+		return studentNo;
+	}
+
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 }

@@ -48,7 +48,7 @@ public class ExportController {
         ServletOutputStream out = null;
         try{
             request.setCharacterEncoding("UTF-8");
-            file = new ExcelUtil().createExcel(request,map, "myExcel","total.ftl");//调用创建excel帮助类
+            file = new ExcelUtil().createExcel(request,map, "myExcel","all.ftl");//调用创建excel帮助类
             inputStream = new FileInputStream(file);
             response.setCharacterEncoding("utf-8");
             response.setContentType("application/msexcel");
@@ -91,8 +91,10 @@ public class ExportController {
         for(int i=0;i<countryIds.size();i++){
             MemberApply memberApply=new MemberApply();
             memberApply.setCountryId(countryIds.get(i));
-            memberApply.setMemberId(memberId);
-            if(startDate!=null){
+            if(memberId!=0){
+                memberApply.setMemberId(memberId);
+            }
+            if(startDate!=null && !"".equals(startDate)){
                 memberApply.setExpectStartDate(startDate);
             }
             List<ExportParam> exports=exportService.export( memberApply);
@@ -104,6 +106,9 @@ public class ExportController {
                map.put("usa",exports);
            }else if(countryIds.get(i)==5){
                map.put("ca",exports);
+           }
+           if(exports!=null &&exports.size()>0){
+               map.put("total",exports);
            }
         }
 

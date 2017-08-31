@@ -13,9 +13,9 @@ public class TransferCase
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
-	/**申请id**/
-    @Column(name ="APPLY_ID")
-	private Integer applyId;
+	/**学生学号**/
+    @Column(name ="student_no")
+	private String studentNo;
 	/**上一负责人*/
     @Column(name ="PRE_OPERATOR")
 	private Integer preOperator;
@@ -85,22 +85,15 @@ public class TransferCase
 	public void setId(Integer id){
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  applyId
-	 */
 
-	public Integer getApplyId(){
-		return this.applyId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  applyId
-	 */
-	public void setApplyId(Integer applyId){
-		this.applyId = applyId;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
+
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  preOperator

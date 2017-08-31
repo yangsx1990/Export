@@ -48,18 +48,9 @@ public class Apply
 	/**approvalCycle*/
     @Column(name ="APPROVAL_CYCLE")
 	private Date approvalCycle;
-	/**interviewType*/
-    @Column(name ="INTERVIEW_TYPE")
-	private Integer interviewType;
-	/**interviewDate*/
-    @Column(name ="INTERVIEW_DATE")
-	private Date interviewDate;
-	/**interviewLocation*/
-    @Column(name ="INTERVIEW_LOCATION")
-	private String interviewLocation;
-	/**sendMaterialType*/
-    @Column(name ="SEND_MATERIAL_TYPE")
-	private Integer sendMaterialType;
+	/**申请支付方式*/
+    @Column(name ="payment_type")
+	private Integer paymentType;
 	/**申请状态*/
     @Column(name ="apply_status_code")
 	private Integer applyStatus;
@@ -130,9 +121,6 @@ public class Apply
 	/**申请院校英文名称**/
 	@Column(name="college_english_name")
 	private String collegeEnglishName;
-	/**学生确认日期**/
-	@Column(name="confirm_date")
-	private Date confirmDate;
 
 /**申请费用**/
 	@Column(name="apply_fee")
@@ -297,70 +285,15 @@ public class Apply
 	public void setApprovalCycle(Date approvalCycle){
 		this.approvalCycle = approvalCycle;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  interviewType
-	 */
 
-	public Integer getInterviewType(){
-		return this.interviewType;
+	public Integer getPaymentType() {
+		return paymentType;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  interviewType
-	 */
-	public void setInterviewType(Integer interviewType){
-		this.interviewType = interviewType;
-	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  interviewDate
-	 */
-
-	public Date getInterviewDate(){
-		return this.interviewDate;
+	public void setPaymentType(Integer paymentType) {
+		this.paymentType = paymentType;
 	}
 
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  interviewDate
-	 */
-	public void setInterviewDate(Date interviewDate){
-		this.interviewDate = interviewDate;
-	}
-	/**
-	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  interviewLocation
-	 */
-
-	public String getInterviewLocation(){
-		return this.interviewLocation;
-	}
-
-	/**
-	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  interviewLocation
-	 */
-	public void setInterviewLocation(String interviewLocation){
-		this.interviewLocation = interviewLocation;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  sendMaterialType
-	 */
-
-	public Integer getSendMaterialType(){
-		return this.sendMaterialType;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  sendMaterialType
-	 */
-	public void setSendMaterialType(Integer sendMaterialType){
-		this.sendMaterialType = sendMaterialType;
-	}
 	/**
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  applyStatus
@@ -593,14 +526,6 @@ public class Apply
 
 	public void setApplyFee(String applyFee) {
 		this.applyFee = applyFee;
-	}
-
-	public Date getConfirmDate() {
-		return confirmDate;
-	}
-
-	public void setConfirmDate(Date confirmDate) {
-		this.confirmDate = confirmDate;
 	}
 
 	public String getEmailAccount() {

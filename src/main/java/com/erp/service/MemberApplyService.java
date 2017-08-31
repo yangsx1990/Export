@@ -10,4 +10,6 @@ public interface MemberApplyService
 
 
     MemberApply getMemberApplyById(Integer id);
+
+    List<MemberApply> getListByCountry(List<Integer> country,String startDate,int memberId);
 }

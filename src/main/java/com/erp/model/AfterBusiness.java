@@ -40,13 +40,6 @@ public class AfterBusiness
 	/**是否有体检要求*/
     @Column(name="health_test_status")
     private Integer healthTestStatus;
-	/**学费金额*/
-    @Column(name="tuition_amount")
-	private String tuitionAmount;
-
-	/**学费缴纳日期*/
-	@Column(name ="tuition_payment_date")
-	private Date tuitionPaymentDate;
 
 	@Column(name="orientation_date")
 	private Date orientationDate;
@@ -195,21 +188,6 @@ public class AfterBusiness
 		this.healthTestStatus = healthTestStatus;
 	}
 
-	public String getTuitionAmount() {
-		return tuitionAmount;
-	}
-
-	public void setTuitionAmount(String tuitionAmount) {
-		this.tuitionAmount = tuitionAmount;
-	}
-
-	public Date getTuitionPaymentDate() {
-		return tuitionPaymentDate;
-	}
-
-	public void setTuitionPaymentDate(Date tuitionPaymentDate) {
-		this.tuitionPaymentDate = tuitionPaymentDate;
-	}
 
 	public Date getOrientationDate() {
 		return orientationDate;

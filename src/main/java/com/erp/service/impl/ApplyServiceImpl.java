@@ -7,6 +7,7 @@ import com.erp.service.ApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -28,5 +29,12 @@ public class ApplyServiceImpl implements ApplyService
     public Apply getApplyById(Integer id)
     {
         return applyMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Apply> getByStuNos(List<String> stuNos) {
+        Example example=new Example(Apply.class);
+        example.createCriteria().andIn("studentNo",stuNos);
+        return applyMapper.selectByExample(example);
     }
 }
