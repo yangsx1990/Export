@@ -22,7 +22,7 @@ public class ExperienceServiceImpl implements ExperienceService
     public List<Experience> getList(Experience experience)
     {
         Example example=new Example(Experience.class);
-        example.createCriteria().andEqualTo("studentId",experience.getStudentId());
+        example.createCriteria().andEqualTo("studentNo",experience.getStudentNo());
         example.orderBy("sort").desc();
         return experienceMapper.selectByExample(example);
     }

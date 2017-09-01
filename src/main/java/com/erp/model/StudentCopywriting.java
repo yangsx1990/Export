@@ -46,7 +46,7 @@ public class StudentCopywriting
 	private String copyGpa;
 	/**标准化考试类型*/
     @Column(name ="EXAM_TYPE")
-	private Integer copyExamType;
+	private String copyExamType;
 	/**标准化考试成绩*/
     @Column(name ="EXAM_SCORE")
 	private String copyExamScore;
@@ -177,11 +177,11 @@ public class StudentCopywriting
 		this.copyGpa = copyGpa;
 	}
 
-	public Integer getCopyExamType() {
+	public String getCopyExamType() {
 		return copyExamType;
 	}
 
-	public void setCopyExamType(Integer copyExamType) {
+	public void setCopyExamType(String copyExamType) {
 		this.copyExamType = copyExamType;
 	}
 

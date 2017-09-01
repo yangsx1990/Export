@@ -65,7 +65,7 @@ public class StudentInfo
 	private String school;
 	/**当前学历*/
     @Column(name ="EDUCATION")
-	private Integer education;
+	private String education;
 	/**专业*/
     @Column(name ="MAJOR")
 	private String major;
@@ -383,7 +383,7 @@ public class StudentInfo
 	 *@return: java.lang.Integer  当前学历
 	 */
 
-	public Integer getEducation(){
+	public String getEducation(){
 		return this.education;
 	}
 
@@ -391,7 +391,7 @@ public class StudentInfo
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  当前学历
 	 */
-	public void setEducation(Integer education){
+	public void setEducation(String education){
 		this.education = education;
 	}
 	/**

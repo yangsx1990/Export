@@ -13,8 +13,8 @@ public class Exam
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
-	@Column(name ="student_id")
-	private Integer studentId;
+	@Column(name ="student_no")
+	private String studentNo;
 	/**gpa*/
     @Column(name ="GPA")
 	private String gpa;
@@ -128,11 +128,11 @@ public class Exam
 		this.examTime = examTime;
 	}
 
-	public Integer getStudentId() {
-		return studentId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 }

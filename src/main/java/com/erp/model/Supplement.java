@@ -24,7 +24,7 @@ public class Supplement
 	private Date headquartersSendDate;
 	/**快递公司*/
     @Column(name ="EXPRESS_COMPANY")
-	private Integer expressCompany;
+	private String expressCompany;
 	/**快递号*/
     @Column(name ="EXPRESS_NUMBER")
 	private String expressNumber;
@@ -135,7 +135,7 @@ public class Supplement
 	 *@return: java.lang.Integer  快递公司
 	 */
 
-	public Integer getExpressCompany(){
+	public String getExpressCompany(){
 		return this.expressCompany;
 	}
 
@@ -143,7 +143,7 @@ public class Supplement
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  快递公司
 	 */
-	public void setExpressCompany(Integer expressCompany){
+	public void setExpressCompany(String expressCompany){
 		this.expressCompany = expressCompany;
 	}
 	/**

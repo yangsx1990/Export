@@ -2220,10 +2220,6 @@
                 <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
             </PageSetup>
             <Unsynced/>
-        <#if total??>
-        <#else>
-            <Visible>SheetHidden</Visible>
-        </#if>
             <Selected/>
             <Panes>
                 <Pane>
@@ -2673,6 +2669,7 @@
                     <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                     <Cell><Data ss:Type="String">${(p.langReplyDate.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <#else>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
                     <Cell><Data ss:Type="String">无</Data></Cell>
                     <Cell><Data ss:Type="String">无</Data></Cell>
                     <Cell><Data ss:Type="String">无</Data></Cell>
@@ -3472,15 +3469,7 @@
                 <Cell><Data ss:Type="String">${(p.visa.orderAccount)!'无'},${(p.visa.orderPassword)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.commitDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.visaResultDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <#if (p.visa.visaResult)??>
-                    <#if p.visa.visaResult==1>
-                        <Cell><Data ss:Type="String">获签</Data></Cell>
-                    <#else>
-                        <Cell><Data ss:Type="String">拒签</Data></Cell>
-                    </#if>
-                <#else>
-                    <Cell><Data ss:Type="String">无</Data></Cell>
-                </#if>
+                <Cell><Data ss:Type="String">${(p.visa.visaResult)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.rejectAnalysis)!'无'}</Data></Cell>
                 <#if (p.afterBusiness.healthTestStatus)??>
                     <#if p.afterBusiness.healthTestStatus==1>
@@ -4077,15 +4066,7 @@
                 <Cell><Data ss:Type="String">${(p.visa.orderAccount)!'无'},${(p.visa.orderPassword)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.commitDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.visaResultDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <#if (p.visa.visaResult)??>
-                    <#if p.visa.visaResult==1>
-                        <Cell><Data ss:Type="String">获签</Data></Cell>
-                    <#else>
-                        <Cell><Data ss:Type="String">拒签</Data></Cell>
-                    </#if>
-                <#else>
-                    <Cell><Data ss:Type="String">无</Data></Cell>
-                </#if>
+                <Cell><Data ss:Type="String">${(p.visa.visaResult)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.ds160No)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.ds160Answer)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.rejectAnalysis)!'无'}</Data></Cell>
@@ -4222,7 +4203,7 @@
     <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="${england?size+4}" x:FullColumns="1"
            x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
     <#else>
-    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="3" x:FullColumns="1"
+    <Table ss:ExpandedColumnCount="161" ss:ExpandedRowCount="4" x:FullColumns="1"
            x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
     </#if>
         <Column ss:Index="24" ss:AutoFitWidth="0" ss:Width="96.75"/>
@@ -4287,7 +4268,7 @@
             <Cell ss:StyleID="s133"><Data ss:Type="String">微信</Data></Cell>
             <Cell ss:StyleID="s133"><Data ss:Type="String">住址</Data></Cell>
         </Row>
-        <Row ss:AutoFitHeight="0" ss:Height="108.75" ss:StyleID="s299">
+        <Row ss:AutoFitHeight="0" ss:Height="108.75" ss:StyleID="s300">
             <Cell ss:StyleID="s68"><Data ss:Type="String">表头基本字段</Data></Cell>
             <Cell ss:StyleID="s300"><Data ss:Type="String">备注</Data></Cell>
             <Cell ss:StyleID="s300"><Data ss:Type="String">目前状态</Data></Cell>
@@ -4447,8 +4428,8 @@
         </Row>
     <#if england??>
         <#list england as p>
-            <Row ss:AutoFitHeight="0" ss:Height="61.5">
-                <Cell ss:StyleID="s332"/>
+            <Row ss:AutoFitHeight="0" ss:Height="61.5" ss:StyleID="s64">
+                <Cell ss:StyleID="s65"/>
                 <Cell><Data ss:Type="String"></Data></Cell>
                 <Cell><Data ss:Type="String"></Data></Cell>
                 <!--合同信息-->

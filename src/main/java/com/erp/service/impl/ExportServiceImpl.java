@@ -1,25 +1,11 @@
 package com.erp.service.impl;
 
 import com.erp.mapper.ExpertMapper;
-import com.erp.mapper.VisaMapper;
 import com.erp.model.*;
 import com.erp.service.*;
-import com.erp.utils.ExportUtil;
-import com.erp.utils.ListToMap;
-import com.mysql.jdbc.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.formula.functions.Sumif;
-import org.apache.poi.ss.formula.functions.T;
-import org.hibernate.validator.internal.util.Contracts;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-
-import javax.xml.crypto.Data;
-import java.math.BigDecimal;
-import java.sql.Ref;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -257,10 +243,6 @@ public class ExportServiceImpl implements ExportService {
             }
 
             if(student.getId()!=null && student.getEducation()!=null){
-                Degree degree=degreeService.queryById(student.getEducation());
-                if(degree!=null && degree.getDegreeId()!=null && org.springframework.util.StringUtils.hasText(degree.getDegree())){
-                    student.setEducationName(degree.getDegree());
-                }
                 //转案
                 TransferCase mainStayCase=new TransferCase();
                 mainStayCase.setSaleToCopyDate(getCaseDate(student.getSystemNo(),1));
@@ -270,21 +252,22 @@ public class ExportServiceImpl implements ExportService {
                 exportParam.setLangCase(mainStayCase);
             }
             Experience experience=new Experience();
-            experience.setStudentId(student.getId());
+            experience.setStudentNo(student.getSystemNo());
             List<Experience> experiences=experienceService.getList(experience);
             if(experiences.size()>0){
                 String experienceName="";
                 String positionName="";
                 for(int i=0;i<experiences.size();i++){
                     Experience exp=experiences.get(i);
-                    if(null!=exp.getWorkCompany() && null!=exp.getWorkStartDate() && null!=exp.getWorkEndDate()) {
+                    if(null!=exp.getWorkCompany()) {
                         String preString = "";
                         if (!"".equals(experienceName)) {
                             preString = "；";
                         }
-                        experienceName = experienceName + preString + new SimpleDateFormat("yyyy-MM-dd").format(exp.getWorkStartDate())
-                                + "--" + new SimpleDateFormat("yyyy-MM-dd").format(exp.getWorkEndDate()) + " " +
-                                exp.getWorkCompany();
+                        if(null!=exp.getWorkDate() && !"".equals(exp.getWorkDate())){
+                            experienceName = experienceName + preString + exp.getWorkDate() + " " +
+                                    exp.getWorkCompany();
+                        }
                         if (!"".equals(positionName)) {
                             preString = "；";
                         }
@@ -301,7 +284,7 @@ public class ExportServiceImpl implements ExportService {
                 student.setWorkPosition(positionName);
                 student.setExperiencename(experienceName);
             }
-            List<Exam> exams=examService.getList(student.getId());
+            List<Exam> exams=examService.getList(student.getSystemNo());
             if(exams.size()>0){
                 String examScore="";
                 String examTime="";

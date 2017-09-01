@@ -14,8 +14,8 @@ public class Experience
     @Column(name ="ID")
 	private Integer id;
 
-	@Column(name ="student_id")
-	private Integer studentId;
+	@Column(name ="student_no")
+	private String studentNo;
 	/**workCompany*/
     @Column(name ="WORK_COMPANY")
 	private String workCompany;
@@ -34,6 +34,10 @@ public class Experience
     /**工作状态：1-工作 0-实习**/
     @Column(name="work_status")
 	private Integer workStatus;
+
+	/**工作时间，供展示**/
+	@Column(name="work_date")
+	private String workDate;
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -132,13 +136,6 @@ public class Experience
 		this.sort = sort;
 	}
 
-	public Integer getStudentId() {
-		return studentId;
-	}
-
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
-	}
 
 	public Integer getWorkStatus() {
 		return workStatus;
@@ -146,5 +143,21 @@ public class Experience
 
 	public void setWorkStatus(Integer workStatus) {
 		this.workStatus = workStatus;
+	}
+
+	public String getStudentNo() {
+		return studentNo;
+	}
+
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
+	}
+
+	public String getWorkDate() {
+		return workDate;
+	}
+
+	public void setWorkDate(String workDate) {
+		this.workDate = workDate;
 	}
 }

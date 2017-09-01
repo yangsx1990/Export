@@ -19,10 +19,10 @@ public class ExamServiceImpl implements ExamService
     private ExamMapper examMapper;
 
     @Override
-    public List<Exam> getList(Integer exam)
+    public List<Exam> getList(String exam)
     {
         Example example=new Example(Exam.class);
-        example.createCriteria().andEqualTo("studentId",exam);
+        example.createCriteria().andEqualTo("studentNo",exam);
         example.orderBy("examTime").desc();
         return examMapper.selectByExample(example);
     }

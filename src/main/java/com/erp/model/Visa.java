@@ -78,7 +78,7 @@ public class Visa
 	private java.util.Date visaResultDate;
 	/**签证结果*/
 	@Column(name ="VISA_RESULT")
-	private java.lang.Integer visaResult;
+	private String visaResult;
 	/**拒签分析*/
 	@Column(name="reject_analysis")
 	private String rejectAnalysis;
@@ -456,7 +456,7 @@ this.id = id;
 	 *@return: java.lang.Integer  签证结果
 	 */
 
-	public java.lang.Integer getVisaResult(){
+	public String getVisaResult(){
 		return this.visaResult;
 	}
 
@@ -464,7 +464,7 @@ this.id = id;
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  签证结果
 	 */
-	public void setVisaResult(java.lang.Integer visaResult){
+	public void setVisaResult(String visaResult){
 		this.visaResult = visaResult;
 	}
 	/**

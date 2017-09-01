@@ -73,10 +73,10 @@ public class ExportController {
     private Map getPermission(Integer oaId,String startDate){
         //根据员工id查询职务和负责国家
         Member member=memberService.getByOaId(oaId);
-        int memberId=0;
-        if(member.getPosition()==1 || member.getPosition()==2){
-            memberId=member.getOaId();
+        if(member==null || member.getId()==null){
+            throw new RuntimeException("员工信息不存在：OA ID为"+oaId);
         }
+
         List<MemberCountry> memberCountries=memberCountryService.getListByOaId(oaId);
         List<Integer> countryIds=new ArrayList<>();
         for(int i=0;i<memberCountries.size();i++){
@@ -91,22 +91,25 @@ public class ExportController {
         for(int i=0;i<countryIds.size();i++){
             MemberApply memberApply=new MemberApply();
             memberApply.setCountryId(countryIds.get(i));
-            if(memberId!=0){
-                memberApply.setMemberId(memberId);
+            //专员经理等
+            if(member.getPosition()==1 || member.getPosition()==2){
+                memberApply.setMemberId(member.getOaId());
             }
             if(startDate!=null && !"".equals(startDate)){
                 memberApply.setExpectStartDate(startDate);
             }
             List<ExportParam> exports=exportService.export( memberApply);
-           if(countryIds.get(i)==1 || countryIds.get(i)==2){
-                map.put("exports",exports);
-           }else if(countryIds.get(i)==3){
-                map.put("england",exports);
-            }else if(countryIds.get(i)==4){
-               map.put("usa",exports);
-           }else if(countryIds.get(i)==5){
-               map.put("ca",exports);
-           }
+            if(exports.size()>0) {
+                if (countryIds.get(i) == 1 || countryIds.get(i) == 2) {
+                    map.put("exports", exports);
+                } else if (countryIds.get(i) == 3) {
+                    map.put("england", exports);
+                } else if (countryIds.get(i) == 4) {
+                    map.put("usa", exports);
+                } else if (countryIds.get(i) == 5) {
+                    map.put("ca", exports);
+                }
+            }
            if(exports!=null &&exports.size()>0){
                map.put("total",exports);
            }
