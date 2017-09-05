@@ -1,8 +1,11 @@
 package com.erp.service.impl;
 
+import com.erp.controller.ExportController;
 import com.erp.mapper.ExpertMapper;
 import com.erp.model.*;
 import com.erp.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -42,8 +45,6 @@ public class ExportServiceImpl implements ExportService {
     @Autowired
     private  StudentCopywritingService copywritingService;
 
-    @Autowired
-    private DegreeService degreeService;
 
     @Autowired
     private  ExperienceService experienceService;
@@ -54,8 +55,6 @@ public class ExportServiceImpl implements ExportService {
     @Autowired
     private AfterBusinessService afterBusinessService;
 
-    @Autowired
-    private  OperatorService operatorService;
 
     @Autowired
     private  RefundService refundService;
@@ -70,6 +69,7 @@ public class ExportServiceImpl implements ExportService {
 
     @Autowired
     private MemberApplyService memberApplyService;
+    protected static Logger logger= LoggerFactory.getLogger(ExportServiceImpl.class);
 
     @Override
     public List<Expert> queryList() {
@@ -82,14 +82,15 @@ public class ExportServiceImpl implements ExportService {
     @Override
     public List<ExportParam> export( MemberApply memberApply) {
         if(memberApply==null ){
-            throw new RuntimeException("转案信息中异常");
+           logger.error("转案信息中异常");
         }
 
         //查询申请信息
         List<Apply> applyList=getApply(memberApply);
-
+        logger.info("开始查询-》本次查询的国家为"+memberApply.getCountryId()+"，查到的申请记录为"+applyList.size());
         List<ExportParam> exports=new ArrayList<>();
         for(Apply apply:applyList){
+            System.out.println("开始查询"+apply.getId()+",当前时间"+System.currentTimeMillis());
             ExportParam exportParam=new ExportParam();
 
             //Reply reply=setOfferReply(apply.getId());
@@ -348,6 +349,7 @@ public class ExportServiceImpl implements ExportService {
             }
             exportParam.setCollegePlan(planName);
             exports.add(exportParam);
+            System.out.println("结束查询"+apply.getId()+",当前时间"+System.currentTimeMillis());
 
         }
         return exports;

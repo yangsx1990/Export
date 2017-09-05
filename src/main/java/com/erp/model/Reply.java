@@ -18,7 +18,7 @@ public class Reply
 	private Integer applyId;
 	/**回复途径*/
     @Column(name ="REPLY_WAY")
-	private Integer replyWay;
+	private String replyWay;
 	/**回复途径名称*/
     @Column(name="reply_way_name")
 	private String replyWayName;
@@ -90,7 +90,7 @@ public class Reply
 	 *@return: java.lang.Integer  回复途径
 	 */
 
-	public Integer getReplyWay(){
+	public String getReplyWay(){
 		return this.replyWay;
 	}
 
@@ -98,7 +98,7 @@ public class Reply
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  回复途径
 	 */
-	public void setReplyWay(Integer replyWay){
+	public void setReplyWay(String replyWay){
 		this.replyWay = replyWay;
 	}
 	/**

@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.lang.reflect.MalformedParameterizedTypeException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("applyService")
 @Transactional
@@ -37,4 +40,5 @@ public class ApplyServiceImpl implements ApplyService
         example.createCriteria().andIn("studentNo",stuNos);
         return applyMapper.selectByExample(example);
     }
+
 }

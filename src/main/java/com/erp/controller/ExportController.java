@@ -1,5 +1,6 @@
 package com.erp.controller;
 
+import com.erp.config.ERPConstants;
 import com.erp.model.*;
 import com.erp.service.ExportService;
 import com.erp.service.MemberCountryService;
@@ -7,6 +8,8 @@ import com.erp.service.MemberService;
 import com.erp.service.StudentInfoService;
 import com.erp.utils.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -39,10 +42,14 @@ public class ExportController {
     @Autowired
     private MemberService memberService;
 
+    protected static Logger logger= LoggerFactory.getLogger(ExportController.class);
     @RequestMapping("index")
-    public void index(HttpServletRequest request, int oaId,String startDate,HttpServletResponse response, Model model) {
-
+    public String index(HttpServletRequest request, int oaId,String startDate,HttpServletResponse response) {
+        logger.info("进入ExportController——>oaId="+oaId+"startDate="+startDate);
         Map map=getPermission(oaId,startDate);
+        if(map.isEmpty()){
+            return  ERPConstants.RESPONSECODE_NODATE;
+        }
         File file = null;
         InputStream inputStream = null;
         ServletOutputStream out = null;
@@ -68,26 +75,48 @@ public class ExportController {
         }catch(Exception e){
 
         }
+        return null;
     }
 
     private Map getPermission(Integer oaId,String startDate){
+        Map map =new HashMap();
         //根据员工id查询职务和负责国家
         Member member=memberService.getByOaId(oaId);
         if(member==null || member.getId()==null){
-            throw new RuntimeException("员工信息不存在：OA ID为"+oaId);
+            logger.error("员工信息不存在：OA ID为"+oaId);
         }
-
-        List<MemberCountry> memberCountries=memberCountryService.getListByOaId(oaId);
         List<Integer> countryIds=new ArrayList<>();
-        for(int i=0;i<memberCountries.size();i++){
-            MemberCountry country=memberCountries.get(i);
-            if(!countryIds.contains(country.getCountryId())){
-                countryIds.add(country.getCountryId());
+        if(member.getPosition()==3 ) {
+            //暂时写死
+            if (oaId == 43) { //澳新
+                countryIds.add(1);
+                countryIds.add(2);
+            } else if (oaId == 383) {  //美加
+                countryIds.add(4);
+                countryIds.add(5);
+            } else if (oaId == 11222) { //英国
+                countryIds.add(3);
+            } else {
+                countryIds.add(1);
+                countryIds.add(2);
+                countryIds.add(3);
+                countryIds.add(4);
+                countryIds.add(5);
             }
+        }else{
+            List<MemberCountry> memberCountries=memberCountryService.getListByOaId(oaId);
 
+            for(int i=0;i<memberCountries.size();i++){
+                MemberCountry country=memberCountries.get(i);
+                if(!countryIds.contains(country.getCountryId())){
+                    countryIds.add(country.getCountryId());
+                }
+
+            }
         }
+
         //根据职务和负责国家查询转案人为该员工的申请信息。
-        Map map =new HashMap();
+       logger.info("本次员工关联的国家信息有"+countryIds.size()+"条");
         for(int i=0;i<countryIds.size();i++){
             MemberApply memberApply=new MemberApply();
             memberApply.setCountryId(countryIds.get(i));
@@ -99,6 +128,7 @@ public class ExportController {
                 memberApply.setExpectStartDate(startDate);
             }
             List<ExportParam> exports=exportService.export( memberApply);
+            logger.info("结束查询-》本次查询的国家为"+countryIds.get(i)+"，查到的记录为"+exports.size());
             if(exports.size()>0) {
                 if (countryIds.get(i) == 1 || countryIds.get(i) == 2) {
                     map.put("exports", exports);

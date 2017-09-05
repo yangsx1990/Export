@@ -44,7 +44,7 @@ public class Apply
 	private Integer addProtocol;
 	/**申请方式*/
     @Column(name ="APPLY_WAY")
-	private Integer applyWay;
+	private String applyWay;
 	/**approvalCycle*/
     @Column(name ="APPROVAL_CYCLE")
 	private Date approvalCycle;
@@ -134,7 +134,12 @@ public class Apply
 	/**查询网址**/
 	@Column(name="network_address")
 	private String networkAddress;
-
+	/**查询网址用户名**/
+	@Column(name="network_account")
+	private String networkAccount;
+	/**查询网址密码**/
+	@Column(name="network_password")
+	private String networkPassword;
 	/**学校学号*/
 	@Column(name ="SCHOOL_NO")
 	private String schoolNo;
@@ -258,7 +263,7 @@ public class Apply
 	 *@return: java.lang.Integer  申请方式
 	 */
 
-	public Integer getApplyWay(){
+	public String getApplyWay(){
 		return this.applyWay;
 	}
 
@@ -266,7 +271,7 @@ public class Apply
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  申请方式
 	 */
-	public void setApplyWay(Integer applyWay){
+	public void setApplyWay(String applyWay){
 		this.applyWay = applyWay;
 	}
 	/**
@@ -558,5 +563,21 @@ public class Apply
 
 	public void setSchoolNo(String schoolNo) {
 		this.schoolNo = schoolNo;
+	}
+
+	public String getNetworkAccount() {
+		return networkAccount;
+	}
+
+	public void setNetworkAccount(String networkAccount) {
+		this.networkAccount = networkAccount;
+	}
+
+	public String getNetworkPassword() {
+		return networkPassword;
+	}
+
+	public void setNetworkPassword(String networkPassword) {
+		this.networkPassword = networkPassword;
 	}
 }

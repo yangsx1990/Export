@@ -60,26 +60,6 @@ public class MemberCountryServiceImpl implements MemberCountryService
             MemberCountry memberCountry=new MemberCountry();
             memberCountry.setOaId(member.getOaId());
             return getList(memberCountry);
-        }else if(member.getPosition()==3 ){
-            List<Integer> list=new ArrayList<>();
-           //暂时写死
-            if(oaId==43){ //澳新
-                list.add(1);
-                list.add(2);
-            }else if(oaId==383) {  //美加
-                list.add(4);
-                list.add(5);
-            }else if(oaId==11222){ //英国
-                list.add(3);
-            }else{
-                list.add(1);
-                list.add(2);
-                list.add(3);
-                list.add(4);
-                list.add(5);
-            }
-
-            return getMemberCountry(list);
         }
         return null;
     }

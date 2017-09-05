@@ -2080,6 +2080,8 @@
         <#list total as p>
             <Row ss:AutoFitHeight="0" ss:Height="16.5">
                 <Cell ss:StyleID="s65"/>
+                <Cell><Data ss:Type="String">无</Data></Cell>
+                <Cell><Data ss:Type="String">无</Data></Cell>
                 <!--学生信息-->
                 <#if ((p.student)??)&&(((p.student)?size)>0)>
                     <Cell><Data ss:Type="String">${(p.mainApply.schoolNo)!'无'}</Data></Cell>
@@ -2810,13 +2812,20 @@
                 <Cell><Data ss:Type="String">${(p.student.emailAccount)!''}${(p.student.emailPassword)!''}</Data></Cell>
                 <#if ((p.mainApply)??)&&(((p.mainApply)?size)>0)>
                     <Cell><Data ss:Type="String">${(p.mainApply.applyAccount)!''}${(p.mainApply.applyPassword)!''}</Data></Cell>
+                    <Cell><Data ss:Type="String">${(p.mainApply.networkAddress)!''},${(p.mainApply.networkAccount)!''},${(p.mainApply.networkPassword)!''}</Data></Cell>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
                 <#else>
                     <#if ((p.langApply)??)&&(((p.langApply)?size)>0)>
                         <Cell><Data ss:Type="String">${(p.mainApply.applyAccount)!''}${(p.mainApply.applyPassword)!''}</Data></Cell>
+                        <Cell><Data ss:Type="String">${(p.mainApply.networkAddress)!''},${(p.mainApply.networkAccount)!''},${(p.mainApply.networkPassword)!''}</Data></Cell>
+                        <Cell><Data ss:Type="String">无</Data></Cell>
                     <#else>
+                        <Cell><Data ss:Type="String">无</Data></Cell>
+                        <Cell><Data ss:Type="String">无</Data></Cell>
                         <Cell><Data ss:Type="String">无</Data></Cell>
                     </#if>
                 </#if>
+
                 <#if ((p.visa)??)&&(((p.visa)?size)>0)>
                     <Cell><Data ss:Type="String">${(p.visaCase.copyToConnectDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                     <Cell><Data ss:Type="String">${(p.visaOperator)!'无'}</Data></Cell>
@@ -3435,23 +3444,23 @@
                 <Cell><Data ss:Type="String">${(p.refund.refundApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.refund.confirmDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <!--语言申请-->
-                <Cell><Data ss:Type="String">${(p.mainApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainSupplement.sendMaterialType)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainSupplement.expressNumber)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainSupplement.expressStatus)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainApply.applyStatusName)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainVisit)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolConfirmReceiveApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainSupplement.supplementContent)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.replyResult)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.conditionOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.replyReason)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainOffer.courseStartDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainReplyDate.originalCoeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langApply.applyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langSupplement.sendMaterialType)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langSupplement.expressNumber)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langSupplement.expressStatus)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langApply.applyStatusName)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langVisit)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.schoolConfirmReceiveApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.schoolRequireDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.schoolRequireAddDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langSupplement.supplementContent)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.replyResult)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.conditionOfferDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.replyReason)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.unConditionDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langOffer.courseStartDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.coeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.langReplyDate.originalCoeDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <!--签证-->
                 <Cell><Data ss:Type="String">${(p.visa.visaType)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.mainSponsor)!'无'}</Data></Cell>
@@ -4071,9 +4080,17 @@
                 <Cell><Data ss:Type="String">${(p.visa.ds160Answer)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.rejectAnalysis)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.visa.evusCompleteDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">体检</Data></Cell>
-                <Cell><Data ss:Type="String">学费金额</Data></Cell>
-                <Cell><Data ss:Type="String">学费金额</Data></Cell>
+                <#if (p.visa.healthTestStatus)??>
+                    <#if p.visa.healthTestStatus==1>
+                        <Cell><Data ss:Type="String">是</Data></Cell>
+                    <#else>
+                        <Cell><Data ss:Type="String">否</Data></Cell>
+                    </#if>
+                <#else>
+                    <Cell><Data ss:Type="String">无</Data></Cell>
+                </#if>
+                <Cell><Data ss:Type="String">${(p.visa.tuitionAmount)!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.visa.tuitionPayment?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">Orientation日期</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.mainStayApply.applyMajorDeadline?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.mainStayOffer.depositAmount)!'无'}</Data></Cell>
