@@ -33,20 +33,6 @@ public class MemberCountryServiceImpl implements MemberCountryService
     }
 
 
-  /*  private List<MemberCountry> getOaList(List<Integer> oaIds)
-    {
-        Example example=new Example(MemberCountry.class);
-        example.createCriteria().andIn("oaId",oaIds);
-        return memberCountryMapper.selectByExample(example);
-    }*/
-
-
-  /*  private  List<MemberCountry> getByOaId(Integer oaId) {
-        MemberCountry memberCountry=new MemberCountry();
-        memberCountry.setOaId(oaId);
-        return getList(memberCountry);
-    }*/
-
     @Override
     public List<MemberCountry> getListByOaId(Integer oaId) {
         Member member=memberService.getByOaId(oaId);
@@ -64,10 +50,5 @@ public class MemberCountryServiceImpl implements MemberCountryService
         return null;
     }
 
-    private List<MemberCountry> getMemberCountry(List<Integer> countryIds){
-        Example example=new Example(MemberCountry.class);
-        example.createCriteria().andIn("countryId",countryIds);
-        return memberCountryMapper.selectByExample(example);
-    }
 
 }

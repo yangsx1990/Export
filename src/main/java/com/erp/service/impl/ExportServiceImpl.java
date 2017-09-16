@@ -1,6 +1,5 @@
 package com.erp.service.impl;
 
-import com.erp.controller.ExportController;
 import com.erp.mapper.ExpertMapper;
 import com.erp.model.*;
 import com.erp.service.*;
@@ -69,6 +68,11 @@ public class ExportServiceImpl implements ExportService {
 
     @Autowired
     private MemberApplyService memberApplyService;
+    @Autowired
+    private TransferCaseService transferService;
+
+    @Autowired
+    private OperatorService operatorService;
     protected static Logger logger= LoggerFactory.getLogger(ExportServiceImpl.class);
 
     @Override
@@ -111,11 +115,6 @@ public class ExportServiceImpl implements ExportService {
                 exportParam.setApplyBonus(applybonus);
                 Bonus visabonus= getBonus(apply.getId(),2);
                 exportParam.setVisaBonus(visabonus);
-               /* TransferCase mainCase=new TransferCase();
-                mainCase.setSaleToCopyDate(getCaseDate(apply.getId(),1,1));
-                mainCase.setCopyToConnectDate(getCaseDate(apply.getId(),2,1));
-                mainCase.setConnectToCopyDate(getCaseDate(apply.getId(),3,1));
-                exportParam.setMainCase(mainCase);*/
                 //跟催
                 String visitUnCondition= getVisit(apply.getId(),1);
                 exportParam.setUnConditionVisit(visitUnCondition);
@@ -133,12 +132,6 @@ public class ExportServiceImpl implements ExportService {
                 exportParam.setApplyBonus(applybonus);
                 Bonus visabonus= getBonus(apply.getId(),2);
                 exportParam.setVisaBonus(visabonus);
-//                TransferCase langCase=new TransferCase();
-//                langCase.setSaleToCopyDate(getCaseDate(apply.getId(),1,2));
-//                langCase.setCopyToConnectDate(getCaseDate(apply.getId(),2,2));
-//                langCase.setConnectToCopyDate(getCaseDate(apply.getId(),3,2));
-//                exportParam.setLangCase(langCase);
-//                exportParam.setMainCase(langCase);
             }
             if(apply.getApplyType()==1 && apply.getRelationStatus()==1){
                 Apply langApply= getStayInfo(apply.getId(),2);
@@ -184,12 +177,6 @@ public class ExportServiceImpl implements ExportService {
                     Offer langStayOffer=getOffer(langStayApply.getId(),4);
                     exportParam.setMainStayOffer(langStayOffer);
 
-                    //转案
-                   /* TransferCase langStayCase=new TransferCase();
-                    langStayCase.setSaleToCopyDate(getCaseDate(apply.getId(),1,4));
-                    langStayCase.setCopyToConnectDate(getCaseDate(apply.getId(),2,4));
-                    langStayCase.setConnectToCopyDate(getCaseDate(apply.getId(),3,4));
-                    exportParam.setLangStayCase(langStayCase);*/
                 }
 
                 //监护
@@ -206,12 +193,6 @@ public class ExportServiceImpl implements ExportService {
                     Offer custodyOffer=getOffer(custodyApply.getId(),5);
                     exportParam.setCustodyOffer(custodyOffer);
 
-                    //转案
-                   /* TransferCase langStayCase=new TransferCase();
-                    langStayCase.setSaleToCopyDate(getCaseDate(apply.getId(),1,4));
-                    langStayCase.setCopyToConnectDate(getCaseDate(apply.getId(),2,4));
-                    langStayCase.setConnectToCopyDate(getCaseDate(apply.getId(),3,4));
-                    exportParam.setLangStayCase(langStayCase);*/
                 }
                 //接机
                 Apply pickApply=getStayInfo(apply.getId(),6);
@@ -243,14 +224,18 @@ public class ExportServiceImpl implements ExportService {
 
             }
 
-            if(student.getId()!=null && student.getEducation()!=null){
+            if(student.getId()!=null){
                 //转案
-                TransferCase mainStayCase=new TransferCase();
-                mainStayCase.setSaleToCopyDate(getCaseDate(student.getSystemNo(),1));
-                mainStayCase.setCopyToConnectDate(getCaseDate(student.getSystemNo(),2));
-                mainStayCase.setConnectToCopyDate(getCaseDate(student.getSystemNo(),3));
-                exportParam.setMainCase(mainStayCase);
-                exportParam.setLangCase(mainStayCase);
+               TransferCase saleOperator=getTransferInfo(student.getSystemNo(),1);
+               TransferCase copyOperator=getTransferInfo(student.getSystemNo(),2);
+               TransferCase connectOperator=getTransferInfo(student.getSystemNo(),3);
+               TransferCase visaOperator=getTransferInfo(student.getSystemNo(),4);
+               exportParam.setSaleOperator(saleOperator.getMemberName());
+               exportParam.setCopyOperator(copyOperator.getMemberName());
+               exportParam.setConnectOperator(connectOperator.getMemberName());
+               exportParam.setVisaOperator(visaOperator.getMemberName());
+               exportParam.setSaleToCopywritingDate(copyOperator.getReceive());
+               exportParam.setCopyToConnectDate(connectOperator.getReceive());
             }
             Experience experience=new Experience();
             experience.setStudentNo(student.getSystemNo());
@@ -322,21 +307,6 @@ public class ExportServiceImpl implements ExportService {
             exportParam.setCopywriting(setCopyWriting(apply.getStudentNo()));
             exportParam.setVisa(getVisa(apply.getStudentNo()));
 
-            //转案时间和人员
-            String saleName=getOperators(student.getSystemNo(),1);
-            String applyCopyName=getOperators(student.getSystemNo(),2);
-            String copyName=getOperators(student.getSystemNo(),3);
-            String visaName=getOperators(student.getSystemNo(),4);
-            String connectName=getOperators(student.getSystemNo(),5);
-
-
-            exportParam.setSaleOperator(saleName);
-            exportParam.setApplyCopyOperator(applyCopyName);
-            exportParam.setCopyOperator(copyName);
-            exportParam.setConnectOperator(connectName);
-            exportParam.setVisaOperator(visaName);
-
-
 
 
             List<Plan> plans=planService.getList(contract.getId());
@@ -357,6 +327,32 @@ public class ExportServiceImpl implements ExportService {
        // return new ExportUtil().export(new ParseEntity().parse(params),columns);
     }
 
+    /**
+     * 获取转案信息
+     * @param systemNo 学号
+     * @param type 角色id，1-销售顾问 2-文案 3-外联 4-业务员 5-后续员
+     * @return
+     */
+    private TransferCase  getTransferInfo(String systemNo, int type) {
+        String operator="";
+        TransferCase transferCase=new TransferCase();
+        transferCase.setRole(type);
+        transferCase.setStudentNo(systemNo);
+        List<TransferCase> caseList=transferService.getOperator(transferCase);
+        if(caseList.size()>0){
+            for(TransferCase result:caseList){
+                if(result.getMemberName()!=null){
+                    operator=operator+result.getMemberName()+";";
+                }
+            }
+            transferCase.setMemberName(operator);
+            if(caseList.get(0).getReceive()!=null){
+                transferCase.setReceive(caseList.get(0).getReceive());
+            }
+        }
+        return transferCase;
+    }
+
     /***
      * 查询申请记录列表
      * @param memberApply
@@ -374,8 +370,13 @@ public class ExportServiceImpl implements ExportService {
                 }
             }
         }
-        if(studentNos.size()>0){
-            return applyService.getByStuNos(studentNos);
+        if(studentNos.size()>0 ){
+            if( memberApply.getStartDate()!=null && memberApply.getEndDate()!=null){
+                return applyService.getByStuNos(studentNos,memberApply.getStartDate(),memberApply.getEndDate());
+            }else{
+                return applyService.getByNos(studentNos);
+            }
+
         }else{
             return new ArrayList<Apply>();
         }
@@ -395,7 +396,7 @@ public class ExportServiceImpl implements ExportService {
             List<Integer> list=new ArrayList<>();
             list.add(1);
             list.add(2);
-           return  memberApplyService.getListByCountry(list,memberApply.getExpectStartDate(),memberApply.getMemberId()==null?0:memberApply.getMemberId());
+           return  memberApplyService.getListByCountry(list,memberApply.getMemberId()==null?0:memberApply.getMemberId());
         }
         return memberApplyService.getList(memberApply);
     }
@@ -621,16 +622,6 @@ public class ExportServiceImpl implements ExportService {
     }
 
 
-    private Date getCaseDate(String studentNo,int businessCase) {
-        TransferCase transferCase=new TransferCase();
-        transferCase.setStudentNo(studentNo);
-        transferCase.setBussinessCase(businessCase);
-        List<TransferCase> cases= transferCaseService.getOperator(transferCase);
-        if(cases.size()>0){
-           return  cases.get(0).getSendDate();
-        }
-        return null;
-    }
     private StudentCopywriting setCopyWriting(String studentNo) {
         StudentCopywriting copywriting=new StudentCopywriting();
         copywriting.setStudentNo(studentNo);
@@ -642,29 +633,6 @@ public class ExportServiceImpl implements ExportService {
         }
     }
 
-    private List<Map<String,Object>> list2Map(List<StudentInfo> studentInfos) {
-        List<Map<String,Object>> params=new ArrayList<>();
-        for(StudentInfo student:studentInfos){
-            Map<String,Object> param=new HashMap<>();
-            param.put("name",student.getName());
-           // param.put("schoolNo",student.getSchoolNo());
-            param.put("systemNo",student.getSystemNo());
-            param.put("gender",student.getGender());
-            param.put("birthday",student.getBirthday());
-            param.put("branchId",student.getBranchId());
-            param.put("vipStatus",student.getVipStatus());
-            param.put("graduationStatus",student.getGraduationStatus());
-
-            param.put("school",student.getSchool());
-            param.put("education",student.getEducation());
-            param.put("major",student.getMajor());
-            param.put("grade",student.getGrade());
-          /*  param.put("emailAccount",student.getEmailAccount());
-            param.put("emailPassword",student.getEmailPassword());*/
-            params.add(param);
-        }
-        return  params;
-    }
 
 
     public Supplement getSupplement(Integer applyId) {

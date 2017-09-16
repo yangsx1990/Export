@@ -9,8 +9,6 @@ public interface TransferCaseService
 {
 
 
-    TransferCase getTransferCaseById(Integer id);
-
     List<TransferCase> getOperator(TransferCase transferCase);
 
     List<TransferCase> queryByOperatorId(List<Integer> operators,Integer  countryId);

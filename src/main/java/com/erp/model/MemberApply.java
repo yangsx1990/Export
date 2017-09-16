@@ -1,5 +1,7 @@
 package com.erp.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -40,6 +42,14 @@ public class MemberApply
 	/**是否可用 1-可用 0-不可用*/
     @Column(name ="SINGLE_STATUS")
 	private Integer singleStatus;
+	/**转案开始时间*/
+    @Transient
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date startDate;
+	/**转案结束时间*/
+	@Transient
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date endDate;
 
 	/**
 	 *方法: 取得java.lang.Integer
@@ -177,5 +187,21 @@ public class MemberApply
 
 	public void setStudentNo(String studentNo) {
 		this.studentNo = studentNo;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 }

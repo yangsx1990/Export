@@ -2734,7 +2734,7 @@
                 <Cell><Data ss:Type="String">${(p.insuranceVisit)!('无')}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.insuranceReplyDate.studentConfirmApplyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.insuranceOffer.offerInfo)!'无'}</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.saleToCopyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.saleToCopywritingDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <#if ((p.copywriting)??)&&(((p.copywriting)?size)>0)>
                     <Cell><Data ss:Type="String">${(p.copywriting.copyName)!('无')}</Data></Cell>
                     <Cell><Data ss:Type="String">是否接受</Data></Cell>
@@ -4546,7 +4546,7 @@
                 <!--文签-->
                 <Cell><Data ss:Type="String">备注</Data></Cell>
                 <Cell><Data ss:Type="String">目前状态</Data></Cell>
-                <Cell><Data ss:Type="String">${(p.mainCase.saleToCopyDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
+                <Cell><Data ss:Type="String">${(p.mainCase.saleToCopywritingDate?string("yyyy-MM-dd"))!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.copyOperator)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.applyCopyOperator)!'无'}</Data></Cell>
                 <Cell><Data ss:Type="String">${(p.mainApply.applyFee)!'无'}</Data></Cell>

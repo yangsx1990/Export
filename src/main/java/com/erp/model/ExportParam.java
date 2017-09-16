@@ -90,20 +90,24 @@ public class ExportParam {
     private String visaOperator;
     /**外联顾问**/
     private String connectOperator;
+    /**销售转文案日期**/
+    private Date saleToCopywritingDate;
+    /**文案转外联日期**/
+    private Date copyToConnectDate;
     /**签证信息**/
     private Visa visa;
-    /**主课转案**/
+/*    *//**主课转案**//*
     private TransferCase mainCase;
-    /**语言课转案**/
+    *//**语言课转案**//*
     private TransferCase langCase;
-    /**主课住宿转案**/
+    *//**主课住宿转案**//*
     private TransferCase mainStayCase;
-    /**语言课住宿转案**/
+    *//**语言课住宿转案**//*
     private TransferCase langStayCase;
-    /**签证转案**/
+    *//**签证转案**//*
     private TransferCase visaCase;
-    /**监护转案**/
-    private TransferCase custodyCase;
+    *//**监护转案**//*
+    private TransferCase custodyCase;*/
     /**定校方案**/
     private String collegePlan;
    /**后续服务**/
@@ -134,7 +138,7 @@ public class ExportParam {
     /**学校通知offer延期日期**/
     private Date schoolOfferDelatDate;
 
-    public TransferCase getMainCase() {
+/*    public TransferCase getMainCase() {
         return mainCase;
     }
 
@@ -172,7 +176,7 @@ public class ExportParam {
 
     public void setCustodyCase(TransferCase custodyCase) {
         this.custodyCase = custodyCase;
-    }
+    }*/
 
     public Visa getVisa() {
         return visa;
@@ -503,13 +507,29 @@ public class ExportParam {
     public void setCustodyReplyDate(DateParam custodyReplyDate) {
         this.custodyReplyDate = custodyReplyDate;
     }
-
+/*
     public TransferCase getVisaCase() {
         return visaCase;
     }
 
     public void setVisaCase(TransferCase visaCase) {
         this.visaCase = visaCase;
+    }*/
+
+    public Date getSaleToCopywritingDate() {
+        return saleToCopywritingDate;
+    }
+
+    public void setSaleToCopywritingDate(Date saleToCopywritingDate) {
+        this.saleToCopywritingDate = saleToCopywritingDate;
+    }
+
+    public Date getCopyToConnectDate() {
+        return copyToConnectDate;
+    }
+
+    public void setCopyToConnectDate(Date copyToConnectDate) {
+        this.copyToConnectDate = copyToConnectDate;
     }
 
     public Apply getPickApply() {

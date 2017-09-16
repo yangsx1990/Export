@@ -34,12 +34,9 @@ public class MemberApplyServiceImpl implements MemberApplyService
     }
 
     @Override
-    public List<MemberApply> getListByCountry(List<Integer> country,String startDate,int memberId) {
+    public List<MemberApply> getListByCountry(List<Integer> country,int memberId) {
         Example example=new Example(MemberApply.class);
        Example.Criteria criteria= example.createCriteria().andIn("countryId",country);
-       if(startDate!=null && !"".equals(startDate)){
-           criteria.andEqualTo("expectStartDate",startDate);
-       }
        if( memberId!=0){
            criteria.andEqualTo("memberId",memberId);
        }

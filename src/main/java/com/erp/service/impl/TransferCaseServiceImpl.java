@@ -19,16 +19,13 @@ public class TransferCaseServiceImpl implements TransferCaseService
     private TransferCaseMapper transferCaseMapper;
 
 
-
-    @Override
-    public TransferCase getTransferCaseById(Integer id)
-    {
-        return transferCaseMapper.selectByPrimaryKey(id);
-    }
-
     @Override
     public List<TransferCase> getOperator(TransferCase transferCase) {
-        return transferCaseMapper.select(transferCase);
+
+        Example example=new Example(TransferCase.class);
+        example.createCriteria().andEqualTo("studentNo",transferCase.getStudentNo()).andEqualTo("role",transferCase.getRole());
+        example.orderBy("receive").asc();
+        return transferCaseMapper.selectByExample(example);
     }
 
     @Override

@@ -13,120 +13,46 @@ public class Operator
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="ID")
 	private Integer id;
-	/**applyId*/
-    @Column(name ="APPLY_ID")
-	private Integer applyId;
-	/**operator*/
+	/**学号*/
+    @Column(name ="student_no")
+	private String studentNo;
+	/**操作人id*/
     @Column(name ="OPERATOR")
 	private Integer operator;
-
+	/**操作人名称*/
     @Column(name="operator_name")
 	private  String operatorName;
-	/**role*/
-    @Column(name ="ROLE")
-	private Integer role;
-	/**startTime*/
-    @Column(name ="START_TIME")
-	private Date startTime;
-	/**endTime*/
-    @Column(name ="END_TIME")
-	private Date endTime;
 
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  id
-	 */
+	/**转案日期*/
+    @Column(name ="transfer_date")
+	private Date transferDate;
 
-	public Integer getId(){
-		return this.id;
+    /**转案类型：1-销售转文案 2-文案转外联 3-外联转签证**/
+    @Column(name="transfer_type")
+	private Integer transferType;
+
+	public Integer getId() {
+		return id;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  id
-	 */
-	public void setId(Integer id){
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  applyId
-	 */
 
-	public Integer getApplyId(){
-		return this.applyId;
+	public String getStudentNo() {
+		return studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  applyId
-	 */
-	public void setApplyId(Integer applyId){
-		this.applyId = applyId;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  operator
-	 */
-
-	public Integer getOperator(){
-		return this.operator;
+	public void setStudentNo(String studentNo) {
+		this.studentNo = studentNo;
 	}
 
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  operator
-	 */
-	public void setOperator(Integer operator){
+	public Integer getOperator() {
+		return operator;
+	}
+
+	public void setOperator(Integer operator) {
 		this.operator = operator;
-	}
-	/**
-	 *方法: 取得java.lang.Integer
-	 *@return: java.lang.Integer  role
-	 */
-
-	public Integer getRole(){
-		return this.role;
-	}
-
-	/**
-	 *方法: 设置java.lang.Integer
-	 *@param: java.lang.Integer  role
-	 */
-	public void setRole(Integer role){
-		this.role = role;
-	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  startTime
-	 */
-
-	public Date getStartTime(){
-		return this.startTime;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  startTime
-	 */
-	public void setStartTime(Date startTime){
-		this.startTime = startTime;
-	}
-	/**
-	 *方法: 取得java.util.Date
-	 *@return: java.util.Date  endTime
-	 */
-
-	public Date getEndTime(){
-		return this.endTime;
-	}
-
-	/**
-	 *方法: 设置java.util.Date
-	 *@param: java.util.Date  endTime
-	 */
-	public void setEndTime(Date endTime){
-		this.endTime = endTime;
 	}
 
 	public String getOperatorName() {
@@ -135,5 +61,21 @@ public class Operator
 
 	public void setOperatorName(String operatorName) {
 		this.operatorName = operatorName;
+	}
+
+	public Date getTransferDate() {
+		return transferDate;
+	}
+
+	public void setTransferDate(Date transferDate) {
+		this.transferDate = transferDate;
+	}
+
+	public Integer getTransferType() {
+		return transferType;
+	}
+
+	public void setTransferType(Integer transferType) {
+		this.transferType = transferType;
 	}
 }

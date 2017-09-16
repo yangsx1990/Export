@@ -3,6 +3,7 @@ package com.erp.service;
 
 import com.erp.model.Apply;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ApplyService
@@ -12,5 +13,7 @@ public interface ApplyService
 
     Apply getApplyById(Integer id);
 
-    List<Apply> getByStuNos(List<String> stuNos);
+    List<Apply> getByStuNos(List<String> stuNos, Date startDate, Date endDate);
+
+    List<Apply> getByNos(List<String> stuNos);
 }

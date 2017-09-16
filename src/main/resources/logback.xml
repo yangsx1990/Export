@@ -51,4 +51,12 @@
         <appender-ref ref="ERROR_FILE" />
     </root>
 
+    <!-- project default level -->
+    <logger name="com.erp" level="DEBUG" />
+    <logger name="tk.mybatis" level="INFO"  />
+    <!--<logger name="org.apache.activemq" level="ERROR" />-->
+
+    <!--log4jdbc -->
+    <logger name="jdbc.sqltiming" level="INFO"/>
+
 </configuration>

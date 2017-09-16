@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.erp.mapper.ApplyMapper">
+    <resultMap id="BaseResultMap" type="com.erp.model.Apply">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="student_no" jdbcType="VARCHAR" property="studentNo" />
+        <result column="contract_no" jdbcType="VARCHAR" property="contractNo" />
+        <result column="country" jdbcType="INTEGER" property="country"/>
+        <result column="college" jdbcType="INTEGER" property="applyCollege"/>
+        <result column="major" jdbcType="INTEGER" property="applyMajor"/>
+        <result column="college_campus" jdbcType="VARCHAR" property="collegeCampus" />
+        <result column="add_college_status" jdbcType="INTEGER" property="addCollegeStatus"/>
+        <result column="add_major_status" jdbcType="INTEGER" property="addMajorStatus"/>
+        <result column="add_protocol" jdbcType="INTEGER" property="addProtocol"/>
 
+        <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
+        <result column="apply_way" jdbcType="VARCHAR" property="applyWay" />
+        <result column="approval_cycle" jdbcType="TIMESTAMP" property="approvalCycle" />
+        <result column="payment_type" jdbcType="INTEGER" property="paymentType"/>
+        <result column="apply_status" jdbcType="INTEGER" property="applyStatus"/>
+        <result column="apply_status_name" jdbcType="VARCHAR" property="applyStatusName" />
+        <result column="argue_date" jdbcType="TIMESTAMP" property="argueDate" />
+        <result column="apply_type" jdbcType="INTEGER" property="applyType"/>
+        <result column="apply_account" jdbcType="VARCHAR" property="applyAccount" />
+        <result column="apply_password" jdbcType="VARCHAR" property="applyPassword" />
+        <result column="operator" jdbcType="INTEGER" property="operator"/>
+        <result column="relation_status" jdbcType="INTEGER" property="relationStatus"/>
+        <result column="apply_relation" jdbcType="INTEGER" property="mainRelation"/>
+
+        <result column="college_name" jdbcType="VARCHAR" property="applyCollegeName" />
+        <result column="major_english_name" jdbcType="VARCHAR" property="majorEnglishName" />
+        <result column="apply_term" jdbcType="VARCHAR" property="applyTerm" />
+        <result column="major_name" jdbcType="VARCHAR" property="applyMajorName" />
+        <result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+        <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
+        <result column="express_status" jdbcType="VARCHAR" property="expressStatus" />
+        <result column="apply_edu" jdbcType="VARCHAR" property="applyEdu" />
+        <result column="apply_category" jdbcType="VARCHAR" property="applyCategory" />
+        <result column="apply_major_deadline" jdbcType="TIMESTAMP" property="applyMajorDeadline" />
+        <result column="expect_begin_date" jdbcType="TIMESTAMP" property="expectBeginDate" />
+        <result column="college_english_name" jdbcType="VARCHAR" property="collegeEnglishName" />
+        <result column="apply_fee" jdbcType="VARCHAR" property="applyFee" />
+        <result column="email_account" jdbcType="VARCHAR" property="emailAccount" />
+        <result column="email_password" jdbcType="VARCHAR" property="emailPassword" />
+        <result column="network_address" jdbcType="VARCHAR" property="networkAddress" />
+        <result column="network_account" jdbcType="VARCHAR" property="networkAccount" />
+        <result column="network_password" jdbcType="VARCHAR" property="networkPassword" />
+        <result column="school_no" jdbcType="VARCHAR" property="schoolNo" />
+    </resultMap>
+    <select id="getByTransDate" parameterType="map" resultMap="BaseResultMap">
+        select apply.* from
+        student_college_apply_relation apply
+        inner join apply_operator_relation operator
+        on operator.student_no=apply.student_no
+        where apply.student_no in
+
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+         <if test="startDate != null ">
+             and operator.transfer_date &gt;= #{startDate}
+         </if>
+        <if test="endDate != null ">
+          and operator.transfer_date &lt;= #{endDate}
+        </if>
+    </select>
 </mapper>
